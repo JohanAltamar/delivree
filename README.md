@@ -21,4 +21,4 @@ To contribute there are some steps that we must follow.
 3. Thanks for your help and time! 
 
 ## People that make this project come true: 
-  - [Johan Altamar](www.github.com/JohanAltamar) 
+  - [Johan Altamar](https://github.com/JohanAltamar/) 
