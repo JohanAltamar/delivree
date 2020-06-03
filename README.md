@@ -8,7 +8,7 @@ Tracking order for every business that want to deploy delivery services. This ap
   - Login / Sign Up
 
 ## Steps to achive our goal:  
-- [ ] Create Repo
+- [x] Create Repo
 - [ ] Wireframes
 - [ ] Mobile mockup
 - [ ] Web mockup
