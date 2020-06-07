@@ -10,6 +10,7 @@ const Hero = () => {
       <div id="hero-caption-container">
         <span id="hero-caption">Vive la experiencia</span>
       </div>
+      
       <div id="hero-button-container">
         <Link to="/menu" id="hero-button">Ordena Aquí</Link>
       </div>
