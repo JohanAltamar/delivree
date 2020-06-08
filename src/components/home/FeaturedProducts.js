@@ -10,17 +10,17 @@ function FeaturedProducts() {
       </h2>
       <section className="featured-products-container">
         <figure className="featured-products-item">
-          <img src="https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fbroasted_chicken.jpg?alt=media&token=50fcefb0-d097-412c-a806-bdd9777385a6"/>
+          <img src="https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fbroasted_chicken.jpg?alt=media&token=50fcefb0-d097-412c-a806-bdd9777385a6" alt="Product 1"/>
           <figcaption className="brand-color-secondary font-weight-bold">Broasted Chicken</figcaption>
           <figcaption className="brand-color-secondary">Price: $ 15.000</figcaption>
         </figure>
         <figure className="featured-products-item">
-          <img src="https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fbroasted_chicken.jpg?alt=media&token=50fcefb0-d097-412c-a806-bdd9777385a6"/>
+          <img src="https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fbroasted_chicken.jpg?alt=media&token=50fcefb0-d097-412c-a806-bdd9777385a6" alt="Product 2"/>
           <figcaption className="brand-color-secondary font-weight-bold">Item #2</figcaption>
           <figcaption className="brand-color-secondary">Price: $ 15.000</figcaption>
         </figure>
         <figure className="featured-products-item">
-          <img src="https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fbroasted_chicken.jpg?alt=media&token=50fcefb0-d097-412c-a806-bdd9777385a6"/>
+          <img src="https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fbroasted_chicken.jpg?alt=media&token=50fcefb0-d097-412c-a806-bdd9777385a6" alt="Product 3"/>
           <figcaption className="brand-color-secondary font-weight-bold">Item #3</figcaption>
           <figcaption className="brand-color-secondary">Price: $ 15.000</figcaption>
         </figure>
