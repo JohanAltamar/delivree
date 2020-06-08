@@ -293,6 +293,6 @@ a {
 }
 
 /*------------------------- WORKING HOURS -------------------------------*/
-#working-hours{
+#working-hours, #contact{
   padding: 20px 8.33vw;
 }
