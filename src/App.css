@@ -291,3 +291,8 @@ a {
   height: 160px;
   margin-bottom: 10px;
 }
+
+/*------------------------- WORKING HOURS -------------------------------*/
+#working-hours{
+  padding: 20px 8.33vw;
+}
