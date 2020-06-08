@@ -4,8 +4,8 @@
 } */
 
 a {
-  text-decoration: none !important;
-  color: #ff1f17 !important;
+  text-decoration: none;
+  color: #ff1f17;
 }
 
 #header {
@@ -34,11 +34,15 @@ a {
   color: #ff1f17;
 }
 
+.brand-color-secondary {
+  color: #ffffff;
+}
+
 .brand-background-color-main {
   background-color: #ff1f17;
 }
 
-.brand-font-family{
+.brand-font-family {
   font-family: "Montserrat Alternates", sans-serif;
 }
 
@@ -112,7 +116,6 @@ a {
 #hero-button-container:hover {
   background: rgba(255, 127, 12, 0.7);
 }
-
 
 #hero-button {
   width: 33vw;
@@ -205,11 +208,68 @@ a {
 }
 
 /* --------------------------- ABOUT US ------------------------- */
-#about-us{
-  padding: 40px 8.27vw; 
+#about-us {
+  padding: 40px 8.27vw;
 }
 
-#about-us h2{
+#about-us h2 {
   margin-bottom: 10px;
-  font-weight: bold; 
+  font-weight: bold;
+}
+
+/* ----------------------- FEATURED PRODUCTS --------------------- */
+#featured-products {
+  background-color: rgba(255, 31, 23, 0.8);
+  position: relative;
+}
+
+.featured-products-title {
+  margin-left: 8.33vw;
+  margin-bottom: 0px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.featured-products-container{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 8.33vw;
+  padding-bottom: 60px;
+}
+.featured-products-item img{
+  max-width: 25vw;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.featured-products-item figcaption{
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+
+.featured-products-view-all{
+  position: absolute;
+  height: 33px;
+  width: 30vw;
+  margin: 0;
+  left: 50%;
+  -ms-transform: translate(-50%, -170%);
+  transform: translate(-50%, -170%);
+  border-radius: 5px;
+  border:none;
+  background-color: rgba(255, 127, 12);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-products-view-all:hover{
+  text-decoration: none;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: rgba(255, 127, 12, 0.7);
 }
