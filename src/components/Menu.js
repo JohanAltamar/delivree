@@ -16,7 +16,7 @@ const data = [
   },
   {
     id: 2,
-    category: "hotDogs",
+    category: "hot dogs",
     image:
       "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2FhotDogs-mobile.png?alt=media&token=1bb01a7a-c13f-45dd-aa50-77fbc8572fbd",
   },
