@@ -1,32 +1,32 @@
-data = [
+const data = [
   {
     id: 0,
     category: "burgers",
     items: [
       {
         id: 0,
-        name: "Fully",
+        name: "Crusty",
         price: 25000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fburguers-mobile.png?alt=media&token=3af7597f-07c7-4650-94e9-3a662937f188",
       },
       {
         id: 1,
-        name: "Domenica",
+        name: "Origins",
         price: 22000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fburguers-mobile.png?alt=media&token=3af7597f-07c7-4650-94e9-3a662937f188",
       },
       {
         id: 2,
-        name: "Frozen",
+        name: "Big Bacon",
         price: 20000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fburguers-mobile.png?alt=media&token=3af7597f-07c7-4650-94e9-3a662937f188",
       },
       {
         id: 3,
-        name: "Crunchy",
+        name: "Saucy",
         price: 29000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fburguers-mobile.png?alt=media&token=3af7597f-07c7-4650-94e9-3a662937f188",
@@ -46,21 +46,21 @@ data = [
       },
       {
         id: 1,
-        name: "Domenica",
+        name: "Dimanche",
         price: 22000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fcocktails-mobile.png?alt=media&token=d824accf-8093-4874-8661-9d83c40f1f69",
       },
       {
         id: 2,
-        name: "Frozen",
+        name: "Chupitos",
         price: 20000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fcocktails-mobile.png?alt=media&token=d824accf-8093-4874-8661-9d83c40f1f69",
       },
       {
         id: 3,
-        name: "Crunchy",
+        name: "Fireeee",
         price: 29000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fcocktails-mobile.png?alt=media&token=d824accf-8093-4874-8661-9d83c40f1f69",
@@ -73,28 +73,28 @@ data = [
     items: [
       {
         id: 0,
-        name: "Tropical Salad",
+        name: "Italian",
         price: 25000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2FhotDogs-mobile.png?alt=media&token=1bb01a7a-c13f-45dd-aa50-77fbc8572fbd",
       },
       {
         id: 1,
-        name: "Domenica",
+        name: "Mexican",
         price: 22000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2FhotDogs-mobile.png?alt=media&token=1bb01a7a-c13f-45dd-aa50-77fbc8572fbd",
       },
       {
         id: 2,
-        name: "Frozen",
+        name: "Deutsche",
         price: 20000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2FhotDogs-mobile.png?alt=media&token=1bb01a7a-c13f-45dd-aa50-77fbc8572fbd",
       },
       {
         id: 3,
-        name: "Crunchy",
+        name: "Frenchy",
         price: 29000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2FhotDogs-mobile.png?alt=media&token=1bb01a7a-c13f-45dd-aa50-77fbc8572fbd",
@@ -107,28 +107,28 @@ data = [
     items: [
       {
         id: 0,
-        name: "Tropical Salad",
+        name: "Pomodoro",
         price: 25000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fpastas-mobile.png?alt=media&token=7d9e4bca-bba9-44f1-ba56-928d01fa6065",
       },
       {
         id: 1,
-        name: "Domenica",
+        name: "Spicy",
         price: 22000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fpastas-mobile.png?alt=media&token=7d9e4bca-bba9-44f1-ba56-928d01fa6065",
       },
       {
         id: 2,
-        name: "Frozen",
+        name: "Specials",
         price: 20000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fpastas-mobile.png?alt=media&token=7d9e4bca-bba9-44f1-ba56-928d01fa6065",
       },
       {
         id: 3,
-        name: "Crunchy",
+        name: "De la Casa",
         price: 29000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fpastas-mobile.png?alt=media&token=7d9e4bca-bba9-44f1-ba56-928d01fa6065",
@@ -175,28 +175,28 @@ data = [
     items: [
       {
         id: 0,
-        name: "Tropical Salad",
+        name: "Classic",
         price: 25000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fsandwich-mobile.png?alt=media&token=ead6067f-1584-4bcb-bf8a-e5a07ea2b47b",
       },
       {
         id: 1,
-        name: "Domenica",
+        name: "Tuna",
         price: 22000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fsandwich-mobile.png?alt=media&token=ead6067f-1584-4bcb-bf8a-e5a07ea2b47b",
       },
       {
         id: 2,
-        name: "Frozen",
+        name: "Freshii",
         price: 20000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fsandwich-mobile.png?alt=media&token=ead6067f-1584-4bcb-bf8a-e5a07ea2b47b",
       },
       {
         id: 3,
-        name: "Crunchy",
+        name: "Veggie",
         price: 29000,
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fsandwich-mobile.png?alt=media&token=ead6067f-1584-4bcb-bf8a-e5a07ea2b47b",

@@ -54,9 +54,9 @@ function Menu() {
             <figure key={product.id}>
               <Link to={`${url}/${product.category}`}>
                 <img src={product.image} alt={product.category} />
-                <figurecaption className="text-capitalize font-weight-bold">
+                <figcaption className="text-capitalize font-weight-bold">
                   {product.category}
-                </figurecaption>
+                </figcaption>
               </Link>
             </figure>
           );
