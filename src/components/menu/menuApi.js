@@ -201,8 +201,8 @@ data = [
         url:
           "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2Fsandwich-mobile.png?alt=media&token=ead6067f-1584-4bcb-bf8a-e5a07ea2b47b",
       },
-    ],
-  },
+    ], 
+  }, 
 ];
 
 export default data;
