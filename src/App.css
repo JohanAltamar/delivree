@@ -232,7 +232,7 @@ a {
   line-height: 30px;
 }
 
-.featured-products-container{
+.featured-products-container {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -240,17 +240,17 @@ a {
   padding: 0px 8.33vw;
   padding-bottom: 60px;
 }
-.featured-products-item img{
+.featured-products-item img {
   max-width: 25vw;
   border-radius: 5px;
   margin-bottom: 10px;
 }
-.featured-products-item figcaption{
-  font-family: 'Roboto', sans-serif;
+.featured-products-item figcaption {
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
 }
 
-.featured-products-view-all{
+.featured-products-view-all {
   position: absolute;
   height: 33px;
   width: 30vw;
@@ -259,7 +259,7 @@ a {
   -ms-transform: translate(-50%, -170%);
   transform: translate(-50%, -170%);
   border-radius: 5px;
-  border:none;
+  border: none;
   background-color: rgba(255, 127, 12);
   font-weight: 600;
   display: flex;
@@ -267,7 +267,7 @@ a {
   justify-content: center;
 }
 
-.featured-products-view-all:hover{
+.featured-products-view-all:hover {
   text-decoration: none;
   font-weight: bold;
   color: #ffffff;
@@ -275,24 +275,59 @@ a {
 }
 
 /*------------------------------ LOCATION -----------------------------*/
-#location h2:first-child{
+#location h2:first-child {
   padding-left: 8.33vw;
   padding-top: 30px;
   padding-bottom: 20px;
 }
-.location-map{
+.location-map {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding: 0px 8.33vw;
 }
-.location-map iframe{
+.location-map iframe {
   width: calc(100%);
   height: 160px;
   margin-bottom: 10px;
 }
 
 /*------------------------- WORKING HOURS -------------------------------*/
-#working-hours, #contact{
+#working-hours,
+#contact {
   padding: 20px 8.33vw;
 }
+
+/* ------------------------- MENU PAGE -----------------------------------*/
+#menu-container, #menu-category-container {
+  background-color: rgba(255, 31, 23, 0.7);
+  min-height: calc(100vh - 80px);
+  padding-top: 20px;
+}
+
+#menu-categories{
+  padding: 0px 8.33vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#menu-categories figure{
+  display: flex;
+  flex-direction: column;
+  width: calc((100% - 8.33vw)/2);
+  margin-bottom: 30px;
+}
+
+#menu-categories img{
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#menu-categories a, #menu-categories a:hover{
+  color: #ffffff;
+  text-decoration: none;
+}
+
