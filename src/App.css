@@ -305,7 +305,7 @@ a {
   padding-top: 20px;
 }
 
-#menu-categories{
+#menu-categories, #menu-category-items-container{
   padding: 0px 8.33vw;
   display: flex;
   flex-wrap: wrap;
@@ -313,14 +313,15 @@ a {
   margin-top: 20px;
 }
 
-#menu-categories figure{
+#menu-categories figure, #menu-category-items-container figure{
   display: flex;
   flex-direction: column;
   width: calc((100% - 8.33vw)/2);
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
-#menu-categories img{
+#menu-categories img, #menu-category-items-container img{
   width: 100%;
   border-radius: 10px;
   margin-bottom: 10px;
