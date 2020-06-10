@@ -1,15 +1,18 @@
 import React from "react";
-import { Modal} from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import { addUnit, removeUnit } from "../../redux/actions";
 
 function ItemToCart(props) {
   const { item, onHide, onAdd } = props;
+  const { itemQty, addUnit, removeUnit } = props; //React-redux
 
   const addToCart = () => {
-      onHide();
-      onAdd();
-  }
+    onHide();
+    onAdd();
+  };
   return (
     <Modal
       {...props}
@@ -34,9 +37,15 @@ function ItemToCart(props) {
           </figcaption>
         </section>
         <section id="second-section">
-          <button className="less-button"> - </button>
-          <input value={1} />
-          <button className="add-button"> + </button>
+          <button className="less-button" onClick={() => removeUnit()}>
+            {" "}
+            -{" "}
+          </button>
+          <input value={itemQty} disabled />
+          <button className="add-button" onClick={() => addUnit()}>
+            {" "}
+            +{" "}
+          </button>
         </section>
         <section id="third-section">
           <button id="add-to-cart-button" onClick={addToCart}>
@@ -47,5 +56,21 @@ function ItemToCart(props) {
     </Modal>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    itemQty: state.itemQty,
+  };
+};
 
-export default ItemToCart;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUnit() {
+      dispatch(addUnit());
+    },
+    removeUnit() {
+      dispatch(removeUnit());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemToCart);
