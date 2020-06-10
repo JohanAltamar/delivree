@@ -299,13 +299,15 @@ a {
 }
 
 /* ------------------------- MENU PAGE -----------------------------------*/
-#menu-container, #menu-category-container {
+#menu-container,
+#menu-category-container {
   background-color: rgba(255, 31, 23, 0.7);
   min-height: calc(100vh - 80px);
   padding-top: 20px;
 }
 
-#menu-categories, #menu-category-items-container{
+#menu-categories,
+#menu-category-items-container {
   padding: 0px 8.33vw;
   display: flex;
   flex-wrap: wrap;
@@ -313,22 +315,91 @@ a {
   margin-top: 20px;
 }
 
-#menu-categories figure, #menu-category-items-container figure{
+#menu-categories figure,
+#menu-category-items-container figure {
   display: flex;
   flex-direction: column;
-  width: calc((100% - 8.33vw)/2);
+  width: calc((100% - 8.33vw) / 2);
   margin-bottom: 30px;
   cursor: pointer;
 }
 
-#menu-categories img, #menu-category-items-container img{
+#menu-categories img,
+#menu-category-items-container img {
   width: 100%;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
-#menu-categories a, #menu-categories a:hover{
+#menu-categories a,
+#menu-categories a:hover {
   color: #ffffff;
   text-decoration: none;
 }
 
+#menu-category-container .toast-body{
+  background-color: greenyellow;
+}
+
+/*---------------------------- ITEM PAGE ----------------------*/
+#item-modal .modal-content {
+  border: 3px solid rgb(255, 127, 12);
+  max-width: max-content;
+  margin: auto;
+}
+
+#item-container {
+  padding: 20px 8.33vw;
+  margin-bottom: 0px;
+}
+
+#item-container img {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#item-container #first-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+#item-container #second-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#item-container #third-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#item-container input {
+  width: 20%;
+  text-align: center;
+}
+
+.less-button {
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  margin-right: 5px;
+}
+
+.add-button {
+  border: 1px solid green;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  margin-left: 5px;
+}
+
+#add-to-cart-button {
+  background: #ff7f0c;
+  border: 1px solid #ff1f17;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #ffffff;
+}
