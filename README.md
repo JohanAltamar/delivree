@@ -23,7 +23,7 @@ To contribute there are some steps that we must follow.
 3. Make a PR to the issues branch. If not exist, create one as follows:
   - Wireframe for wireframe related. 
   - Designs for designs related. 
-  - Enhancement XXX, related to any improvement, new component, code modifications (e. g. Enhancement Home, when adding new components to this one.) 
+  - Enhancement XXX, related to any improvement, new component, code modifications (e. g. HomeEnhancement, when adding new components to this one.) 
 4. Thanks for your help and time! 
 
 ## People that make this project come true: 
