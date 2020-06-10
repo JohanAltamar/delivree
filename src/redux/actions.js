@@ -6,7 +6,7 @@ import {
   REMOVE_UNIT,
   RESET_UNITS,
   ITEM_MODAL,
-  ITEM_ADDED_TO_CART,
+  ITEM_ADDED_TO_CART_MSG,
   ITEM_SELECTED
 } from "./constants";
 
@@ -16,10 +16,11 @@ export const toggleMenu = () => {
   };
 };
 
-export const addToCart = (product) => {
+export const addToCart = (product, qty) => {
   return {
     type: ADD_TO_CART,
     product,
+    qty
   };
 };
 
@@ -57,7 +58,7 @@ export const itemModalStatus = (status) => {
 
 export const itemAddedToCart = (itemAddedMsg) => {
   return{
-    type: ITEM_ADDED_TO_CART,
+    type: ITEM_ADDED_TO_CART_MSG,
     itemAddedMsg
   }
 }

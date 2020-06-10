@@ -3,15 +3,16 @@ import { Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { addUnit, removeUnit } from "../../redux/actions";
+import { addUnit, removeUnit, addToCart } from "../../redux/actions";
 
 function ItemToCart(props) {
   const { item, onHide, onAdd } = props;
-  const { itemQty, addUnit, removeUnit } = props; //React-redux
+  const { itemQty, addUnit, removeUnit, itemSelected, addItemToCart } = props; //React-redux
 
   const addToCart = () => {
     onHide();
     onAdd();
+    addItemToCart(itemSelected, itemQty)
   };
   return (
     <Modal
@@ -59,6 +60,7 @@ function ItemToCart(props) {
 const mapStateToProps = (state) => {
   return {
     itemQty: state.itemQty,
+    itemSelected: state.itemSelected
   };
 };
 
@@ -70,6 +72,9 @@ const mapDispatchToProps = (dispatch) => {
     removeUnit() {
       dispatch(removeUnit());
     },
+    addItemToCart(product, qty){
+      dispatch(addToCart(product, qty))
+    }
   };
 };
 
