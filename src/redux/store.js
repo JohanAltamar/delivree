@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
+import { reducer } from "./reducer";
+import { loadState } from "../localStorage";
 
-import { reducer, initialState } from "./reducer";
+const persistedState = loadState();
 
 const logger = (store) => (next) => (action) => {
     console.log("Dispatching ", action.type);
@@ -10,4 +12,4 @@ const logger = (store) => (next) => (action) => {
     return result;
   };
 
-export default createStore(reducer, initialState, applyMiddleware(logger));
+export default createStore(reducer, persistedState, applyMiddleware(logger));
