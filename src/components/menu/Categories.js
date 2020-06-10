@@ -3,23 +3,29 @@ import { useParams } from "react-router-dom";
 import Modal from "./ItemToCart";
 import Message from "./AddedToCart";
 import data from "./menuApi";
+import { connect } from "react-redux";
+import { itemModalStatus, itemAddedToCart, itemSelected, resetUnits } from "../../redux/actions";
 
-function Categories() {
+function Categories({
+  itemModalStatus,
+  itemModal,
+  itemAddedMsg,
+  itemAddedToCart,
+  selected, setSelected, resetItems
+}) {
   let { categoryName } = useParams();
   let category = data.filter((data) => data.category === categoryName);
   let items = category[0].items;
 
-  const [modalShow, setModalShow] = useState(false);
-  const [show, setShow] = useState(false);
-  const [selected, setSelected] = useState({});
-
   const openModal = (item) => {
-    setModalShow(true);
+    itemModalStatus(true);
     setSelected(item);
   };
 
   const closeModal = () => {
-    setModalShow(false);
+    itemModalStatus(false);
+    setSelected({});
+    resetItems();
   };
 
   return (
@@ -27,7 +33,11 @@ function Categories() {
       id="menu-category-container"
       className="brand-font-family brand-color-secondary"
     >
-      <Message show={show} delay={3000} onClose={() => setShow(false)} />
+      <Message
+        show={itemAddedMsg}
+        delay={3000}
+        onClose={() => itemAddedToCart(false)}
+      />
       <h3 className="font-weight-bold text-capitalize text-center">
         {categoryName}
       </h3>
@@ -44,13 +54,35 @@ function Categories() {
       </section>
       <Modal
         id="item-modal"
-        show={modalShow}
+        show={itemModal}
         onHide={() => closeModal()}
-        onAdd={() => setShow(true)}
+        onAdd={() => itemAddedToCart(true)}
         item={selected}
       />
     </section>
   );
 }
-
-export default Categories;
+const mapStateToProps = (state) => {
+  return {
+    itemModal: state.itemModalStatus,
+    itemAddedMsg: state.itemAddedMsg,
+    selected: state.itemSelected
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    itemModalStatus(status) {
+      dispatch(itemModalStatus(status));
+    },
+    itemAddedToCart(satus) {
+      dispatch(itemAddedToCart(satus));
+    },
+    setSelected(product){
+      dispatch(itemSelected(product))
+    },
+    resetItems() {
+      dispatch(resetUnits());
+    }
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

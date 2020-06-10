@@ -5,6 +5,9 @@ import {
   ADD_UNIT,
   REMOVE_UNIT,
   RESET_UNITS,
+  ITEM_MODAL,
+  ITEM_ADDED_TO_CART,
+  ITEM_SELECTED
 } from "./constants";
 
 export const toggleMenu = () => {
@@ -42,5 +45,26 @@ export const removeUnit = () => {
 export const resetUnits = () => {
   return {
     type: RESET_UNITS
+  }
+}
+
+export const itemModalStatus = (status) => {
+  return {
+    type: ITEM_MODAL,
+    itemModal: status
+  }
+}
+
+export const itemAddedToCart = (itemAddedMsg) => {
+  return{
+    type: ITEM_ADDED_TO_CART,
+    itemAddedMsg
+  }
+}
+
+export const itemSelected = (product) => {
+  return {
+    type: ITEM_SELECTED,
+    product
   }
 }

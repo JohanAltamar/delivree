@@ -5,12 +5,18 @@ import {
   ADD_UNIT,
   REMOVE_UNIT,
   RESET_UNITS,
+  ITEM_MODAL,
+  ITEM_ADDED_TO_CART,
+  ITEM_SELECTED,
 } from "./constants";
 
 export const initialState = {
   cart: [],
   toggleMenu: false,
   itemQty: 1,
+  itemModalStatus: false,
+  itemAddedMsg: false,
+  itemSelected: {}
 };
 
 export const reducer = (state = initialState, action) => {
@@ -52,7 +58,22 @@ export const reducer = (state = initialState, action) => {
         ...state,
         itemQty: initialState.itemQty,
       };
-
+    case ITEM_MODAL:
+      return {
+        ...state,
+        itemModalStatus: action.itemModal,
+      };
+    case ITEM_ADDED_TO_CART:
+      return {
+        ...state,
+        itemAddedMsg: action.itemAddedMsg,
+      };
+    case ITEM_SELECTED:{
+      return{
+        ...state,
+        itemSelected: action.product
+      }
+    }
     default:
       return state;
   }
