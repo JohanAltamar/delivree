@@ -1,4 +1,5 @@
-# Track Your Delivery Order - DELIVREE 
+# Track Your Delivery Order - DELIVREE
+### Thanks for your visit. You can supoort me giving a Start or inviting me a [coffee](https://www.patreon.com/johanAltamar)
 
 ## Description: 
 Tracking order for every business that want to deploy delivery services. This app will be implemented with MERN stack. Suggestions are welcome. The app will be composed by frontend and backend, and by 4 roles (customers, employees/owner, delivery man and superadmin (Us)). The app will have 4 pages as follows: 
@@ -26,3 +27,4 @@ To contribute there are some steps that we must follow.
 
 ## People that make this project come true: 
   - [Johan Altamar](https://github.com/JohanAltamar/) 
+  - This could be you. 
