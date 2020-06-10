@@ -1,4 +1,17 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, TOGGLE_MENU } from "./constants";
+import {
+  TOGGLE_MENU,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  ADD_UNIT,
+  REMOVE_UNIT,
+  RESET_UNITS,
+} from "./constants";
+
+export const toggleMenu = () => {
+  return {
+    type: TOGGLE_MENU,
+  };
+};
 
 export const addToCart = (product) => {
   return {
@@ -14,8 +27,20 @@ export const removeFromCart = (product) => {
   };
 };
 
-export const toggleMenu = () => {
+export const addUnit = () => {
   return {
-    type: TOGGLE_MENU,
-  };
-};
+    type: ADD_UNIT
+  }
+}
+
+export const removeUnit = () => {
+  return {
+    type: REMOVE_UNIT
+  }
+}
+
+export const resetUnits = () => {
+  return {
+    type: RESET_UNITS
+  }
+}
