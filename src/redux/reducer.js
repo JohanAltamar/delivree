@@ -6,7 +6,7 @@ import {
   REMOVE_UNIT,
   RESET_UNITS,
   ITEM_MODAL,
-  ITEM_ADDED_TO_CART,
+  ITEM_ADDED_TO_CART_MSG,
   ITEM_SELECTED,
 } from "./constants";
 
@@ -29,9 +29,11 @@ export const reducer = (state = initialState, action) => {
       };
     /** SHOPPING CART */
     case ADD_TO_CART:
+      const product = action.product;
+      product.qty = action.qty;
       return {
         ...state,
-        cart: state.cart.concat(action.product),
+        cart: state.cart.concat(product),
       };
     case REMOVE_FROM_CART:
       return {
@@ -63,7 +65,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         itemModalStatus: action.itemModal,
       };
-    case ITEM_ADDED_TO_CART:
+    case ITEM_ADDED_TO_CART_MSG:
       return {
         ...state,
         itemAddedMsg: action.itemAddedMsg,
