@@ -3,11 +3,6 @@
   padding: 0;
 } */
 
-a {
-  text-decoration: none;
-  color: #ff1f17;
-}
-
 #header {
   position: absolute;
   width: 100%;
@@ -15,6 +10,11 @@ a {
   left: 0px;
   top: 0px;
   background: #ffffff;
+}
+
+#header a, #header a:hover{
+  text-decoration: none;
+  color: #ff1f17;
 }
 
 /* Foodies */
@@ -131,6 +131,11 @@ a {
   align-items: center;
   text-align: center;
   color: #ffffff !important;
+}
+
+#hero a, #hero a:hover{
+  text-decoration: none;
+  color: #ffffff;
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
