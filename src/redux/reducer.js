@@ -8,6 +8,8 @@ import {
   ITEM_MODAL,
   ITEM_ADDED_TO_CART_MSG,
   ITEM_SELECTED,
+  ORDER_SENT,
+  ORDER_SENT_MSG,
 } from "./constants";
 
 export const initialState = {
@@ -16,7 +18,9 @@ export const initialState = {
   itemQty: 1,
   itemModalStatus: false,
   itemAddedMsg: false,
-  itemSelected: {}
+  itemSelected: {},
+  orderSent: false, 
+  orderSentMsg: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -76,6 +80,16 @@ export const reducer = (state = initialState, action) => {
         itemSelected: action.product
       }
     }
+    case ORDER_SENT:{
+      return{
+      ...state,
+      orderSent: true
+    }}
+    case ORDER_SENT_MSG: {
+      return{
+      ...state,
+      orderSentMsg: action.status
+    }}
     default:
       return state;
   }

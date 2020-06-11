@@ -11,8 +11,11 @@ const REMOVE_UNIT = "REMOVE_UNIT";
 const RESET_UNITS = "RESET_UNITS";
 const ITEM_MODAL = "ITEM_MODAL";
 const ITEM_ADDED_TO_CART_MSG = "ITEM_ADDED_TO_CART_MSG";
-const ITEM_SELECTED = "ITEM_SELECTED"
+const ITEM_SELECTED = "ITEM_SELECTED";
 
+/**------------------------------- ORDERS ----------------------------------- */
+const ORDER_SENT = "ORDER_SENT";
+const ORDER_SENT_MSG = "ORDER_SENT_MSG";
 export {
   ADD_TO_CART,
   REMOVE_FROM_CART,
@@ -22,5 +25,7 @@ export {
   RESET_UNITS,
   ITEM_MODAL,
   ITEM_ADDED_TO_CART_MSG,
-  ITEM_SELECTED
+  ITEM_SELECTED, 
+  ORDER_SENT,
+  ORDER_SENT_MSG,
 };

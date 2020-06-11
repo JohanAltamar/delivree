@@ -7,7 +7,9 @@ import {
   RESET_UNITS,
   ITEM_MODAL,
   ITEM_ADDED_TO_CART_MSG,
-  ITEM_SELECTED
+  ITEM_SELECTED,
+  ORDER_SENT,
+  ORDER_SENT_MSG,
 } from "./constants";
 
 export const toggleMenu = () => {
@@ -69,3 +71,12 @@ export const itemSelected = (product) => {
     product
   }
 }
+
+export const orderSent = () => ({
+  type: ORDER_SENT
+})
+
+export const orderSentMsg = (status) => ({
+  type: ORDER_SENT_MSG,
+  status
+})
