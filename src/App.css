@@ -480,3 +480,8 @@ a {
 #order-now:hover{
   background-color: rgb(216, 101, 0);
 }
+
+/*------------------------------  LOGIN PAGE  -------------------------------*/
+#login-container{
+  padding: 20px 8.33%;  
+}
