@@ -13,7 +13,7 @@ function Main() {
         <Route exact path="/" component={Home} />
         <Route exact path="/menu" component={Menu} />
         <Route path="/menu/:categoryName" component={MenuCategory} />
-        <Route path="/order" component={ShoppingCart} />
+        <Route path="/cart" component={ShoppingCart} />
         <Route path="/login" component={Login} />
       </Switch>
     </div>
