@@ -5,6 +5,8 @@ import Menu from "./Menu";
 import MenuCategory from "./menu/Categories";
 import ShoppingCart from "./ShoppingCart";
 import Login from "./Login";
+import Signup from "./SignUp"
+import ForgotPassword from "./ForgotPassword"
 
 function Main() {
   return (
@@ -15,6 +17,8 @@ function Main() {
         <Route path="/menu/:categoryName" component={MenuCategory} />
         <Route path="/cart" component={ShoppingCart} />
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup}/>
+        <Route path="/recover_password" component={ForgotPassword}/>
       </Switch>
     </div>
   );
