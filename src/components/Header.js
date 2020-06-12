@@ -1,11 +1,13 @@
 import React from "react";
+import clsx from "clsx";
 import { Link } from "react-router-dom";
 import BurgerIcon from "./header/BurgerMenu";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { toggleMenu } from "../redux/actions";
 import { Row, Col } from "react-bootstrap";
 
 function Header({ toggleMenu }) {
+  const menu = useSelector((state) => state.toggleMenu);
   return (
     <header>
       <Row id="header">
@@ -33,7 +35,7 @@ function Header({ toggleMenu }) {
               <Link to="/menu">Menu</Link>
             </li>
             <li>
-              <Link to="/order">Carrito</Link>
+              <Link to="/cart">Carrito</Link>
             </li>
             <li>
               <Link to="/login">Ingreso</Link>
@@ -41,6 +43,35 @@ function Header({ toggleMenu }) {
           </nav>
         </Col>
       </Row>
+      <section
+        id="burger-menu-display-container"
+        className={clsx("d-sm-none text-center", menu ? "" : "d-none")}
+      >
+        <div
+          id="burger-menu-display-blank-section"
+          onClick={() => toggleMenu()}
+        ></div>
+        <div id="burger-menu-display">
+          <nav onClick={() => toggleMenu}>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+            <hr/>
+            <li>
+              <Link to="/menu">Menu</Link>
+            </li>
+            <hr/>
+            <li>
+              <Link to="/cart">Carrito</Link>
+            </li>
+            <hr/>
+            <li>
+              <Link to="/login">Ingreso</Link>
+            </li>
+            <hr/>
+          </nav>
+        </div>
+      </section>
     </header>
   );
 }
