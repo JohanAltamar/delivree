@@ -2,6 +2,7 @@ import {
   TOGGLE_MENU,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  EMPTY_CART,
   ADD_UNIT,
   REMOVE_UNIT,
   RESET_UNITS,
@@ -32,6 +33,12 @@ export const removeFromCart = (product) => {
     product,
   };
 };
+
+export const emptyCart = () => {
+  return {
+    type: EMPTY_CART
+  }
+}
 
 export const addUnit = () => {
   return {

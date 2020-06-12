@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addUnit, removeUnit, orderSent, orderSentMsg } from "../redux/actions";
+import { addUnit, removeUnit, orderSent, orderSentMsg, emptyCart } from "../redux/actions";
 import OrderSentMsg from "./shoppingCart/OrderSent"
 
 export const ShoppingCart = (props) => {
-  const { cart, orderSent, orderSentMsg, orderMsg } = props;
+  const { cart, orderSent, orderSentMsg, orderMsg, emptyCart } = props;
 
   const getTotal = (total, product) => {
     return total + product.qty * product.price;
@@ -14,6 +14,7 @@ export const ShoppingCart = (props) => {
   const orderNow = () => {
     orderMsg(true);
     orderSent();
+    emptyCart();
   }
 
   return (
@@ -89,6 +90,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   removeUnit() {
     dispatch(removeUnit());
+  },
+  emptyCart(){
+    dispatch(emptyCart())
   },
   orderSent(){
     dispatch(orderSent())

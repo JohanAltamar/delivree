@@ -2,6 +2,7 @@ import {
   TOGGLE_MENU,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  EMPTY_CART,
   ADD_UNIT,
   REMOVE_UNIT,
   RESET_UNITS,
@@ -44,6 +45,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         cart: state.cart.filter((product) => product.id !== action.product.id),
       };
+    case EMPTY_CART:
+      return {
+        ...state,
+        cart: []
+      }
     /** MENU ITEMS */
     case ADD_UNIT:
       return {
