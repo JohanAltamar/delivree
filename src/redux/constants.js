@@ -4,6 +4,7 @@ const TOGGLE_MENU = "TOGGLE_MENU";
 /***************************** SHOPPING CART ******************************** */
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const EMPTY_CART = "EMPTY_CART";
 
 /******************************* MENU ITEMS ********************************* */
 const ADD_UNIT = "ADD_UNIT";
@@ -19,6 +20,7 @@ const ORDER_SENT_MSG = "ORDER_SENT_MSG";
 export {
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  EMPTY_CART, 
   TOGGLE_MENU,
   ADD_UNIT,
   REMOVE_UNIT,
