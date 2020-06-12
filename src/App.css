@@ -13,6 +13,16 @@
   color: #ff1f17;
 }
 
+#header nav{
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+#header nav a{
+  margin: 0px 10px; 
+}
+
 /* Foodies */
 .brand-name {
   width: 100%;
