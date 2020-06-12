@@ -1,4 +1,3 @@
-
 #header {
   position: absolute;
   width: 100%;
@@ -8,9 +7,20 @@
   background: #ffffff;
 }
 
-#header a, #header a:hover{
+#header a,
+#header a:hover {
   text-decoration: none;
   color: #ff1f17;
+}
+
+#header nav {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+#header nav a {
+  margin: 0px 10px;
 }
 
 /* Foodies */
@@ -128,7 +138,8 @@
   text-align: center;
 }
 
-#hero a, #hero a:hover{
+#hero a,
+#hero a:hover {
   text-decoration: none;
   color: #ffffff;
 }
@@ -336,7 +347,8 @@
   text-decoration: none;
 }
 
-#menu-category-container .toast-body, #cart-container .toast-body{
+#menu-category-container .toast-body,
+#cart-container .toast-body {
   background-color: greenyellow;
 }
 
@@ -404,13 +416,13 @@
 }
 
 /* ----------------- CART PAGE ------------------ */
-#cart-products{
+#cart-products {
   width: 100%;
   padding: 20px 8.33%;
 }
 
-.cart-item{
-  border: 3px solid #FF7F0C;
+.cart-item {
+  border: 3px solid #ff7f0c;
   border-radius: 5px;
   display: flex;
   margin-bottom: 20px;
@@ -419,30 +431,30 @@
   align-items: center;
 }
 
-.cart-item-content{
+.cart-item-content {
   width: 100%;
   padding-right: 10px;
 }
 
-#cart-item-content-second-section{
+#cart-item-content-second-section {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-#cart-item-buttons{
+#cart-item-buttons {
   width: 60%;
 }
 
-#cart-item-total-section h5{
+#cart-item-total-section h5 {
   display: flex;
   justify-content: space-between;
 }
-.cart-item-image{
+.cart-item-image {
   width: 40%;
 }
 
-.cart-item-image img{
+.cart-item-image img {
   width: 100%;
   border-radius: 10px;
 }
@@ -453,7 +465,9 @@
   border-radius: 5px;
 }
 
-#cart-resume-preview, #cart-resume-delivery, #cart-resume-total  {
+#cart-resume-preview,
+#cart-resume-delivery,
+#cart-resume-total {
   display: flex;
   justify-content: space-between;
 }
@@ -464,7 +478,7 @@
   margin-bottom: 100px;
 }
 
-#order-now{
+#order-now {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -175%);
@@ -476,11 +490,71 @@
   height: 40px;
 }
 
-#order-now:hover{
+#order-now:hover {
   background-color: rgb(216, 101, 0);
 }
 
 /*------------------------------  LOGIN PAGE  -------------------------------*/
-#login-container{
-  padding: 20px 8.33%;  
+#login-container {
+  padding: 20px 8.33%;
+}
+
+/*--------------------------- BURGER MENU OPTIONS ----------------------------*/
+#burger-menu-display-container {
+  display: flex;
+  position: absolute;
+  top: 80px;
+  right: 0px;
+  transition: 1.5s;
+  min-height: calc(100vh - 80px);
+  width: 100%;
+}
+
+#burger-menu-display-blank-section{
+  width: 40%;
+  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 100%;
+  z-index: 10;
+}
+
+#burger-menu-display{
+  position: absolute;
+  right: 0;
+  background-color: white;
+  width: 60%;
+  min-height: 100%;
+  z-index: 10;
+  border: 1px solid #ff7f0c; 
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+#burger-menu-display li {
+  list-style-type: none;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#burger-menu-display hr{
+  margin: 0px;
+  border-color: #ff7f0c;
+}
+
+#burger-menu-display a, #burger-menu-display a:hover {
+  text-decoration: none;
+  color: #ff7f0c;
+  font-weight: bold;
+}
+
+header {
+  position: fixed;
+  height: 80px;
+  background-color: #fff;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  width: 100%;
 }
