@@ -6,6 +6,7 @@ import {
   ADD_UNIT,
   REMOVE_UNIT,
   RESET_UNITS,
+  UPDATE_UNIT_PRODUCT_IN_CART,
   ITEM_MODAL,
   ITEM_ADDED_TO_CART_MSG,
   ITEM_SELECTED,
@@ -20,8 +21,20 @@ export const initialState = {
   itemModalStatus: false,
   itemAddedMsg: false,
   itemSelected: {},
-  orderSent: false, 
-  orderSentMsg: false
+  orderSent: false,
+  orderSentMsg: false,
+};
+
+const update_item = (array, item, operation) => {
+  const newArray = array.slice();
+  if (operation === "add") {
+    newArray[item].qty = newArray[item].qty + 1;
+  } else {
+    if (newArray[item].qty > 1) {
+      newArray[item].qty = newArray[item].qty - 1;
+    }
+  }
+  return newArray;
 };
 
 export const reducer = (state = initialState, action) => {
@@ -48,8 +61,13 @@ export const reducer = (state = initialState, action) => {
     case EMPTY_CART:
       return {
         ...state,
-        cart: []
-      }
+        cart: [],
+      };
+    case UPDATE_UNIT_PRODUCT_IN_CART:
+      return {
+        ...state,
+        cart: update_item(state.cart, action.index, action.op),
+      };
     /** MENU ITEMS */
     case ADD_UNIT:
       return {
@@ -80,22 +98,24 @@ export const reducer = (state = initialState, action) => {
         ...state,
         itemAddedMsg: action.itemAddedMsg,
       };
-    case ITEM_SELECTED:{
-      return{
+    case ITEM_SELECTED: {
+      return {
         ...state,
-        itemSelected: action.product
-      }
+        itemSelected: action.product,
+      };
     }
-    case ORDER_SENT:{
-      return{
-      ...state,
-      orderSent: true
-    }}
+    case ORDER_SENT: {
+      return {
+        ...state,
+        orderSent: true,
+      };
+    }
     case ORDER_SENT_MSG: {
-      return{
-      ...state,
-      orderSentMsg: action.status
-    }}
+      return {
+        ...state,
+        orderSentMsg: action.status,
+      };
+    }
     default:
       return state;
   }
