@@ -478,6 +478,10 @@
   margin-bottom: 100px;
 }
 
+#cart-empty{
+  padding: 50px 20% 
+}
+
 #order-now {
   position: absolute;
   left: 50%;

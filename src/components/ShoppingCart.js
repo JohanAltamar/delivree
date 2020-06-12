@@ -1,7 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addUnit, removeUnit, orderSent, orderSentMsg, emptyCart } from "../redux/actions";
-import OrderSentMsg from "./shoppingCart/OrderSent"
+import {
+  addUnit,
+  removeUnit,
+  orderSent,
+  orderSentMsg,
+  emptyCart,
+} from "../redux/actions";
+import OrderSentMsg from "./shoppingCart/OrderSent";
 
 export const ShoppingCart = (props) => {
   const { cart, orderSent, orderSentMsg, orderMsg, emptyCart } = props;
@@ -15,11 +22,11 @@ export const ShoppingCart = (props) => {
     orderMsg(true);
     orderSent();
     emptyCart();
-  }
+  };
 
   return (
     <section id="cart-container" className="brand-font-family brand-color-main">
-      <OrderSentMsg show={orderSentMsg} onClose={()=> orderMsg(false)}/>
+      <OrderSentMsg show={orderSentMsg} onClose={() => orderMsg(false)} />
       <h3 className="text-center">Resume</h3>
       <section id="cart-products">
         {cart.map((item, idx) => (
@@ -59,21 +66,38 @@ export const ShoppingCart = (props) => {
           </div>
         ))}
       </section>
-      <section id="cart-resume">
-        <div id="cart-resume-preview">
-          <h5><strong>Preview: </strong> </h5>
-          <h5>$ {total.toLocaleString("de-DE")}</h5>
+      {cart.length > 0 ? (
+        <div>
+          <section id="cart-resume">
+            <div id="cart-resume-preview">
+              <h5>
+                <strong>Preview: </strong>{" "}
+              </h5>
+              <h5>$ {total.toLocaleString("de-DE")}</h5>
+            </div>
+            <div id="cart-resume-delivery">
+              <h5>
+                <strong>Delivery: </strong>
+              </h5>
+              <h5>$ 5.000</h5>
+            </div>
+            <div id="cart-resume-total">
+              <h5>
+                <strong>Total: </strong>
+              </h5>
+              <h5> $ {(total + 5000).toLocaleString("de-DE")}</h5>
+            </div>
+          </section>
+          <button id="order-now" onClick={orderNow}>
+            Order Now
+          </button>
         </div>
-        <div id="cart-resume-delivery">
-          <h5><strong>Delivery: </strong></h5>
-          <h5>$ 5.000</h5>
-        </div>
-        <div id="cart-resume-total">
-          <h5><strong>Total: </strong></h5>
-          <h5> $ {(total + 5000).toLocaleString("de-DE")}</h5>
-        </div>
-      </section>
-      <button id="order-now" onClick={orderNow}>Order Now</button>
+      ) : (
+        <section id="cart-empty">
+          No hay productos agregados. Visita nuestro{" "}
+          <Link to="/menu">Menu</Link>
+        </section>
+      )}
     </section>
   );
 };
@@ -81,7 +105,7 @@ export const ShoppingCart = (props) => {
 const mapStateToProps = (state) => ({
   cart: state.cart,
   orderSent: state.OrderSent,
-  orderSentMsg: state.orderSentMsg
+  orderSentMsg: state.orderSentMsg,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -91,15 +115,15 @@ const mapDispatchToProps = (dispatch) => ({
   removeUnit() {
     dispatch(removeUnit());
   },
-  emptyCart(){
-    dispatch(emptyCart())
+  emptyCart() {
+    dispatch(emptyCart());
   },
-  orderSent(){
-    dispatch(orderSent())
+  orderSent() {
+    dispatch(orderSent());
   },
   orderMsg(status) {
-    dispatch(orderSentMsg(status))
-  }
+    dispatch(orderSentMsg(status));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
