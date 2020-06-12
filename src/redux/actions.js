@@ -6,6 +6,7 @@ import {
   ADD_UNIT,
   REMOVE_UNIT,
   RESET_UNITS,
+  UPDATE_UNIT_PRODUCT_IN_CART,
   ITEM_MODAL,
   ITEM_ADDED_TO_CART_MSG,
   ITEM_SELECTED,
@@ -57,6 +58,15 @@ export const resetUnits = () => {
     type: RESET_UNITS
   }
 }
+
+export const updateProductInCart = (index, op) => {
+  return{
+    type: UPDATE_UNIT_PRODUCT_IN_CART, 
+    index,
+    op
+  }
+}
+
 
 export const itemModalStatus = (status) => {
   return {

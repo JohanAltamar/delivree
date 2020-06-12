@@ -7,11 +7,12 @@ import {
   orderSent,
   orderSentMsg,
   emptyCart,
+  updateProductInCart
 } from "../redux/actions";
 import OrderSentMsg from "./shoppingCart/OrderSent";
 
 export const ShoppingCart = (props) => {
-  const { cart, orderSent, orderSentMsg, orderMsg, emptyCart } = props;
+  const { cart, orderSent, orderSentMsg, orderMsg, emptyCart, updateProduct } = props;
 
   const getTotal = (total, product) => {
     return total + product.qty * product.price;
@@ -37,11 +38,11 @@ export const ShoppingCart = (props) => {
               </h5>
               <div id="cart-item-content-second-section">
                 <div id="cart-item-buttons">
-                  <button className="less-button" onClick={() => removeUnit()}>
+                  <button className="less-button" onClick={() => updateProduct(idx, 'less')}>
                     -
                   </button>
                   <input value={item.qty} disabled />
-                  <button className="add-button" onClick={() => addUnit()}>
+                  <button className="add-button" onClick={() => updateProduct(idx, 'add')}>
                     +
                   </button>
                 </div>
@@ -124,6 +125,9 @@ const mapDispatchToProps = (dispatch) => ({
   orderMsg(status) {
     dispatch(orderSentMsg(status));
   },
+  updateProduct(index, operation){
+    dispatch(updateProductInCart(index, operation))
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
