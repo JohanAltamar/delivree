@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Modal from "./ItemToCart";
 import Message from "./AddedToCart";
 import data from "./menuApi";
+import CartButton from "../CartButton"
 import { connect } from "react-redux";
 import { itemModalStatus, itemAddedToCart, itemSelected, resetUnits } from "../../redux/actions";
 
@@ -59,6 +60,7 @@ function Categories({
         onAdd={() => itemAddedToCart(true)}
         item={selected}
       />
+      <CartButton id="cart-floating-button-home" />
     </section>
   );
 }
