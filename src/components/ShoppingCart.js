@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Helmet} from "react-helmet"
 import { connect } from "react-redux";
 import {
   addUnit,
@@ -27,6 +28,13 @@ export const ShoppingCart = (props) => {
 
   return (
     <section id="cart-container" className="brand-font-family brand-color-main">
+      <Helmet>
+        <title>Foodies restaurant - Cart resume</title>
+        <meta
+          name="description"
+          content="Foodies cart lets you edit your order before confirm it."
+        />
+      </Helmet>
       <OrderSentMsg show={orderSentMsg} onClose={() => orderMsg(false)} />
       <h3 className="text-center">Resume</h3>
       <section id="cart-products">

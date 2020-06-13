@@ -1,4 +1,5 @@
 import React from "react";
+import {Helmet} from "react-helmet"
 import { connect } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -6,6 +7,13 @@ import { Link } from "react-router-dom";
 export const Login = () => {
   return (
     <div id="login-container">
+      <Helmet>
+        <title>Foodies restaurant - Login</title>
+        <meta
+          name="description"
+          content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
+        />
+      </Helmet>
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
