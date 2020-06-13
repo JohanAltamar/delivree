@@ -52,21 +52,21 @@ function Header({ toggleMenu }) {
           onClick={() => toggleMenu()}
         ></div>
         <div id="burger-menu-display">
-          <nav onClick={() => toggleMenu}>
+          <nav>
             <li>
-              <Link to="/">Inicio</Link>
+              <Link to="/" onClick={() => toggleMenu()}>Inicio</Link>
             </li>
             <hr/>
             <li>
-              <Link to="/menu">Menu</Link>
+              <Link to="/menu" onClick={() => toggleMenu()}>Menu</Link>
             </li>
             <hr/>
             <li>
-              <Link to="/cart">Carrito</Link>
+              <Link to="/cart" onClick={() => toggleMenu()}>Carrito</Link>
             </li>
             <hr/>
             <li>
-              <Link to="/login">Ingreso</Link>
+              <Link to="/login" onClick={() => toggleMenu()}>Ingreso</Link>
             </li>
             <hr/>
           </nav>
