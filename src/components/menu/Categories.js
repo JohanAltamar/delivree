@@ -1,18 +1,26 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import {Helmet} from "react-helmet"
 import Modal from "./ItemToCart";
 import Message from "./AddedToCart";
 import data from "./menuApi";
-import CartButton from "../CartButton"
+import CartButton from "../CartButton";
 import { connect } from "react-redux";
-import { itemModalStatus, itemAddedToCart, itemSelected, resetUnits } from "../../redux/actions";
+import {
+  itemModalStatus,
+  itemAddedToCart,
+  itemSelected,
+  resetUnits,
+} from "../../redux/actions";
 
 function Categories({
   itemModalStatus,
   itemModal,
   itemAddedMsg,
   itemAddedToCart,
-  selected, setSelected, resetItems
+  selected,
+  setSelected,
+  resetItems,
 }) {
   let { categoryName } = useParams();
   let category = data.filter((data) => data.category === categoryName);
@@ -34,6 +42,13 @@ function Categories({
       id="menu-category-container"
       className="brand-font-family brand-color-secondary"
     >
+      <Helmet>
+  <title>Foodies restaurant - {categoryName} Menu</title>
+        <meta
+          name="description"
+          content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
+        />
+      </Helmet>
       <Message
         show={itemAddedMsg}
         delay={3000}
@@ -68,7 +83,7 @@ const mapStateToProps = (state) => {
   return {
     itemModal: state.itemModalStatus,
     itemAddedMsg: state.itemAddedMsg,
-    selected: state.itemSelected
+    selected: state.itemSelected,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -79,12 +94,12 @@ const mapDispatchToProps = (dispatch) => {
     itemAddedToCart(satus) {
       dispatch(itemAddedToCart(satus));
     },
-    setSelected(product){
-      dispatch(itemSelected(product))
+    setSelected(product) {
+      dispatch(itemSelected(product));
     },
     resetItems() {
       dispatch(resetUnits());
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

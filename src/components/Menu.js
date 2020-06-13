@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-import CartButton from "./CartButton"
+import { Helmet } from "react-helmet";
+import CartButton from "./CartButton";
 
 const data = [
   {
@@ -18,7 +19,7 @@ const data = [
   {
     id: 2,
     category: "hot dogs",
-    image: 
+    image:
       "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fmenu%2FhotDogs-mobile.png?alt=media&token=1bb01a7a-c13f-45dd-aa50-77fbc8572fbd",
   },
   {
@@ -48,6 +49,13 @@ function Menu() {
       id="menu-container"
       className="brand-font-family brand-color-secondary"
     >
+      <Helmet>
+        <title>Foodies restaurant - Menu</title>
+        <meta
+          name="description"
+          content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
+        />
+      </Helmet>
       <h4 className="font-weight-bold text-center">Menu</h4>
       <section id="menu-categories">
         {data.map((product) => {

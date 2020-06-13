@@ -1,4 +1,5 @@
 import React from "react";
+import {Helmet} from "react-helmet"
 import { connect } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -6,6 +7,13 @@ import { Link } from "react-router-dom";
 export const SignUp = () => {
   return (
     <div id="login-container">
+      <Helmet>
+        <title>Foodies restaurant - Sign Up</title>
+        <meta
+          name="description"
+          content="Foodies family invites you to be part of this great family."
+        />
+      </Helmet>
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
