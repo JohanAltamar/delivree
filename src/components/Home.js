@@ -5,6 +5,7 @@ import Featured from "./home/FeaturedProducts"
 import Location from "./home/Location"
 import WorkingHours from "./home/WorkingHours"
 import Contact from "./home/Contact"
+import CartButton from "./CartButton"
 
 function Home() {
     return (
@@ -15,6 +16,7 @@ function Home() {
             <Location />
             <WorkingHours/>
             <Contact/>
+            <CartButton id="cart-floating-button-home"/>
         </section>
     )
 }
