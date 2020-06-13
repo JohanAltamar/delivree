@@ -596,3 +596,20 @@ header {
 #cart-floating-button-home:hover svg{
   color: rgb(212, 211, 211);
 }
+
+#footer{
+  background-color: #ff7f0c;
+  color: #ffffff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#footer a{
+  color: #ffffff;
+}
+
+#footer a:hover{
+  color: #f0ff17;
+  text-decoration: none;
+}
