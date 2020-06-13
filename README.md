@@ -1,6 +1,6 @@
 # Track Your Delivery Order - DELIVREE
 ### Thanks for your visit. You can supoort me giving a Start or inviting me a [coffee](https://www.patreon.com/johanAltamar)
-### This is the [Demo](https://order-tracking-app.now.sh), currently under construction 
+### This is the [Demo](https://order-tracking-app.now.sh), that shows development results.  
 
 ## Description: 
 Tracking order for every business that want to deploy delivery services. This app will be implemented with MERN stack. Suggestions are welcome. The app will be composed by frontend and backend, and by 4 roles (customers, employees/owner, delivery man and superadmin (Us)). The app will have 4 pages as follows: 
@@ -8,7 +8,11 @@ Tracking order for every business that want to deploy delivery services. This ap
   - Products or services
   - Shopping Cart
   - Login / Sign Up
-
+ Actually, views are optimized for mobile devices needing improvements for small screens and larger. And at this point we are almost ready to choose if we will work with a server o with serverless technologies like Firebase. 
+ We expect to have at least three versions of this project as follows. 
+  - Version 1.0: Views and state management. 
+  - Version 1.1: Firebase implementation. 
+  - Version 1.2: Node backend. 
 ## Steps to achive our goal:  
 - [x] Create Repo
 - [x] Wireframes
