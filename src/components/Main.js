@@ -8,6 +8,7 @@ import Login from "./Login";
 import Signup from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
 import NoMatch from "./NoMatch"
+import OrderMain from "./Order"
 
 function Main() {
   return (
@@ -17,6 +18,7 @@ function Main() {
         <Route exact path="/menu" component={Menu} />
         <Route path="/menu/:categoryName" component={MenuCategory} />
         <Route path="/cart" component={ShoppingCart} />
+        <Route path="/order" component={OrderMain} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/recover_password" component={ForgotPassword} />
