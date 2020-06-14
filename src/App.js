@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import "./App.css";
 
 import Header from "./components/Header";
-import Main from "./components/Main"
+import Main from "./components/Main";
+
 function App({ toggleMenu }) {
   return (
     <main>
+      {process.env.REACT_APP_HOLA}
       <Header />
-      <Main/>
+      <Main />
     </main>
   );
 }

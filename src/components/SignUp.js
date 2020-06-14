@@ -1,10 +1,33 @@
-import React from "react";
-import {Helmet} from "react-helmet"
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { auth } from "../services/firebase";
 
 export const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onEmailChange = (event) => setEmail(event.target.value);
+  const onPasswordChange = (event) => setPassword(event.target.value);
+
+  const onSignUp = () => {
+    // console.log('Sign Up');
+    // console.log(email, password);
+
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("Error with Sign Up", errorCode, errorMessage);
+        // ...
+      });
+    setEmail("");
+    setPassword("");
+  };
   return (
     <div id="login-container">
       <Helmet>
@@ -17,11 +40,11 @@ export const SignUp = () => {
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
-          <Form.Control type="email" placeholder="name@foodies.com" />
+          <Form.Control type="email" placeholder="name@foodies.com" value={email} onChange={onEmailChange}/>
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Contraseña</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="password" placeholder="Password" value={password} onChange={onPasswordChange}/>
         </Form.Group>
         <Form.Group controlId="user-name">
           <Form.Label>Nombre Completo</Form.Label>
@@ -37,19 +60,19 @@ export const SignUp = () => {
         </Form.Group>
         <Form.Group controlId="user-town">
           <Form.Label>Barrio</Form.Label>
-          <Form.Control type="input" placeholder="Villa Hermosa"/>
+          <Form.Control type="input" placeholder="Villa Hermosa" />
         </Form.Group>
         <Form.Group controlId="user-city">
           <Form.Label>Municipio</Form.Label>
           <Form.Control type="input" placeholder="Barranquilla" />
         </Form.Group>
-        
+
         <Form.Group>
           <Form.Label>
             <Link to="/login">Ya eres usuario? Logueate!</Link>
           </Form.Label>
         </Form.Group>
-        <Button variant="warning" type="submit">
+        <Button variant="warning" onClick={onSignUp}>
           Crear
         </Button>
       </Form>
