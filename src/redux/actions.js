@@ -12,6 +12,8 @@ import {
   ITEM_SELECTED,
   ORDER_SENT,
   ORDER_SENT_MSG,
+  NEW_USER,
+  LOGGED_USER,
 } from "./constants";
 
 export const toggleMenu = () => {
@@ -24,7 +26,7 @@ export const addToCart = (product, qty) => {
   return {
     type: ADD_TO_CART,
     product,
-    qty
+    qty,
   };
 };
 
@@ -37,63 +39,74 @@ export const removeFromCart = (product) => {
 
 export const emptyCart = () => {
   return {
-    type: EMPTY_CART
-  }
-}
+    type: EMPTY_CART,
+  };
+};
 
 export const addUnit = () => {
   return {
-    type: ADD_UNIT
-  }
-}
+    type: ADD_UNIT,
+  };
+};
 
 export const removeUnit = () => {
   return {
-    type: REMOVE_UNIT
-  }
-}
+    type: REMOVE_UNIT,
+  };
+};
 
 export const resetUnits = () => {
   return {
-    type: RESET_UNITS
-  }
-}
+    type: RESET_UNITS,
+  };
+};
 
 export const updateProductInCart = (index, op) => {
-  return{
-    type: UPDATE_UNIT_PRODUCT_IN_CART, 
+  return {
+    type: UPDATE_UNIT_PRODUCT_IN_CART,
     index,
-    op
-  }
-}
-
+    op,
+  };
+};
 
 export const itemModalStatus = (status) => {
   return {
     type: ITEM_MODAL,
-    itemModal: status
-  }
-}
+    itemModal: status,
+  };
+};
 
 export const itemAddedToCart = (itemAddedMsg) => {
-  return{
+  return {
     type: ITEM_ADDED_TO_CART_MSG,
-    itemAddedMsg
-  }
-}
+    itemAddedMsg,
+  };
+};
 
 export const itemSelected = (product) => {
   return {
     type: ITEM_SELECTED,
-    product
-  }
-}
+    product,
+  };
+};
 
 export const orderSent = () => ({
-  type: ORDER_SENT
-})
+  type: ORDER_SENT,
+});
 
 export const orderSentMsg = (status) => ({
   type: ORDER_SENT_MSG,
-  status
+  status,
+});
+
+export const newUser = (name, value) => {
+  return {
+    type: NEW_USER,
+    name, value
+  };
+};
+
+export const loggedUser = (user) => ({
+  type: LOGGED_USER,
+  user
 })

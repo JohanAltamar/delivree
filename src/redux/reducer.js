@@ -12,7 +12,19 @@ import {
   ITEM_SELECTED,
   ORDER_SENT,
   ORDER_SENT_MSG,
+  NEW_USER,
+  LOGGED_USER
 } from "./constants";
+
+const initialUser = {
+  fullname:'',
+  address:'',
+  telephone:'',
+  email:'',
+  password:'',
+  neighborhood:'',
+  city:''
+};
 
 export const initialState = {
   cart: [],
@@ -23,6 +35,8 @@ export const initialState = {
   itemSelected: {},
   orderSent: false,
   orderSentMsg: false,
+  newUser: initialUser,
+  loggedUser: initialUser,
 };
 
 const update_item = (array, item, operation) => {
@@ -115,6 +129,19 @@ export const reducer = (state = initialState, action) => {
         ...state,
         orderSentMsg: action.status,
       };
+    }
+    /** USERS */
+    case NEW_USER: {
+      return{
+        ...state,
+        newUser: action.name === 'all' ? action.value : {...state.newUser, [action.name]: action.value}
+      }
+    }
+    case LOGGED_USER: {
+      return{
+        ...state,
+        loggedUser: {...action.user, password:''}
+      }
     }
     default:
       return state;

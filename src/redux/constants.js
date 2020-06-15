@@ -18,10 +18,15 @@ const ITEM_SELECTED = "ITEM_SELECTED";
 /**------------------------------- ORDERS ----------------------------------- */
 const ORDER_SENT = "ORDER_SENT";
 const ORDER_SENT_MSG = "ORDER_SENT_MSG";
+
+/**--------------------------------- USERS ---------------------------------- */
+const NEW_USER = "NEW_USER";
+const LOGGED_USER ="LOGGED_USER";
+
 export {
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  EMPTY_CART, 
+  EMPTY_CART,
   TOGGLE_MENU,
   ADD_UNIT,
   REMOVE_UNIT,
@@ -29,7 +34,9 @@ export {
   UPDATE_UNIT_PRODUCT_IN_CART,
   ITEM_MODAL,
   ITEM_ADDED_TO_CART_MSG,
-  ITEM_SELECTED, 
+  ITEM_SELECTED,
   ORDER_SENT,
-  ORDER_SENT_MSG
+  ORDER_SENT_MSG,
+  NEW_USER,
+  LOGGED_USER
 };
