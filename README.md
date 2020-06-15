@@ -7,12 +7,25 @@ Tracking order for every business that want to deploy delivery services. This ap
   - Business Description.
   - Products or services.
   - Shopping Cart.
-  - Login / Sign Up.
+  - Login / Sign Up.  
+  
  Actually, views are optimized for mobile devices needing improvements for small screens and larger. And at this point we are almost ready to choose if we will work with a server o with serverless technologies like Firebase. 
  We expect to have at least three versions of this project as follows. 
   - Version 1.0: Views and state management. 
   - Version 1.1: Firebase implementation. 
-  - Version 1.2: Node backend. 
+  - Version 1.2: Node backend.
+  
+  ### Version 1.1: Firebase Implementation. 
+  For firebase implementation we need to create a .env file located in the root directory. Variables inside the file must be as follows:  
+  REACT_APP_apiKey=  
+  REACT_APP_authDomain=  
+  REACT_APP_databaseURL=  
+  REACT_APP_PROJECT_ID=  
+  REACT_APP_storageBucket=  
+  REACT_APP_messagingSenderId=  
+  REACT_APP_appId=  
+  REACT_APP_measurementId=  
+  Values must be saved without quotation ("") marks and everytime we change them, we must restart the development server. 
 ## Steps to achive our goal:  
 - [x] Create Repo
 - [x] Wireframes
