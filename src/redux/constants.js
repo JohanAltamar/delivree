@@ -22,6 +22,7 @@ const ORDER_SENT_MSG = "ORDER_SENT_MSG";
 /**--------------------------------- USERS ---------------------------------- */
 const NEW_USER = "NEW_USER";
 const LOGGED_USER ="LOGGED_USER";
+const USER_IS_LOGGED = "USER_IS_LOGGED"
 
 export {
   ADD_TO_CART,
@@ -38,5 +39,6 @@ export {
   ORDER_SENT,
   ORDER_SENT_MSG,
   NEW_USER,
-  LOGGED_USER
+  LOGGED_USER,
+  USER_IS_LOGGED
 };

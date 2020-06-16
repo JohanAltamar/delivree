@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import MenuCategory from "./menu/Categories";
 import ShoppingCart from "./ShoppingCart";
 import Login from "./Login";
+import LoggedUser from "./login/LoggedUser";
 import Signup from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
 import NoMatch from "./NoMatch"
@@ -19,7 +20,8 @@ function Main() {
         <Route path="/menu/:categoryName" component={MenuCategory} />
         <Route path="/cart" component={ShoppingCart} />
         <Route path="/order" component={OrderMain} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/login" component={Login} />
+        <Route path="/login/:loggedUserUid" component={LoggedUser}/>
         <Route path="/signup" component={Signup} />
         <Route path="/recover_password" component={ForgotPassword} />
         <Route path="*" component={NoMatch}/>

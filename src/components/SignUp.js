@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, { auth } from "../services/firebase";
@@ -27,14 +27,20 @@ export const SignUp = () => {
 
   const onSignUp = () => {
     auth.createUserWithEmailAndPassword(user.email, user.password)
-      .then(function (createdUser) {
-        let userRef = db.collection("users").doc(auth.currentUser.uid)
-          .collection("information");
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("Error with Sign Up", errorCode, errorMessage);
+      });
+
+    auth.onAuthStateChanged(function (createdUser) {
+      if (createdUser) {
+        //Any user is signed in
+        let userRef = db.collection("users").doc(createdUser.uid)
+          // .doc("information");
         let payload = user;
-        userRef
-          .add(payload)
-          .then(function (doc) {
-            // console.log("Document written with ID: ", doc.id);
+        userRef.set({"information":payload})
+          .then(function () {
             setUserLoggedIn(true); //New User info added to database successfully
             dispatch(loggedUser(user));
             dispatch(newUser('all',initialState));
@@ -42,12 +48,12 @@ export const SignUp = () => {
           .catch(function (error) {
             console.error("Error adding document: ", error);
           });
-      })
-      .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log("Error with Sign Up", errorCode, errorMessage);
-      });
+      }
+      else {
+        // No user is signed in.
+        console.log("No user signed in");
+      }
+    });
   };
 
   return (

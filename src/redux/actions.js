@@ -14,6 +14,7 @@ import {
   ORDER_SENT_MSG,
   NEW_USER,
   LOGGED_USER,
+  USER_IS_LOGGED,
 } from "./constants";
 
 export const toggleMenu = () => {
@@ -109,4 +110,9 @@ export const newUser = (name, value) => {
 export const loggedUser = (user) => ({
   type: LOGGED_USER,
   user
+});
+
+export const userIsLogged = (status) =>({
+  type: USER_IS_LOGGED,
+  status
 })

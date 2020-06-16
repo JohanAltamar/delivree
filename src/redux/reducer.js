@@ -13,7 +13,8 @@ import {
   ORDER_SENT,
   ORDER_SENT_MSG,
   NEW_USER,
-  LOGGED_USER
+  LOGGED_USER,
+  USER_IS_LOGGED
 } from "./constants";
 
 const initialUser = {
@@ -37,6 +38,7 @@ export const initialState = {
   orderSentMsg: false,
   newUser: initialUser,
   loggedUser: initialUser,
+  userIsLogged: false,
 };
 
 const update_item = (array, item, operation) => {
@@ -141,6 +143,13 @@ export const reducer = (state = initialState, action) => {
       return{
         ...state,
         loggedUser: {...action.user, password:''}
+      }
+    }
+    case USER_IS_LOGGED: {
+      return{
+        ...state,
+        loggedUser: !action.status ? initialUser : state.loggedUser,
+        userIsLogged: action.status
       }
     }
     default:
