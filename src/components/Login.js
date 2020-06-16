@@ -1,10 +1,63 @@
-import React from "react";
+import React, {useState} from "react";
 import {Helmet} from "react-helmet"
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import db, {auth} from "../services/firebase"
+import {loggedUser, userIsLogged} from "../redux/actions";
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const loggedInUser = useSelector(state => state.loggedUser)
+  const logStatus = useSelector(state => state.userIsLogged)
+
+  const [logUser, setLogUser] = useState({email: '', password: ''})
+
+  const handleChange = param => event => {
+    setLogUser({
+      ...logUser,
+      [param]: event.target.value
+    })
+  }
+  const handleLogUser = (event) => {
+    event.preventDefault();
+    auth.signInWithEmailAndPassword(logUser.email, logUser.password)
+    .then(function(result){
+        console.log('User sign in');
+        setLogUser({email: '', password: ''})
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+
+  auth.onAuthStateChanged(function (user) {
+    if (user) {
+      //Any user is signed in
+      console.log(user.email, user.uid)
+      var userRef = db.collection('users').doc(user.uid)
+      userRef.get().then(function(doc) {
+        if (doc.exists) {
+            // console.log("Document data:", doc.data());
+            const userInfo = doc.data().information
+            // console.log(userInfo)
+            const uid = user.uid;
+            dispatch(userIsLogged(true))
+            dispatch(loggedUser({...userInfo, uid}));
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+        } else {
+          // No user is signed in.
+          console.log("No user signed in");
+        }
+      });
   return (
     <div id="login-container">
       <Helmet>
@@ -14,15 +67,25 @@ export const Login = () => {
           content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
         />
       </Helmet>
-      <Form>
+      <Form onSubmit={handleLogUser}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
-          <Form.Control type="email" placeholder="name@foodies.com" />
+          <Form.Control
+            type="email"
+            placeholder="name@foodies.com"
+            value={logUser.email}
+            onChange={handleChange('email')}
+          />
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Contraseña</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={logUser.password}
+            onChange={handleChange('password')}
+          />
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
           <Form.Label>
@@ -38,12 +101,9 @@ export const Login = () => {
           Log in
         </Button>
       </Form>
+      {(loggedInUser.uid && logStatus) && <Redirect to={`/login/${loggedInUser.uid}`}/>}
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;
