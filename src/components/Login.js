@@ -8,7 +8,7 @@ import {loggedUser, userIsLogged} from "../redux/actions";
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const loggedInUser = useSelector(state => state.loggedUser)
+  const loggedInUser = useSelector(state => state.loggedUser) || {}
   const logStatus = useSelector(state => state.userIsLogged)
 
   const [logUser, setLogUser] = useState({email: '', password: ''})
@@ -101,7 +101,7 @@ export const Login = () => {
           Log in
         </Button>
       </Form>
-      {(loggedInUser.uid && logStatus) && <Redirect to={`/login/${loggedInUser.uid}`}/>}
+      {(loggedUser !== undefined && loggedInUser.uid !== undefined && logStatus) && <Redirect to={`/login/${loggedInUser.uid}`}/>}
     </div>
   );
 };
