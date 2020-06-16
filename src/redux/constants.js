@@ -1,5 +1,6 @@
 /******************************* TOGGLE MENU ******************************** */
 const TOGGLE_MENU = "TOGGLE_MENU";
+const LOG_STATE = "LOG_STATE"
 
 /***************************** SHOPPING CART ******************************** */
 const ADD_TO_CART = "ADD_TO_CART";
@@ -40,5 +41,6 @@ export {
   ORDER_SENT_MSG,
   NEW_USER,
   LOGGED_USER,
-  USER_IS_LOGGED
+  USER_IS_LOGGED,
+  LOG_STATE
 };

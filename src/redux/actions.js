@@ -1,5 +1,6 @@
 import {
   TOGGLE_MENU,
+  LOG_STATE,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   EMPTY_CART,
@@ -22,6 +23,10 @@ export const toggleMenu = () => {
     type: TOGGLE_MENU,
   };
 };
+
+export const logState = () => ({
+  type: LOG_STATE
+})
 
 export const addToCart = (product, qty) => {
   return {
