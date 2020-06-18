@@ -19,7 +19,7 @@ import {
   UPDATE_USER_INFO,
 } from "./constants";
 
-const initialUser = {
+export const initialUser = {
   fullname:'',
   address:'',
   telephone:'',

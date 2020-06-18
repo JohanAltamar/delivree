@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import {useSelector, useDispatch} from "react-redux"
 import {updateUserInfoModalStatus, updateUserInfo, loggedUser} from "../../redux/actions"
+import {initialUser} from "../../redux/reducer"
 import UpdateUserInfoModal from "./UpdateUserInfoModal"
 import db, {auth} from "../../services/firebase"
 
@@ -32,6 +33,7 @@ const UserInfoTable = () => {
         console.log("Error getting document:", error);
     });
     dispatch(updateUserInfoModalStatus(false))
+    dispatch(updateUserInfo('all', initialUser))
   }
   return(
     <div>

@@ -8,7 +8,6 @@ const UpdateUserInfoModal = (props) => {
   const user = useSelector(state => state.updateUserInfo) || {}
   const dispatch = useDispatch();
   const handleUpdate = () => {
-    console.log('uid', auth.currentUser.uid)
     const userRef = db.collection('users').doc(auth.currentUser.uid)
     userRef.update({
       "information": user
