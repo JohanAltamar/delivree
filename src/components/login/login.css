@@ -1,0 +1,26 @@
+#logged-user-container{
+  padding: 0 8.33%;
+}
+
+#logged-user-container .tab-content{
+  min-height: 250px;
+}
+
+#orders-container{
+  height: 250px;
+}
+
+#no-recent-orders{
+  min-height: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#user-info-buttons-container{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
