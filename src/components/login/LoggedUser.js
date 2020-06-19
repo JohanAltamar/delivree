@@ -28,6 +28,8 @@ const LoggedUser = () => {
       // An error happened.
     });
   }
+
+
   return(
     <section id="logged-user-container" className="brand-font-family">
       {/*// User logged is {loggedUserUid}*/}

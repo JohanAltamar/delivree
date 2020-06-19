@@ -24,3 +24,21 @@
   display: flex;
   justify-content: space-around;
 }
+
+#delete-user-buttons-container{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+#request-password-form{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#request-password-form input{
+  margin-bottom: 15px;
+}

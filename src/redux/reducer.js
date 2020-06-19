@@ -17,6 +17,7 @@ import {
   USER_IS_LOGGED,
   UPDATE_USER_INFO_MODAL,
   UPDATE_USER_INFO,
+  DELETE_USER_MODAL,
 } from "./constants";
 
 export const initialUser = {
@@ -43,6 +44,7 @@ export const initialState = {
   userIsLogged: false,
   updateUserInfoModal: false,
   updateUserInfo: initialUser,
+  deleteUserModal: false,
 };
 
 const update_item = (array, item, operation) => {
@@ -183,6 +185,12 @@ export const reducer = (state = initialState, action) => {
           }
       }
     }
+
+    case   DELETE_USER_MODAL:
+      return{
+        ...state,
+        deleteUserModal: action.status
+      }
     default:
       return state;
   }

@@ -18,6 +18,7 @@ import {
   USER_IS_LOGGED,
   UPDATE_USER_INFO_MODAL,
   UPDATE_USER_INFO,
+  DELETE_USER_MODAL,
 } from "./constants";
 
 export const toggleMenu = () => {
@@ -133,4 +134,9 @@ export const updateUserInfo = (param, value) => ({
   type: UPDATE_USER_INFO,
   param,
   value
+})
+
+export const deleteUserModalStatus = (status) => ({
+  type: DELETE_USER_MODAL,
+  status
 })
