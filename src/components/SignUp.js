@@ -25,7 +25,8 @@ export const SignUp = () => {
   const user = useSelector((state) => state.newUser);
   const dispatch = useDispatch();
 
-  const onSignUp = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     auth.createUserWithEmailAndPassword(user.email, user.password)
       .catch(function (error) {
         var errorCode = error.code;
@@ -65,7 +66,7 @@ export const SignUp = () => {
           content="Foodies family invites you to be part of this great family."
         />
       </Helmet>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
           <Form.Control
@@ -151,7 +152,7 @@ export const SignUp = () => {
             <Link to="/login">Ya eres usuario? Logueate!</Link>
           </Form.Label>
         </Form.Group>
-        <Button variant="warning" onClick={onSignUp}>
+        <Button variant="warning" type="submit">
           Crear
         </Button>
       </Form>
