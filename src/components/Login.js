@@ -41,7 +41,7 @@ export const Login = () => {
       userRef.get().then(function(doc) {
         if (doc.exists) {
             // console.log("Document data:", doc.data());
-            const userInfo = doc.data().information
+            const userInfo = doc.data()
             // console.log(userInfo)
             const uid = user.uid;
             dispatch(userIsLogged(true))

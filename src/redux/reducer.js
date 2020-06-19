@@ -14,10 +14,13 @@ import {
   ORDER_SENT_MSG,
   NEW_USER,
   LOGGED_USER,
-  USER_IS_LOGGED
+  USER_IS_LOGGED,
+  UPDATE_USER_INFO_MODAL,
+  UPDATE_USER_INFO,
+  DELETE_USER_MODAL,
 } from "./constants";
 
-const initialUser = {
+export const initialUser = {
   fullname:'',
   address:'',
   telephone:'',
@@ -39,6 +42,9 @@ export const initialState = {
   newUser: initialUser,
   loggedUser: initialUser,
   userIsLogged: false,
+  updateUserInfoModal: false,
+  updateUserInfo: initialUser,
+  deleteUserModal: false,
 };
 
 const update_item = (array, item, operation) => {
@@ -52,6 +58,12 @@ const update_item = (array, item, operation) => {
   }
   return newArray;
 };
+
+const removePassword = (userInformation) => {
+  const info = userInformation
+  delete info.information.password
+  return info
+}
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -139,12 +151,16 @@ export const reducer = (state = initialState, action) => {
         newUser: action.name === 'all' ? action.value : {...state.newUser, [action.name]: action.value}
       }
     }
-    case LOGGED_USER: {
+    case LOGGED_USER:
       return{
         ...state,
-        loggedUser: {...action.user, password:''}
-      }
-    }
+        loggedUser: removePassword(action.user)
+          // ...action.user,
+          // information: {
+          //   ...action.user.information,
+          //   password: ''
+
+        }
     case USER_IS_LOGGED: {
       return{
         ...state,
@@ -152,6 +168,29 @@ export const reducer = (state = initialState, action) => {
         userIsLogged: action.status
       }
     }
+    case UPDATE_USER_INFO_MODAL:{
+      return{
+        ...state,
+        updateUserInfoModal: action.status
+      }
+    }
+    case UPDATE_USER_INFO:{
+      return{
+        ...state,
+        updateUserInfo: action.param === 'all' ?
+          action.value :
+          {
+            ...state.updateUserInfo,
+            [action.param]: action.value
+          }
+      }
+    }
+
+    case   DELETE_USER_MODAL:
+      return{
+        ...state,
+        deleteUserModal: action.status
+      }
     default:
       return state;
   }

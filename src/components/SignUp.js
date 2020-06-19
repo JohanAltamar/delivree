@@ -38,11 +38,11 @@ export const SignUp = () => {
         //Any user is signed in
         let userRef = db.collection("users").doc(createdUser.uid)
           // .doc("information");
-        let payload = user;
-        userRef.set({"information":payload})
+        let payload = {"information":user};
+        userRef.set(payload)
           .then(function () {
             setUserLoggedIn(true); //New User info added to database successfully
-            dispatch(loggedUser(user));
+            dispatch(loggedUser(payload));
             dispatch(newUser('all',initialState));
           })
           .catch(function (error) {
