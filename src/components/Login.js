@@ -5,6 +5,8 @@ import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, {auth} from "../services/firebase"
 import {loggedUser, userIsLogged} from "../redux/actions";
+import {LoginSuccessful, UserNotFound, WrongPassword,
+  TooManyRequests} from "./login/LoginAlertMessages"
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -12,6 +14,11 @@ export const Login = () => {
   const logStatus = useSelector(state => state.userIsLogged)
 
   const [logUser, setLogUser] = useState({email: '', password: ''})
+  const [loginSuccessful, setLoginSuccessful] = useState(false);
+  const [userNotFoundMsg, setUserNotFoundMsg] = useState(false);
+  const [wrongPasswordMsg, setWrongPasswordMsg] = useState(false);
+  const [tooManyRequestsMsg, setTooManyRequests] = useState(false);
+  const delayTime = 1500;
 
   const handleChange = param => event => {
     setLogUser({
@@ -31,6 +38,18 @@ export const Login = () => {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorCode, errorMessage);
+      switch (errorCode) {
+        case "auth/user-not-found":
+          setUserNotFoundMsg(true);
+          break;
+        case "auth/wrong-password":
+          setWrongPasswordMsg(true);
+          break;
+        case "auth/too-many-requests":
+          setTooManyRequests(true)
+        default:
+
+      }
     });
 
     const authUser = auth.currentUser;
@@ -39,10 +58,13 @@ export const Login = () => {
       userRef.get()
       .then(function(doc) {
         if (doc.exists) {
+          setLoginSuccessful(true)
+          setTimeout(function(){
             const userInfo = doc.data()
             const uid = authUser.uid;
             dispatch(userIsLogged(true))
             dispatch(loggedUser({...userInfo, uid}));
+          },delayTime)
         } else {
             console.log("No such document!");
         }
@@ -62,6 +84,26 @@ export const Login = () => {
           content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
         />
       </Helmet>
+      <LoginSuccessful
+        show={loginSuccessful}
+        onClose={() => setLoginSuccessful(false)}
+        delay={delayTime}
+      />
+      <UserNotFound
+        show={userNotFoundMsg}
+        onClose={() => setUserNotFoundMsg(false)}
+        delay={delayTime}
+      />
+      <WrongPassword
+        show={wrongPasswordMsg}
+        onClose = {() => {setWrongPasswordMsg(false)}}
+        delay={delayTime}
+      />
+      <TooManyRequests
+        show={tooManyRequestsMsg}
+        onClose = {() => {setTooManyRequests(false)}}
+        delay={delayTime}
+      />
       <Form onSubmit={handleLogUser}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
