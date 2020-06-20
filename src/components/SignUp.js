@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, { auth } from "../services/firebase";
 import { newUser, loggedUser } from "../redux/actions";
-
-// auth.onAuthStateChanged removed due to signUp component will be rendered
-// just when nobody is logged in. If some user is logged in, login page must
-// redirect the user to the profile page.
+import {SignUpSuccessMessage, EmailInUse} from "./signup/SignUpAlertMessages"
 
 export const SignUp = () => {
   const initialState = {
@@ -20,7 +17,11 @@ export const SignUp = () => {
     city: "",
     neighborhood: "",
   };
+  const delayTime = 2000;
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userUid, setUserUid] = useState('')
+  const [signUpSuccessMessage, setSignUpSuccessMessage] = useState(false);
+  const [emailInUse, setEmailInUse] = useState(false);
 
   const user = useSelector((state) => state.newUser);
   const dispatch = useDispatch();
@@ -28,23 +29,36 @@ export const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     auth.createUserWithEmailAndPassword(user.email, user.password)
+      .then(function(){
+        setSignUpSuccessMessage(true);
+      })
       .catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log("Error with Sign Up", errorCode, errorMessage);
+        console.log("Error with Sign Up", errorCode);
+        switch (errorCode) {
+          case "auth/email-already-in-use":
+            setEmailInUse(true);
+            break;
+          default:
+            break;
+        }
       });
 
     auth.onAuthStateChanged(function (createdUser) {
+      console.log("/*/*/*/*/* From SIGN UP component */*/*/*/*/*/")
       if (createdUser) {
-        //Any user is signed in
+        setUserUid(createdUser.uid)
         let userRef = db.collection("users").doc(createdUser.uid)
-          // .doc("information");
         let payload = {"information":user};
         userRef.set(payload)
           .then(function () {
-            setUserLoggedIn(true); //New User info added to database successfully
-            dispatch(loggedUser(payload));
-            dispatch(newUser('all',initialState));
+            //New User info added to database successfully
+            setTimeout(function(){
+              setUserLoggedIn(true);
+              dispatch(loggedUser(payload));
+              dispatch(newUser('all',initialState));
+            },delayTime);
           })
           .catch(function (error) {
             console.error("Error adding document: ", error);
@@ -57,6 +71,11 @@ export const SignUp = () => {
     });
   };
 
+  useEffect(()=>{
+    return () =>{
+      setUserUid(null);
+    }
+  },[])
   return (
     <div id="login-container">
       <Helmet>
@@ -66,6 +85,16 @@ export const SignUp = () => {
           content="Foodies family invites you to be part of this great family."
         />
       </Helmet>
+      <SignUpSuccessMessage
+        show={signUpSuccessMessage}
+        onClose={() => setSignUpSuccessMessage(false)}
+        delay={delayTime}
+      />
+      <EmailInUse
+        show={emailInUse}
+        onClose={() => setEmailInUse(false)}
+        delay={delayTime}
+      />
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
@@ -156,7 +185,7 @@ export const SignUp = () => {
           Crear
         </Button>
       </Form>
-      {userLoggedIn && (<Redirect to="/login"/>)}
+      {userLoggedIn && (<Redirect to={`/login/${userUid}`}/>)}
     </div>
   );
 };

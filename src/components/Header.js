@@ -2,14 +2,12 @@ import React from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import BurgerIcon from "./header/BurgerMenu";
-import { connect, useSelector, useDispatch } from "react-redux";
-import { toggleMenu, logState } from "../redux/actions";
+import { connect, useSelector } from "react-redux";
+import { toggleMenu} from "../redux/actions";
 import { Row, Col } from "react-bootstrap";
 
 function Header({ toggleMenu }) {
   const menu = useSelector((state) => state.toggleMenu);
-  const dispatch = useDispatch();
-  dispatch(logState())
   return (
     <header>
       <Row id="header">

@@ -40,7 +40,10 @@ export const initialState = {
   orderSent: false,
   orderSentMsg: false,
   newUser: initialUser,
-  loggedUser: initialUser,
+  loggedUser: {
+    information: initialUser,
+    orders: [],
+  },
   userIsLogged: false,
   updateUserInfoModal: false,
   updateUserInfo: initialUser,
