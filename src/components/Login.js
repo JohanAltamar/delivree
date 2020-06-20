@@ -19,45 +19,40 @@ export const Login = () => {
       [param]: event.target.value
     })
   }
-  const handleLogUser = (event) => {
+  const handleLogUser = async(event) => {
     event.preventDefault();
-    auth.signInWithEmailAndPassword(logUser.email, logUser.password)
+    await auth.signInWithEmailAndPassword(logUser.email, logUser.password)
     .then(function(result){
         console.log('User sign in');
         setLogUser({email: '', password: ''})
-      }).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-  };
+      })
+    .catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
 
-  auth.onAuthStateChanged(function (user) {
-    if (user) {
-      //Any user is signed in
-      console.log(user.email, user.uid)
-      var userRef = db.collection('users').doc(user.uid)
-      userRef.get().then(function(doc) {
+    const authUser = auth.currentUser;
+    if(authUser){
+      var userRef = db.collection('users').doc(authUser.uid)
+      userRef.get()
+      .then(function(doc) {
         if (doc.exists) {
-            // console.log("Document data:", doc.data());
             const userInfo = doc.data()
-            // console.log(userInfo)
-            const uid = user.uid;
+            const uid = authUser.uid;
             dispatch(userIsLogged(true))
             dispatch(loggedUser({...userInfo, uid}));
         } else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
         }
-      }).catch(function(error) {
+      })
+      .catch(function(error) {
           console.log("Error getting document:", error);
       });
-        } else {
-          // No user is signed in.
-          console.log("No user signed in");
-        }
-      });
+    }
+  };
+
   return (
     <div id="login-container">
       <Helmet>

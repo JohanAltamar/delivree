@@ -43,6 +43,7 @@ export const initialState = {
   loggedUser: {
     information: initialUser,
     orders: [],
+    uid: '',
   },
   userIsLogged: false,
   updateUserInfoModal: false,
@@ -158,16 +159,11 @@ export const reducer = (state = initialState, action) => {
       return{
         ...state,
         loggedUser: removePassword(action.user)
-          // ...action.user,
-          // information: {
-          //   ...action.user.information,
-          //   password: ''
-
         }
     case USER_IS_LOGGED: {
       return{
         ...state,
-        loggedUser: !action.status ? initialUser : state.loggedUser,
+        loggedUser: !action.status ? initialState.loggedUser : state.loggedUser,
         userIsLogged: action.status
       }
     }
