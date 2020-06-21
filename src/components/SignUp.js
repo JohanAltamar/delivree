@@ -5,7 +5,7 @@ import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, { auth } from "../services/firebase";
 import { newUser, loggedUser, userIsLogged } from "../redux/actions";
-import {SignUpSuccessMessage, EmailInUse} from "./signup/SignUpAlertMessages"
+import {SignUpSuccessMessage, EmailInUse, NetworkRequestFailed} from "./signup/SignUpAlertMessages"
 
 export const SignUp = () => {
   const initialState = {
@@ -23,6 +23,7 @@ export const SignUp = () => {
   const [userUid, setUserUid] = useState('')
   const [signUpSuccessMessage, setSignUpSuccessMessage] = useState(false);
   const [emailInUse, setEmailInUse] = useState(false);
+  const [networkRequestFailedMsg, setNetworkRequestFailedMsg]=useState(false);
 
   const user = useSelector((state) => state.newUser);
   const dispatch = useDispatch();
@@ -35,11 +36,13 @@ export const SignUp = () => {
       })
       .catch(function (error) {
         var errorCode = error.code;
-        var errorMessage = error.message;
         console.log("Error with Sign Up", errorCode);
         switch (errorCode) {
           case "auth/email-already-in-use":
             setEmailInUse(true);
+            break;
+          case "auth/network-request-failed":
+            setNetworkRequestFailedMsg(true);
             break;
           default:
             break;
@@ -70,6 +73,7 @@ export const SignUp = () => {
       });
     }
   },[signUpSuccessMessage])
+
   return (
     <div id="login-container">
       <Helmet>
@@ -89,6 +93,11 @@ export const SignUp = () => {
         onClose={() => setEmailInUse(false)}
         delay={delayTime}
       />
+      <NetworkRequestFailed
+       show={networkRequestFailedMsg}
+       onClose={()=> setNetworkRequestFailedMsg(false)}
+       delay={delayTime}
+       />
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
@@ -179,7 +188,7 @@ export const SignUp = () => {
           Crear
         </Button>
       </Form>
-      {(userIsLoggedState && loggedUserState.fullname !== '') && (<Redirect to={`/login/${userUid}`}/>)}
+      {(userIsLoggedState && userUid !== "" && userUid !== undefined) && (<Redirect to={`/login/${userUid}`}/>)}
     </div>
   );
 };

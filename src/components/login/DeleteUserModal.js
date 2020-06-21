@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSmile, faSadCry } from "@fortawesome/free-solid-svg-icons";
 import {auth} from "../../services/firebase";
 import {useDispatch} from "react-redux";
-import {userIsLogged} from "../../redux/actions"
+// import {userIsLogged} from "../../redux/actions"
+import * as actions from "../../redux/actions";
 
 const DeleteUserModal = (props) => {
   const dispatch = useDispatch();
@@ -17,13 +18,13 @@ const DeleteUserModal = (props) => {
   const deleteUser = () => {
     const user = auth.currentUser
     if(!user){
-        dispatch(userIsLogged(false))
+        dispatch(actions.userIsLogged(false))
         props.onHide()
     }
     user.delete().then(function() {
       console.log('User deleted')
       props.onHide();
-      dispatch(userIsLogged(false))
+      dispatch(actions.userIsLogged(false))
     }).catch(function(error) {
       if(error.code === "auth/requires-recent-login"){
         console.log("Re authentication required")

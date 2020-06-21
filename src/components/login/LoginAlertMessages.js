@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import {Toast} from "react-bootstrap"
 
 export const LoginSuccessful = (props) => {

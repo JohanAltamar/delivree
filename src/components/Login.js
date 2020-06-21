@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {Helmet} from "react-helmet"
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
@@ -6,7 +6,8 @@ import { Link, Redirect } from "react-router-dom";
 import db, {auth} from "../services/firebase"
 import {loggedUser, userIsLogged} from "../redux/actions";
 import {LoginSuccessful, UserNotFound, WrongPassword,
-  TooManyRequests} from "./login/LoginAlertMessages"
+  TooManyRequests} from "./login/LoginAlertMessages";
+import * as Alerts from "./signup/SignUpAlertMessages";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export const Login = () => {
   const [userNotFoundMsg, setUserNotFoundMsg] = useState(false);
   const [wrongPasswordMsg, setWrongPasswordMsg] = useState(false);
   const [tooManyRequestsMsg, setTooManyRequests] = useState(false);
+  const [networkRequestFailedMsg, setNetworkRequestFailedMsg]=useState(false);
   const delayTime = 1500;
 
   const handleChange = param => event => {
@@ -46,9 +48,13 @@ export const Login = () => {
           setWrongPasswordMsg(true);
           break;
         case "auth/too-many-requests":
-          setTooManyRequests(true)
+          setTooManyRequests(true);
+          break;
+        case "auth/network-request-failed":
+          setNetworkRequestFailedMsg(true);
+          break;
         default:
-
+          break;
       }
     });
 
@@ -104,6 +110,11 @@ export const Login = () => {
         onClose = {() => {setTooManyRequests(false)}}
         delay={delayTime}
       />
+      <Alerts.NetworkRequestFailed
+         show={networkRequestFailedMsg}
+         onClose={()=> setNetworkRequestFailedMsg(false)}
+         delay={delayTime}
+       />
       <Form onSubmit={handleLogUser}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
