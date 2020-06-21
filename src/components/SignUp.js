@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, { auth } from "../services/firebase";
-import { newUser, loggedUser } from "../redux/actions";
+import { newUser, loggedUser, userIsLogged } from "../redux/actions";
 import {SignUpSuccessMessage, EmailInUse} from "./signup/SignUpAlertMessages"
 
 export const SignUp = () => {
@@ -18,7 +18,8 @@ export const SignUp = () => {
     neighborhood: "",
   };
   const delayTime = 2000;
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const userIsLoggedState = useSelector(state => state.userIsLogged);
+  const loggedUserState = useSelector(state => state.loggedUserState);
   const [userUid, setUserUid] = useState('')
   const [signUpSuccessMessage, setSignUpSuccessMessage] = useState(false);
   const [emailInUse, setEmailInUse] = useState(false);
@@ -44,38 +45,31 @@ export const SignUp = () => {
             break;
         }
       });
-
-    auth.onAuthStateChanged(function (createdUser) {
-      console.log("/*/*/*/*/* From SIGN UP component */*/*/*/*/*/")
-      if (createdUser) {
-        setUserUid(createdUser.uid)
-        let userRef = db.collection("users").doc(createdUser.uid)
-        let payload = {"information":user};
-        userRef.set(payload)
-          .then(function () {
-            //New User info added to database successfully
-            setTimeout(function(){
-              setUserLoggedIn(true);
-              dispatch(loggedUser(payload));
-              dispatch(newUser('all',initialState));
-            },delayTime);
-          })
-          .catch(function (error) {
-            console.error("Error adding document: ", error);
-          });
-      }
-      else {
-        // No user is signed in.
-        console.log("No user signed in");
-      }
-    });
   };
 
   useEffect(()=>{
-    return () =>{
-      setUserUid(null);
+    if(auth.currentUser){
+      // console.log(auth.currentUser.uid)
+      setUserUid(auth.currentUser.uid)
+      let userRef = db.collection("users").doc(auth.currentUser.uid)
+      let payload = {
+        information: user,
+        orders: []
+      };
+      userRef.set(payload)
+      .then(function () {
+        //New User info added to database successfully
+        setTimeout(function(){
+          dispatch(loggedUser(payload));
+          dispatch(newUser('all',initialState));
+          dispatch(userIsLogged(true));
+        },delayTime-300);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
     }
-  },[])
+  },[signUpSuccessMessage])
   return (
     <div id="login-container">
       <Helmet>
@@ -185,7 +179,7 @@ export const SignUp = () => {
           Crear
         </Button>
       </Form>
-      {userLoggedIn && (<Redirect to={`/login/${userUid}`}/>)}
+      {(userIsLoggedState && loggedUserState.fullname !== '') && (<Redirect to={`/login/${userUid}`}/>)}
     </div>
   );
 };
