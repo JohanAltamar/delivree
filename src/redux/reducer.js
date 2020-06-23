@@ -1,24 +1,4 @@
-import {
-  TOGGLE_MENU,
-  ADD_TO_CART,
-  REMOVE_FROM_CART,
-  EMPTY_CART,
-  ADD_UNIT,
-  REMOVE_UNIT,
-  RESET_UNITS,
-  UPDATE_UNIT_PRODUCT_IN_CART,
-  ITEM_MODAL,
-  ITEM_ADDED_TO_CART_MSG,
-  ITEM_SELECTED,
-  ORDER_SENT,
-  ORDER_SENT_MSG,
-  NEW_USER,
-  LOGGED_USER,
-  USER_IS_LOGGED,
-  UPDATE_USER_INFO_MODAL,
-  UPDATE_USER_INFO,
-  DELETE_USER_MODAL,
-} from "./constants";
+import * as actions from "./constants";
 
 export const initialUser = {
   fullname:'',
@@ -40,6 +20,7 @@ export const initialState = {
   orderSent: false,
   orderSentMsg: false,
   newUser: initialUser,
+  createUserFlagStatus: false,
   loggedUser: {
     information: initialUser,
     orders: [],
@@ -49,6 +30,8 @@ export const initialState = {
   updateUserInfoModal: false,
   updateUserInfo: initialUser,
   deleteUserModal: false,
+  moveTrigger: false,
+  removeTrigger: false,
 };
 
 const update_item = (array, item, operation) => {
@@ -72,41 +55,41 @@ const removePassword = (userInformation) => {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     /** UI COMPONENTS */
-    case TOGGLE_MENU:
+    case actions.TOGGLE_MENU:
       return {
         ...state,
         toggleMenu: !state.toggleMenu,
       };
     /** SHOPPING CART */
-    case ADD_TO_CART:
+    case actions.ADD_TO_CART:
       const product = action.product;
       product.qty = action.qty;
       return {
         ...state,
         cart: state.cart.concat(product),
       };
-    case REMOVE_FROM_CART:
+    case actions.REMOVE_FROM_CART:
       return {
         ...state,
         cart: state.cart.filter((product) => product.id !== action.product.id),
       };
-    case EMPTY_CART:
+    case actions.EMPTY_CART:
       return {
         ...state,
         cart: [],
       };
-    case UPDATE_UNIT_PRODUCT_IN_CART:
+    case actions.UPDATE_UNIT_PRODUCT_IN_CART:
       return {
         ...state,
         cart: update_item(state.cart, action.index, action.op),
       };
     /** MENU ITEMS */
-    case ADD_UNIT:
+    case actions.ADD_UNIT:
       return {
         ...state,
         itemQty: state.itemQty + 1,
       };
-    case REMOVE_UNIT:
+    case actions.REMOVE_UNIT:
       if (state.itemQty <= 1) {
         return state;
       } else {
@@ -115,65 +98,77 @@ export const reducer = (state = initialState, action) => {
           itemQty: state.itemQty - 1,
         };
       }
-    case RESET_UNITS:
+    case actions.RESET_UNITS:
       return {
         ...state,
         itemQty: initialState.itemQty,
       };
-    case ITEM_MODAL:
+    case actions.ITEM_MODAL:
       return {
         ...state,
         itemModalStatus: action.itemModal,
       };
-    case ITEM_ADDED_TO_CART_MSG:
+    case actions.ITEM_ADDED_TO_CART_MSG:
       return {
         ...state,
         itemAddedMsg: action.itemAddedMsg,
       };
-    case ITEM_SELECTED: {
+    case actions.ITEM_SELECTED: {
       return {
         ...state,
         itemSelected: action.product,
       };
     }
-    case ORDER_SENT: {
+    case actions.ORDER_SENT: {
       return {
         ...state,
         orderSent: true,
       };
     }
-    case ORDER_SENT_MSG: {
+    case actions.ORDER_SENT_MSG: {
       return {
         ...state,
         orderSentMsg: action.status,
       };
     }
     /** USERS */
-    case NEW_USER: {
+    case actions.NEW_USER_FORM: {
       return{
         ...state,
         newUser: action.name === 'all' ? action.value : {...state.newUser, [action.name]: action.value}
       }
     }
-    case LOGGED_USER:
+    case actions.CREATE_USER_FLAG:
       return{
         ...state,
-        loggedUser: removePassword(action.user)
-        }
-    case USER_IS_LOGGED: {
-      return{
-        ...state,
-        loggedUser: !action.status ? initialState.loggedUser : state.loggedUser,
-        userIsLogged: action.status
+        createUserFlagStatus: action.status
       }
-    }
-    case UPDATE_USER_INFO_MODAL:{
+    case actions.LOGGED_USER:
+      return{
+        ...state,
+        loggedUser: removePassword(action.user),
+        newUser: initialState.newUser,
+        userIsLogged: true,
+        createUserFlagStatus: false
+        }
+    case actions.USER_IS_LOGGED:
+      if(action.status!== state.userIsLogged){
+        return{
+          ...state,
+          loggedUser: !action.status ? initialState.loggedUser : state.loggedUser,
+          userIsLogged: action.status
+        }
+      }
+      else{
+        return state
+      }
+    case actions.UPDATE_USER_INFO_MODAL:{
       return{
         ...state,
         updateUserInfoModal: action.status
       }
     }
-    case UPDATE_USER_INFO:{
+    case actions.UPDATE_USER_INFO:{
       return{
         ...state,
         updateUserInfo: action.param === 'all' ?
@@ -184,12 +179,37 @@ export const reducer = (state = initialState, action) => {
           }
       }
     }
-
-    case   DELETE_USER_MODAL:
+    case actions.DELETE_USER_MODAL:
       return{
         ...state,
         deleteUserModal: action.status
       }
+    case actions.DELETED_USER_TRIGGERS:
+      if(action.status === 'deletedUser'){
+        return{
+          ...state,
+          deleteUserModal: false,
+          userIsLogged: false,
+          loggedUser: initialState.loggedUser,
+          moveTrigger: false,
+          removeTrigger: false,
+        }
+      }
+      else if (action.status === "moveToDeletedUsers"){
+        return {
+          ...state,
+          moveTrigger: true,
+          removeTrigger: false
+        }
+      }
+      else if (action.status === "removeFromUsers"){
+        return {
+          ...state,
+          moveTrigger: false,
+          removeTrigger: true
+        }
+      }
+      break
     default:
       return state;
   }
