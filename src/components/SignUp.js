@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, { auth } from "../services/firebase";
-import { newUser, loggedUser, userIsLogged } from "../redux/actions";
+import * as actions from "../redux/actions";
 import {SignUpSuccessMessage, EmailInUse, NetworkRequestFailed} from "./signup/SignUpAlertMessages"
 
 export const SignUp = () => {
-  const initialState = {
-    fullname: "",
-    address: "",
-    telephone: "",
-    email: "",
-    password: "",
-    city: "",
-    neighborhood: "",
-  };
   const delayTime = 2000;
   const userIsLoggedState = useSelector(state => state.userIsLogged);
-  const loggedUserState = useSelector(state => state.loggedUserState);
+  // const createNewUser = useSelector(state => state.createUserFlagStatus);
+  // const loggedUserState = useSelector(state => state.loggedUserState);
   const [userUid, setUserUid] = useState('')
   const [signUpSuccessMessage, setSignUpSuccessMessage] = useState(false);
   const [emailInUse, setEmailInUse] = useState(false);
@@ -28,10 +20,11 @@ export const SignUp = () => {
   const user = useSelector((state) => state.newUser);
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    auth.createUserWithEmailAndPassword(user.email, user.password)
+    await auth.createUserWithEmailAndPassword(user.email, user.password)
       .then(function(){
+        dispatch(actions.createUserFlag(true))
         setSignUpSuccessMessage(true);
       })
       .catch(function (error) {
@@ -48,31 +41,54 @@ export const SignUp = () => {
             break;
         }
       });
-  };
-
-  useEffect(()=>{
-    if(auth.currentUser){
-      // console.log(auth.currentUser.uid)
-      setUserUid(auth.currentUser.uid)
-      let userRef = db.collection("users").doc(auth.currentUser.uid)
-      let payload = {
-        information: user,
-        orders: []
-      };
-      userRef.set(payload)
+    setUserUid(auth.currentUser.uid)
+    let userRef = db.collection("users").doc(auth.currentUser.uid)
+    let payload = {
+      information: user,
+      orders: [],
+      uid: auth.currentUser.uid,
+    };
+    await userRef.set(payload)
       .then(function () {
         //New User info added to database successfully
+        // console.log('User created successfully')
         setTimeout(function(){
-          dispatch(loggedUser(payload));
-          dispatch(newUser('all',initialState));
-          dispatch(userIsLogged(true));
+          dispatch(actions.loggedUser(payload));
         },delayTime-300);
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
-    }
-  },[signUpSuccessMessage])
+  };
+
+  // useEffect(()=>{
+  //   const createEffect = async () => {
+  //     console.log('Create new user:', createNewUser)
+      // console.log(auth.currentUser.uid)
+      // if(auth.currentUser && createNewUser){
+      //   // console.log(auth.currentUser.uid)
+      //   setUserUid(auth.currentUser.uid)
+      //   let userRef = db.collection("users").doc(auth.currentUser.uid)
+      //   let payload = {
+      //     information: user,
+      //     orders: [],
+      //     uid: auth.currentUser.uid,
+      //   };
+      //   await userRef.set(payload)
+      //   .then(function () {
+      //     //New User info added to database successfully
+      //     console.log('User created successfully')
+      //     setTimeout(function(){
+      //       dispatch(actions.loggedUser(payload));
+      //     },delayTime-300);
+      //   })
+      //   .catch(function (error) {
+      //     console.error("Error adding document: ", error);
+      //   });
+      // }
+  //   }
+  //   createEffect();
+  // },[createNewUser])
 
   return (
     <div id="login-container">
@@ -105,7 +121,7 @@ export const SignUp = () => {
             type="email"
             placeholder="name@foodies.com"
             value={user.email}
-            onChange={(event) => dispatch(newUser("email", event.target.value))}
+            onChange={(event) => dispatch(actions.newUser("email", event.target.value))}
             required
           />
         </Form.Group>
@@ -116,7 +132,7 @@ export const SignUp = () => {
             placeholder="Password"
             value={user.password}
             onChange={(event) =>
-              dispatch(newUser("password", event.target.value))
+              dispatch(actions.newUser("password", event.target.value))
             }
             required
           />
@@ -128,7 +144,7 @@ export const SignUp = () => {
             placeholder="John Doe"
             value={user.fullname}
             onChange={(event) =>
-              dispatch(newUser("fullname", event.target.value))
+              dispatch(actions.newUser("fullname", event.target.value))
             }
             required
           />
@@ -140,7 +156,7 @@ export const SignUp = () => {
             placeholder="3055622663"
             value={user.telephone}
             onChange={(event) =>
-              dispatch(newUser("telephone", event.target.value))
+              dispatch(actions.newUser("telephone", event.target.value))
             }
             required
           />
@@ -152,7 +168,7 @@ export const SignUp = () => {
             placeholder="Calle 50 # 25 - 56"
             value={user.address}
             onChange={(event) =>
-              dispatch(newUser("address", event.target.value))
+              dispatch(actions.newUser("address", event.target.value))
             }
             required
           />
@@ -164,7 +180,7 @@ export const SignUp = () => {
             placeholder="Villa Hermosa"
             value={user.neighborhood}
             onChange={(event) =>
-              dispatch(newUser("neighborhood", event.target.value))
+              dispatch(actions.newUser("neighborhood", event.target.value))
             }
             required
           />
@@ -175,7 +191,7 @@ export const SignUp = () => {
             type="input"
             placeholder="Barranquilla"
             value={user.city}
-            onChange={(event) => dispatch(newUser("city", event.target.value))}
+            onChange={(event) => dispatch(actions.newUser("city", event.target.value))}
           />
         </Form.Group>
 

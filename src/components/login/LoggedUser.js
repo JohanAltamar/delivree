@@ -21,14 +21,13 @@ const LoggedUser = () => {
   const logOut = () => {
       auth.signOut().then(function () {
       // Sign-out successful.
-      console.log('Signin Out');
+      // console.log('Signin Out');
       dispatch(userIsLogged(false));
       // setUser(false)
     }).catch(function (error) {
       // An error happened.
     });
   }
-
 
   return(
     <section id="logged-user-container" className="brand-font-family">

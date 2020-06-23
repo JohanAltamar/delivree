@@ -21,9 +21,11 @@ export const ORDER_SENT = "ORDER_SENT";
 export const ORDER_SENT_MSG = "ORDER_SENT_MSG";
 
 /**--------------------------------- USERS ---------------------------------- */
-export const NEW_USER = "NEW_USER";
+export const NEW_USER_FORM = "NEW_USER_FORM";
+export const CREATE_USER_FLAG = "CREATE_USER_FLAG";
 export const LOGGED_USER ="LOGGED_USER";
 export const USER_IS_LOGGED = "USER_IS_LOGGED";
 export const UPDATE_USER_INFO_MODAL = "UPDATE_USER_INFO_MODAL";
 export const UPDATE_USER_INFO ="UPDATE_USER_INFO";
 export const DELETE_USER_MODAL = "DELETE_USER_MODAL"
+export const DELETED_USER_TRIGGERS = "DELETED_USER_TRIGGERS"
