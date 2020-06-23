@@ -12,6 +12,8 @@ export const initialUser = {
 
 export const initialState = {
   cart: [],
+  chooseCartUserTrigger: false,
+  guestInfoModalStatus: false,
   toggleMenu: false,
   itemQty: 1,
   itemModalStatus: false,
@@ -83,6 +85,16 @@ export const reducer = (state = initialState, action) => {
         ...state,
         cart: update_item(state.cart, action.index, action.op),
       };
+    case actions.CHOOSE_CART_USER_TRIGGER:
+      return{
+        ...state,
+        chooseCartUserTrigger: action.status
+      }
+    case actions.GUEST_INFO_MODAL:
+      return{
+        ...state,
+        guestInfoModalStatus: action.status
+      }
     /** MENU ITEMS */
     case actions.ADD_UNIT:
       return {

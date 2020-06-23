@@ -4,6 +4,7 @@ import Home from "./Home";
 import Menu from "./Menu";
 import MenuCategory from "./menu/Categories";
 import ShoppingCart from "./ShoppingCart";
+import ChooseUser from "./shoppingCart/ChooseUser"
 import Login from "./Login";
 import LoggedUser from "./login/LoggedUser";
 import Signup from "./SignUp";
@@ -18,7 +19,8 @@ function Main() {
         <Route exact path="/" component={Home} />
         <Route exact path="/menu" component={Menu} />
         <Route path="/menu/:categoryName" component={MenuCategory} />
-        <Route path="/cart" component={ShoppingCart} />
+        <Route exact path="/cart" component={ShoppingCart} />
+        <Route path="/cart/chooseUser" component={ChooseUser} />        
         <Route path="/order" component={OrderMain} />
         <Route exact path="/login" component={Login} />
         <Route path="/login/:loggedUserUid" component={LoggedUser}/>

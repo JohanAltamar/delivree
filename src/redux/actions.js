@@ -57,6 +57,16 @@ export const updateProductInCart = (index, op) => {
   };
 };
 
+export const chooseCartUserTrigger = (status) => ({
+  type: constants.CHOOSE_CART_USER_TRIGGER,
+  status
+})
+
+export const guestCheckoutModalStatus = (status) => ({
+  type: constants.GUEST_INFO_MODAL,
+  status
+})
+
 export const itemModalStatus = (status) => {
   return {
     type: constants.ITEM_MODAL,

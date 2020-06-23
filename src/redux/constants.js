@@ -6,7 +6,9 @@ export const LOG_STATE = "LOG_STATE"
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const EMPTY_CART = "EMPTY_CART";
-export const UPDATE_UNIT_PRODUCT_IN_CART = "UPDATE_PRODUCT_IN_CART"
+export const UPDATE_UNIT_PRODUCT_IN_CART = "UPDATE_PRODUCT_IN_CART";
+export const CHOOSE_CART_USER_TRIGGER = "CHOOSE_CART_USER_TRIGGER";
+export const GUEST_INFO_MODAL = "GUEST_INFO_MODAL";
 
 /******************************* MENU ITEMS ********************************* */
 export const ADD_UNIT = "ADD_UNIT";
