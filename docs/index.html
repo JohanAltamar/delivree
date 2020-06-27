@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
     <title>Delivree - Order Tracking App</title>
   </head>
   <body>
-    <h1>Track Your Delivery Order - DELIVREE</h1>
-    <h3>Description:</h3>
+    <h1  class=" display-1 first">Track Your Delivery Order - DELIVREE</h1>
+    <h2>Thanks for your visit. You can support me giving a Start or inviting me a <a href="https://www.patreon.com/JohanAltamar" target="_blank">coffee</a> </h2>
+    <h2>This is the <a href="https://order-tracking-app.now.sh" target="_blank">Demo</a>, that shows development results. </h2>
+    <h3 class="second">Description:</h3>
     <p>
       Tracking order for every business that want to deploy delivery services.
       This app will be implemented with MERN stack. Suggestions are welcome. The
@@ -21,7 +25,32 @@
       <li>Shopping Cart</li>
       <li>Login / Sign Up</li>
     </ul>
-    <h3>Steps to achive our goal:</h3>
+    <p>
+      Actually, views are optimised for mobile devices needing improvements for small screens and larger. And at this point we are almost ready to choose if we will work with a server or with serverless technologies
+      like Firebase.
+      <br> We expect to have at least three versions of this project as follows.
+      <ul>
+        <li>Version 1.0: Views and state management.</li>
+        <li>Version 1.1: Firebase implementation.</li>
+        <li>Version 1.2: Node backend</li>
+      </ul>
+    </p>
+    <h3 class="second">Version 1.1: Firebase Implementation.</h3>
+    <p>
+      For firebase implementation we need to create a .env file located in the root directory. Variables inside the file must be as follow:
+      <ul>
+        <li> REACT_APP_apiKey= </li>
+        <li> REACT_APP_authDomain= </li>
+        <li> REACT_APP_databaseURL= </li>
+        <li> REACT_APP_PROJECT_ID= </li>
+        <li> REACT_APP_storageBucket= </li>
+        <li> REACT_APP_messagingSenderId= </li>
+        <li> REACT_APP_appId= </li>
+        <li> REACT_APP_measurementId= </li>
+      </ul>
+      <br> Values must be saved without quotation ("") marks and everytime we change them, we must restart the development server.
+    </p>
+    <h3 class="second">Steps to achive our goal:</h3>
     <ul>
       <li>Create Repo</li>
       <li>Wireframes</li>
@@ -29,20 +58,28 @@
       <li>Web mockup</li>
       <li>Start Coding</li>
     </ul>
-    <h3>Would you like to contribute?</h3>
+    <h3 class="second">Would you like to contribute?</h3>
     <p>To contribute there are some steps that we must follow.</p>
     <ol>
       <li>Check if there is an issue related opened. if not, create one.</li>
-      <li>Make a PR to the issues branch.</li>
+      <li>Request Issue assignment.</li>
+      <li>Make a PR to the issues branch. If not exist, create one as follows:
+         <ul>
+           <li>Wireframe for wireframe related.</li>
+           <li>Designs for designs related.</li>
+           <li>Enhancement XXX, related to any improvement, new component, code modifications (e.g. HomeEnhancement, when adding new components to this one.)</li>
+         </ul>
+      </li>
       <li>Thanks for your help and time!</li>
     </ol>
-    <h3>People that make this project come true:</h3>
+    <h3 class="second">People that make this project come true:</h3>
     <ul>
       <li>
         <a href="https://github.com/JohanAltamar/" target="blank">
           Johan Altamar
         </a>
       </li>
+      <li> This could be you.</li>
     </ul>
   </body>
 </html>
