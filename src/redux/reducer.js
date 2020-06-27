@@ -14,6 +14,12 @@ export const initialState = {
   cart: [],
   chooseCartUserTrigger: false,
   guestInfoModalStatus: false,
+  order:{
+    cart:[],
+    paymentMethod: "cash",
+    userInfo: initialUser
+  },
+  deleteOrderModalStatus: false,
   toggleMenu: false,
   itemQty: 1,
   itemModalStatus: false,
@@ -34,6 +40,7 @@ export const initialState = {
   deleteUserModal: false,
   moveTrigger: false,
   removeTrigger: false,
+  guestCheckoutInfo: initialUser
 };
 
 const update_item = (array, item, operation) => {
@@ -79,6 +86,10 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+        order:{
+          paymentMethod:"cash"
+        },
+        guestCheckoutInfo: initialState.guestCheckoutInfo
       };
     case actions.UPDATE_UNIT_PRODUCT_IN_CART:
       return {
@@ -94,6 +105,38 @@ export const reducer = (state = initialState, action) => {
       return{
         ...state,
         guestInfoModalStatus: action.status
+      }
+    case actions.CHECKOUT_PAYMENT_METHOD:
+      return{
+        ...state,
+        order:{
+          ...state.order,
+          paymentMethod: action.paymentMethod,
+        }
+      }
+    case actions.DELETE_ORDER_MODAL_STATUS:
+      return{
+        ...state,
+        deleteOrderModalStatus: action.status
+      }
+    case actions.COMPLETE_ORDER:
+      return{
+        ...state,
+        order: {
+          ...state.order,
+          cart: state.cart,
+          status: "pending for restaurant confirmation"
+        },
+        orderSent: true,
+      }
+    case actions.CONFIRM_CUSTOMER_DATA:
+      return{
+        ...state,
+        order:{
+          ...state.order,
+          userInfo: action.customer === "guest" ?
+          state.guestCheckoutInfo : state.loggedUser.information
+        }
       }
     /** MENU ITEMS */
     case actions.ADD_UNIT:
@@ -134,7 +177,7 @@ export const reducer = (state = initialState, action) => {
     case actions.ORDER_SENT: {
       return {
         ...state,
-        orderSent: true,
+        orderSent: action.status,
       };
     }
     case actions.ORDER_SENT_MSG: {
@@ -222,6 +265,14 @@ export const reducer = (state = initialState, action) => {
         }
       }
       break
+    case actions.GUEST_CHECKOUT_USER:
+      return{
+        ...state,
+        guestCheckoutInfo: {
+          ...state.guestCheckoutInfo,
+          [action.param] : action.value
+        }
+      }
     default:
       return state;
   }

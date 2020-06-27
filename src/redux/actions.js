@@ -67,6 +67,25 @@ export const guestCheckoutModalStatus = (status) => ({
   status
 })
 
+export const checkoutPaymentMethod = (paymentMethod) =>({
+  type: constants.CHECKOUT_PAYMENT_METHOD,
+  paymentMethod
+})
+
+export const deleteOrderModalStatus = (status) => ({
+  type: constants.DELETE_ORDER_MODAL_STATUS,
+  status
+})
+
+export const completeOrder = () => ({
+  type: constants.COMPLETE_ORDER
+})
+
+export const confirmCustomerData = (customer) => ({
+  type: constants.CONFIRM_CUSTOMER_DATA,
+  customer
+})
+
 export const itemModalStatus = (status) => {
   return {
     type: constants.ITEM_MODAL,
@@ -88,8 +107,9 @@ export const itemSelected = (product) => {
   };
 };
 
-export const orderSent = () => ({
+export const orderSent = (status) => ({
   type: constants.ORDER_SENT,
+  status
 });
 
 export const orderSentMsg = (status) => ({
@@ -138,4 +158,10 @@ export const deleteUserModalStatus = (status) => ({
 export const deletedUserTriggers = (status) => ({
   type: constants.DELETED_USER_TRIGGERS,
   status
+})
+
+export const guestCheckoutUser = (param, value) => ({
+  type: constants.GUEST_CHECKOUT_USER,
+  param,
+  value
 })

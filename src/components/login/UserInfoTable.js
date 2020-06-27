@@ -10,14 +10,15 @@ import UpdateUserInfoModal from "./UpdateUserInfoModal"
 import DeleteUserModal from "./DeleteUserModal"
 import db, {auth} from "../../services/firebase"
 
-const UserInfoTable = () => {
-  const userInfo = useSelector(state => state.loggedUser.information) || {};
+const UserInfoTable = (props) => {
+  const guestInfo = useSelector(state => state.guestCheckoutInfo) || {}
+  var userInfo = useSelector(state => state.loggedUser.information) || {};
   const modalShow = useSelector(state => state.updateUserInfoModal) || false;
   const deleteUserrModalShow = useSelector(state => state.deleteUserModal) || false
   const dispatch = useDispatch();
 
   const handleOpenEditModal = () => {
-    dispatch(updateUserInfo('all',userInfo))
+    dispatch(updateUserInfo('all', userInfo))
     dispatch(updateUserInfoModalStatus(true))
   }
 
@@ -55,23 +56,23 @@ const UserInfoTable = () => {
   <tbody>
     <tr>
       <td>Nombre</td>
-      <td>{userInfo.fullname}</td>
+      <td>{props.guest ? guestInfo.fullname : userInfo.fullname}</td>
     </tr>
     <tr>
       <td>Dirección</td>
-      <td>{userInfo.address}</td>
+      <td>{props.guest ? guestInfo.address : userInfo.address}</td>
     </tr>
     <tr>
       <td>Telefono</td>
-      <td>{userInfo.telephone}</td>
+      <td>{props.guest ? guestInfo.telephone : userInfo.telephone}</td>
     </tr>
     <tr>
       <td>Barrio</td>
-      <td>{userInfo.neighborhood}</td>
+      <td>{props.guest ? guestInfo.neighborhood : userInfo.neighborhood}</td>
     </tr>
     <tr>
       <td>Ciudad</td>
-      <td>{userInfo.city}</td>
+      <td>{props.guest ? guestInfo.city : userInfo.city}</td>
     </tr>
   </tbody>
 </Table>

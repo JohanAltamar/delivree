@@ -5,6 +5,9 @@ import Menu from "./Menu";
 import MenuCategory from "./menu/Categories";
 import ShoppingCart from "./ShoppingCart";
 import ChooseUser from "./shoppingCart/ChooseUser"
+import ConfirmData from "./shoppingCart/ConfirmData"
+import Checkout from "./shoppingCart/Checkout";
+import TransactionStatus from "./shoppingCart/TransactionStatus";
 import Login from "./Login";
 import LoggedUser from "./login/LoggedUser";
 import Signup from "./SignUp";
@@ -20,7 +23,10 @@ function Main() {
         <Route exact path="/menu" component={Menu} />
         <Route path="/menu/:categoryName" component={MenuCategory} />
         <Route exact path="/cart" component={ShoppingCart} />
-        <Route path="/cart/chooseUser" component={ChooseUser} />        
+        <Route path="/cart/chooseUser" component={ChooseUser} />
+        <Route path="/cart/confirmData/:userID" component={ConfirmData} />
+        <Route path="/cart/checkout" component={Checkout} />
+        <Route path="/cart/transactionStatus" component={TransactionStatus} />                        
         <Route path="/order" component={OrderMain} />
         <Route exact path="/login" component={Login} />
         <Route path="/login/:loggedUserUid" component={LoggedUser}/>

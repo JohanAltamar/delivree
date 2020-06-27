@@ -7,6 +7,7 @@ import GuestModal from "./ChooseUserGuestModal";
 
 const ChooseUser = () => {
   const guestModalStatus = useSelector(state => state.guestInfoModalStatus)
+  const loggedUser = useSelector(state => state.loggedUser.uid)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const ChooseUser = () => {
   return(
     <section id="choose-user-container" className="brand-font-family">
       <div>
-        <Login loginButton="Seguir como miembro" redirectTo="/cart/confirmData" />
+        <Login loginButton="Seguir como miembro" redirectTo={`/cart/confirmData`} />
       </div>
       <hr/>
       <div id="checkout-as-guest">

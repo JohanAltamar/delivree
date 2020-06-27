@@ -535,6 +535,84 @@
   justify-content: center;
   align-items: center;
 }
+
+#confirm-data-container{
+  padding: 0 8.33%;
+}
+
+#confirm-data-container #user-info-buttons-container{
+  display: none;
+}
+
+#confirm-data-container #control-buttons{
+  display: flex;
+  justify-content: space-around;
+}
+
+#cart-resume-checkout{
+  padding: 15px 10%;
+}
+
+#checkout-container{
+  padding: 0 8.33%;
+}
+
+#checkout-form{
+  padding: 20px 10%;
+  margin-bottom: 10px;
+}
+
+#checkout-button-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+#transaction-status-container{
+  padding: 20px 16.66%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#transaction-status-container > *{
+  margin-bottom: 30px;
+}
+
+#transaction-status-container #redirect-buttons > *{
+  margin-bottom: 20px;
+}
+
+#delete-order-modal .modal-content{
+  padding: 20px 8.33%;
+}
+
+#close-icon{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#delete-order-modal .modal-content #delete-order-modal-title{
+  margin-bottom: 20px;
+}
+
+#delete-order-button-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#delete-order-button-container button:nth-child(1){
+  margin-right: 15px;
+}
 /*------------------------------  LOGIN PAGE  -------------------------------*/
 #login-container {
   padding: 20px 8.33%;

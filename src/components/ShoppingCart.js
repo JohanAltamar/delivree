@@ -121,7 +121,7 @@ export const ShoppingCart = (props) => {
         </section>
       )}
       {(chooseUserStep && !auth.currentUser) && <Redirect push to="/cart/chooseUser"/>}
-      {(chooseUserStep && auth.currentUser) && <Redirect push to ="/cart/confirmData"/>}      
+      {(chooseUserStep && auth.currentUser) && <Redirect push to ={`/cart/confirmData/${auth.currentUser.uid}`}/>}      
     </section>
   );
 };

@@ -1,26 +1,19 @@
 import React, {useState} from "react"
 import {Modal, Form, Button} from "react-bootstrap";
+import {useHistory} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions";
+import {initialUser} from "../../redux/reducer";
 
 const ChooseUserGuestModal = (props) => {
+  let history = useHistory();
   const dispatch = useDispatch();
-
-  const [guestInfo, setGuestInfo] = useState({
-    fullname: "",
-    address: "",
-    telephone:"",
-    neighborhood:"",
-    city:""
-  })
+  const guestInfo = useSelector(state => state.guestCheckoutInfo) || initialUser;
 
   const handleChange = name => event => {
-      setGuestInfo({
-        ...guestInfo,
-        [name]: event.target.value
-      })
+      dispatch(actions.guestCheckoutUser(name, event.target.value))
   }
 
   return(
@@ -34,7 +27,10 @@ const ChooseUserGuestModal = (props) => {
         <FontAwesomeIcon icon={faTimes}/>
       </div>
       <h5 className="text-center pt-4">Datos de envío</h5>
-      <Form style={{padding: "20px 8.33%"}}>
+      <Form
+        style={{padding: "20px 8.33%"}}
+        onSubmit={() => history.push("/cart/confirmData/guest")}
+      >
         <Form.Group>
           <Form.Label>Nombre Completo</Form.Label>
           <Form.Control
@@ -42,6 +38,7 @@ const ChooseUserGuestModal = (props) => {
             placeholder="Juanito Perez"
             value={guestInfo.fullname}
             onChange={handleChange("fullname")}
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -51,6 +48,7 @@ const ChooseUserGuestModal = (props) => {
             placeholder="Calle XX # XX - XX"
             value={guestInfo.address}
             onChange={handleChange("address")}
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -60,6 +58,7 @@ const ChooseUserGuestModal = (props) => {
             placeholder="3001231212"
             value={guestInfo.telephone}
             onChange={handleChange("telephone")}
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -69,6 +68,7 @@ const ChooseUserGuestModal = (props) => {
             placeholder="Simón Bolivar"
             value={guestInfo.neighborhood}
             onChange={handleChange("neighborhood")}
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -78,10 +78,11 @@ const ChooseUserGuestModal = (props) => {
             placeholder="Barranquilla"
             value={guestInfo.city}
             onChange={handleChange("city")}
+            required
           />
         </Form.Group>
         <div id="guest-modal-continue-button">
-          <Button variant="warning">Continuar</Button>
+          <Button variant="warning" type="submit">Continuar</Button>
         </div>
       </Form>
     </Modal>
