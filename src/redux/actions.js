@@ -81,6 +81,10 @@ export const completeOrder = () => ({
   type: constants.COMPLETE_ORDER
 })
 
+export const completedOrderModalStatus = (status) => ({
+  type: constants.COMPLETED_ORDER_MODAL_STATUS,
+  status
+})
 export const confirmCustomerData = (customer) => ({
   type: constants.CONFIRM_CUSTOMER_DATA,
   customer

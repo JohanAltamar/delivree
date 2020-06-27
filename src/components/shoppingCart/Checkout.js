@@ -4,6 +4,8 @@ import * as actions from "../../redux/actions"
 import {Form, Button} from "react-bootstrap";
 import {useHistory} from "react-router-dom"
 import DeleteOrderModal from "./DeleteOrderCheckoutModal";
+import CompletedOrderModal from "./CompleteOrderModal"
+import db from "../../services/firebase"
 
 const Checkout = () => {
   let history = useHistory();
@@ -12,6 +14,7 @@ const Checkout = () => {
   const cart = useSelector(state => state.cart)
   const order = useSelector(state => state.order)
   const orderSent = useSelector(state => state.orderSent);
+  const completedOrderModalStatus = useSelector(state => state.completedOrderModalStatus);
   const deleteModalStatus = useSelector(state => state.deleteOrderModalStatus);
   const paymentMethod = useSelector(state => state.order.paymentMethod)
   const dispatch = useDispatch();
@@ -34,7 +37,14 @@ const Checkout = () => {
 
   useEffect(() => {
     if(orderSent){
-      console.log(order)
+      console.log(order);
+      db.collection("orders").add(order)
+      .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+      });
     }
     dispatch(actions.orderSent(false))
   }, [order])
@@ -102,12 +112,22 @@ const Checkout = () => {
           Descartar Orden
         </Button>
       </div>
+      <CompletedOrderModal
+        show={completedOrderModalStatus}
+        onHide={() => dispatch(actions.completedOrderModalStatus(false))}
+        onEscapeKeyDown={() => {
+          history.push("/");
+          handleDeleteOrder();
+        }}
+        followOrderStatus={() => {console.log('Following Order Status')}}
+      />
       <DeleteOrderModal
         show={deleteModalStatus}
         onHide={() => dispatch(actions.deleteOrderModalStatus(false))}
         onDelete={handleDeleteOrder}
       />
     </section>
+
   )
 }
 

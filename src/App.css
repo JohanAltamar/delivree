@@ -584,7 +584,7 @@
   margin-bottom: 20px;
 }
 
-#delete-order-modal .modal-content{
+.delete-order-modal .modal-content{
   padding: 20px 8.33%;
 }
 
@@ -600,17 +600,17 @@
   cursor: pointer;
 }
 
-#delete-order-modal .modal-content #delete-order-modal-title{
+.delete-order-modal .modal-content .delete-order-modal-title{
   margin-bottom: 20px;
 }
 
-#delete-order-button-container{
+.delete-order-button-container{
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-#delete-order-button-container button:nth-child(1){
+.delete-order-button-container button:nth-child(1){
   margin-right: 15px;
 }
 /*------------------------------  LOGIN PAGE  -------------------------------*/

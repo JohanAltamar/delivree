@@ -10,14 +10,13 @@ return(
       onHide={props.onHide}
       size="md"
       centered
-      className="brand-font-family"
-      id="delete-order-modal"
+      className="brand-font-family delete-order-modal"
     >
-      <h6 id="delete-order-modal-title">¿Desea vaciar el carrito de compras?</h6>
+      <h6 className="delete-order-modal-title">¿Desea vaciar el carrito de compras?</h6>
       <div id="close-icon" onClick={props.onHide}>
         <FontAwesomeIcon icon={faTimes}/>
       </div>
-      <div id="delete-order-button-container">
+      <div className="delete-order-button-container">
         <Button
           variant="outline-danger"
           onClick={props.onDelete}

@@ -20,6 +20,7 @@ export const initialState = {
     userInfo: initialUser
   },
   deleteOrderModalStatus: false,
+  completedOrderModalStatus: false,
   toggleMenu: false,
   itemQty: 1,
   itemModalStatus: false,
@@ -89,7 +90,8 @@ export const reducer = (state = initialState, action) => {
         order:{
           paymentMethod:"cash"
         },
-        guestCheckoutInfo: initialState.guestCheckoutInfo
+        guestCheckoutInfo: initialState.guestCheckoutInfo,
+        completedOrderModalStatus: false
       };
     case actions.UPDATE_UNIT_PRODUCT_IN_CART:
       return {
@@ -128,6 +130,12 @@ export const reducer = (state = initialState, action) => {
           status: "pending for restaurant confirmation"
         },
         orderSent: true,
+        completedOrderModalStatus: true
+      }
+    case actions.COMPLETED_ORDER_MODAL_STATUS:
+      return{
+        ...state,
+        completedOrderModalStatus: action.status
       }
     case actions.CONFIRM_CUSTOMER_DATA:
       return{
