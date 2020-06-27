@@ -36,7 +36,7 @@ const Checkout = () => {
   }
 
   useEffect(() => {
-    if(orderSent){
+    if(orderSent && cart.length > 0){
       console.log(order);
       db.collection("orders").add(order)
       .then(function(docRef) {
@@ -48,6 +48,13 @@ const Checkout = () => {
     }
     dispatch(actions.orderSent(false))
   }, [order])
+
+  useEffect(() => {
+    if(cart.length === 0){
+      history.push('/')
+    }
+  },[cart])
+
   return(
     <section className="brand-font-family" id="checkout-container">
       <h5 className="text-center">Finaliza tu pedido</h5>
@@ -127,7 +134,6 @@ const Checkout = () => {
         onDelete={handleDeleteOrder}
       />
     </section>
-
   )
 }
 
