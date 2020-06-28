@@ -11,6 +11,7 @@ const ConfirmData = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.loggedUser);
+  const guestInfo = useSelector(state => state.guestCheckoutInfo);
 
   useEffect(() => {
     dispatch(actions.chooseCartUserTrigger(false))
@@ -20,6 +21,11 @@ const ConfirmData = () => {
   const confirmData = () => {
     history.push("/cart/checkout")
     dispatch(actions.confirmCustomerData(userID === "guest" ? "guest" : "loggedUser"))
+  }
+
+  const editData = () => {
+    dispatch(actions.updateUserInfo('all', userID === "guest" ? guestInfo : loggedUser.information))
+    dispatch(actions.updateUserInfoModalStatus(true))
   }
 
   const cancelConfirmData = () => {
@@ -32,6 +38,7 @@ const ConfirmData = () => {
       console.log(error.code, error.message)
     });
   }
+
   return(
     <div id="confirm-data-container" className="brand-font-family">
       <h5>Confirma los datos ingresados </h5>
@@ -44,7 +51,12 @@ const ConfirmData = () => {
         >
           Salir
         </Button>
-        <Button variant="outline-warning">Editar </Button>
+        <Button
+          variant="outline-warning"
+          onClick={editData}
+        >
+          Editar
+        </Button>
         <Button
           variant="success"
           onClick={confirmData}

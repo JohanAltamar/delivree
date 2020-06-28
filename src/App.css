@@ -555,6 +555,7 @@
 
 #checkout-container{
   padding: 0 8.33%;
+  height: calc(100vh - 80px);
 }
 
 #checkout-form{

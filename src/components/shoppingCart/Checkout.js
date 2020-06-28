@@ -37,7 +37,7 @@ const Checkout = () => {
 
   useEffect(() => {
     if(orderSent && cart.length > 0){
-      console.log(order);
+      // console.log(order);
       db.collection("orders").add(order)
       .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);

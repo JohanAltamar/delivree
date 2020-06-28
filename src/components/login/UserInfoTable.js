@@ -3,8 +3,7 @@ import {Table, Button} from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import {useSelector, useDispatch} from "react-redux"
-import {updateUserInfoModalStatus, updateUserInfo, loggedUser,
-  deleteUserModalStatus, userIsLogged} from "../../redux/actions"
+import * as actions from "../../redux/actions"
 import {initialUser} from "../../redux/reducer"
 import UpdateUserInfoModal from "./UpdateUserInfoModal"
 import DeleteUserModal from "./DeleteUserModal"
@@ -12,42 +11,47 @@ import db, {auth} from "../../services/firebase"
 
 const UserInfoTable = (props) => {
   const guestInfo = useSelector(state => state.guestCheckoutInfo) || {}
-  var userInfo = useSelector(state => state.loggedUser.information) || {};
+  const userInfo = useSelector(state => state.loggedUser.information) || {};
+  const updateUserInfo = useSelector(state => state.updateUserInfo);
   const modalShow = useSelector(state => state.updateUserInfoModal) || false;
   const deleteUserrModalShow = useSelector(state => state.deleteUserModal) || false
   const dispatch = useDispatch();
 
   const handleOpenEditModal = () => {
-    dispatch(updateUserInfo('all', userInfo))
-    dispatch(updateUserInfoModalStatus(true))
+    dispatch(actions.updateUserInfo('all', userInfo))
+    dispatch(actions.updateUserInfoModalStatus(true))
   }
 
   const handleCloseEditModal = () => {
     if(!auth.currentUser){
-      return dispatch(userIsLogged(false))
+      if(props.guest){
+        dispatch(actions.updateUserInfoModalStatus(false))
+        dispatch(actions.updateUserInfo('all', initialUser))
+      }
+      return dispatch(actions.userIsLogged(false))
     }
     const uid = auth.currentUser.uid
     const userRef = db.collection('users').doc(uid)
     userRef.get().then(function(doc) {
       if (doc.exists) {
           const userInfo = doc.data()
-          dispatch(loggedUser({...userInfo, uid}));
+          dispatch(actions.loggedUser({...userInfo, uid}));
       } else {
           console.log("No such document!");
       }
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
-    dispatch(updateUserInfoModalStatus(false))
-    dispatch(updateUserInfo('all', initialUser))
+    dispatch(actions.updateUserInfoModalStatus(false))
+    dispatch(actions.updateUserInfo('all', initialUser))
   }
 
   const handleOpenDeleteUserModal = () => {
-    dispatch(deleteUserModalStatus(true))
+    dispatch(actions.deleteUserModalStatus(true))
   }
 
   const handleCloseDeleteUserModal = () => {
-    dispatch(deleteUserModalStatus(false))
+    dispatch(actions.deleteUserModalStatus(false))
   }
 
   return(
@@ -93,6 +97,7 @@ const UserInfoTable = (props) => {
   <UpdateUserInfoModal
     show={modalShow}
     onHide={handleCloseEditModal}
+    guest={props.guest}
   />
   <DeleteUserModal show={deleteUserrModalShow} onHide={handleCloseDeleteUserModal}/>
 </div>

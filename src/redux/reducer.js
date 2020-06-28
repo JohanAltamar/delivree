@@ -276,7 +276,9 @@ export const reducer = (state = initialState, action) => {
     case actions.GUEST_CHECKOUT_USER:
       return{
         ...state,
-        guestCheckoutInfo: {
+        guestCheckoutInfo: action.param === 'all' ?
+          action.value :
+          {
           ...state.guestCheckoutInfo,
           [action.param] : action.value
         }
