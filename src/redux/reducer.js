@@ -93,7 +93,8 @@ export const reducer = (state = initialState, action) => {
           paymentMethod:"cash"
         },
         guestCheckoutInfo: initialState.guestCheckoutInfo,
-        completedOrderModalStatus: false
+        completedOrderModalStatus: false,
+        orderSent: false,
       };
     case actions.UPDATE_UNIT_PRODUCT_IN_CART:
       return {
@@ -128,9 +129,9 @@ export const reducer = (state = initialState, action) => {
         ...state,
         order: {
           ...state.order,
+          ...action.extra,
           cart: state.cart,
           status: "pending for restaurant confirmation",
-          delivery: action.delivery
         },
         orderSent: true,
         completedOrderModalStatus: true,

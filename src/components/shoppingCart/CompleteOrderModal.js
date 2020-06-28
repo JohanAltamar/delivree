@@ -24,7 +24,7 @@ const CompletedOrderModal = (props) => {
           variant="warning"
           onClick={props.followOrderStatus}
         >
-        Seguir Pedido
+          Seguir Pedido
         </Button>
       </div>
     </Modal>

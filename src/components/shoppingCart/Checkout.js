@@ -27,7 +27,7 @@ const Checkout = () => {
   const total = cart.reduce(getTotal, 0) + delivery;
 
   const handleCompleteOrder = () => {
-    dispatch(actions.completeOrder(delivery))
+    dispatch(actions.completeOrder({delivery: delivery}))
   }
 
   const handleDeleteOrder = () => {
@@ -43,7 +43,7 @@ const Checkout = () => {
   }
 
   useEffect(() => {
-    if(orderSent && cart.length > 0){
+    if(paymentMethod==="cash" && orderSent && cart.length > 0){
       // console.log(order);
       db.collection("orders").add(order)
       .then(function(docRef) {
@@ -53,8 +53,8 @@ const Checkout = () => {
       .catch(function(error) {
           console.error("Error adding document: ", error);
       });
+      dispatch(actions.orderSent(false))
     }
-    dispatch(actions.orderSent(false))
   }, [order])
 
   useEffect(() => {

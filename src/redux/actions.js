@@ -77,15 +77,16 @@ export const deleteOrderModalStatus = (status) => ({
   status
 })
 
-export const completeOrder = (delivery) => ({
+export const completeOrder = (extra) => ({
   type: constants.COMPLETE_ORDER,
-  delivery
+  extra
 })
 
 export const completedOrderModalStatus = (status) => ({
   type: constants.COMPLETED_ORDER_MODAL_STATUS,
   status
 })
+
 export const confirmCustomerData = (customer) => ({
   type: constants.CONFIRM_CUSTOMER_DATA,
   customer
