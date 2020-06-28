@@ -12,6 +12,16 @@ export const initialUser = {
 
 export const initialState = {
   cart: [],
+  chooseCartUserTrigger: false,
+  guestInfoModalStatus: false,
+  order:{
+    cart:[],
+    paymentMethod: "cash",
+    userInfo: initialUser,
+    delivery: "",
+  },
+  deleteOrderModalStatus: false,
+  completedOrderModalStatus: false,
   toggleMenu: false,
   itemQty: 1,
   itemModalStatus: false,
@@ -19,6 +29,7 @@ export const initialState = {
   itemSelected: {},
   orderSent: false,
   orderSentMsg: false,
+  orderID:"",
   newUser: initialUser,
   createUserFlagStatus: false,
   loggedUser: {
@@ -32,6 +43,7 @@ export const initialState = {
   deleteUserModal: false,
   moveTrigger: false,
   removeTrigger: false,
+  guestCheckoutInfo: initialUser
 };
 
 const update_item = (array, item, operation) => {
@@ -77,12 +89,68 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+        order:{
+          paymentMethod:"cash"
+        },
+        guestCheckoutInfo: initialState.guestCheckoutInfo,
+        completedOrderModalStatus: false,
+        orderSent: false,
       };
     case actions.UPDATE_UNIT_PRODUCT_IN_CART:
       return {
         ...state,
         cart: update_item(state.cart, action.index, action.op),
       };
+    case actions.CHOOSE_CART_USER_TRIGGER:
+      return{
+        ...state,
+        chooseCartUserTrigger: action.status
+      }
+    case actions.GUEST_INFO_MODAL:
+      return{
+        ...state,
+        guestInfoModalStatus: action.status
+      }
+    case actions.CHECKOUT_PAYMENT_METHOD:
+      return{
+        ...state,
+        order:{
+          ...state.order,
+          paymentMethod: action.paymentMethod,
+        }
+      }
+    case actions.DELETE_ORDER_MODAL_STATUS:
+      return{
+        ...state,
+        deleteOrderModalStatus: action.status
+      }
+    case actions.COMPLETE_ORDER:
+      return{
+        ...state,
+        order: {
+          ...state.order,
+          ...action.extra,
+          cart: state.cart,
+          status: "pending for restaurant confirmation",
+        },
+        orderSent: true,
+        completedOrderModalStatus: true,
+      }
+    case actions.COMPLETED_ORDER_MODAL_STATUS:
+      return{
+        ...state,
+        completedOrderModalStatus: action.status,
+        orderSent: false
+      }
+    case actions.CONFIRM_CUSTOMER_DATA:
+      return{
+        ...state,
+        order:{
+          ...state.order,
+          userInfo: action.customer === "guest" ?
+          state.guestCheckoutInfo : state.loggedUser.information
+        }
+      }
     /** MENU ITEMS */
     case actions.ADD_UNIT:
       return {
@@ -122,7 +190,7 @@ export const reducer = (state = initialState, action) => {
     case actions.ORDER_SENT: {
       return {
         ...state,
-        orderSent: true,
+        orderSent: action.status,
       };
     }
     case actions.ORDER_SENT_MSG: {
@@ -131,6 +199,11 @@ export const reducer = (state = initialState, action) => {
         orderSentMsg: action.status,
       };
     }
+    case actions.ORDER_ID:
+      return{
+        ...state,
+        orderID: action.value
+      }
     /** USERS */
     case actions.NEW_USER_FORM: {
       return{
@@ -210,6 +283,16 @@ export const reducer = (state = initialState, action) => {
         }
       }
       break
+    case actions.GUEST_CHECKOUT_USER:
+      return{
+        ...state,
+        guestCheckoutInfo: action.param === 'all' ?
+          action.value :
+          {
+          ...state.guestCheckoutInfo,
+          [action.param] : action.value
+        }
+      }
     default:
       return state;
   }

@@ -1,19 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {Helmet} from "react-helmet"
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
   addUnit,
   removeUnit,
   orderSent,
   orderSentMsg,
   emptyCart,
-  updateProductInCart
+  updateProductInCart,
+  chooseCartUserTrigger
 } from "../redux/actions";
 import OrderSentMsg from "./shoppingCart/OrderSent";
+import {auth} from "../services/firebase"
 
 export const ShoppingCart = (props) => {
   const { cart, orderSent, orderSentMsg, orderMsg, emptyCart, updateProduct } = props;
+  const chooseUserStep = useSelector(state => state.chooseCartUserTrigger);
+  const dispatch = useDispatch();
 
   const getTotal = (total, product) => {
     return total + product.qty * product.price;
@@ -21,9 +25,16 @@ export const ShoppingCart = (props) => {
   const total = cart.reduce(getTotal, 0);
 
   const orderNow = () => {
-    orderMsg(true);
-    orderSent();
-    emptyCart();
+    // orderMsg(true);
+    // orderSent();
+    // emptyCart();
+    console.log('Enviando orden ...')
+    if(auth.currentUser){
+      console.log('User logged:', auth.currentUser.uid)
+    }else{
+      console.log("No user logged.")
+    }
+    dispatch(chooseCartUserTrigger(true));
   };
 
   return (
@@ -97,9 +108,11 @@ export const ShoppingCart = (props) => {
               <h5> $ {(total + 5000).toLocaleString("de-DE")}</h5>
             </div>
           </section>
-          <button id="order-now" onClick={orderNow}>
-            Order Now
-          </button>
+          <div id="order-now-container">
+            <button id="order-now" onClick={orderNow}>
+              Order Now
+            </button>
+          </div>
         </div>
       ) : (
         <section id="cart-empty">
@@ -107,6 +120,8 @@ export const ShoppingCart = (props) => {
           <Link to="/menu">Menu</Link>
         </section>
       )}
+      {(chooseUserStep && !auth.currentUser) && <Redirect push to="/cart/chooseUser"/>}
+      {(chooseUserStep && auth.currentUser) && <Redirect push to ={`/cart/confirmData/${auth.currentUser.uid}`}/>}      
     </section>
   );
 };

@@ -57,6 +57,41 @@ export const updateProductInCart = (index, op) => {
   };
 };
 
+export const chooseCartUserTrigger = (status) => ({
+  type: constants.CHOOSE_CART_USER_TRIGGER,
+  status
+})
+
+export const guestCheckoutModalStatus = (status) => ({
+  type: constants.GUEST_INFO_MODAL,
+  status
+})
+
+export const checkoutPaymentMethod = (paymentMethod) =>({
+  type: constants.CHECKOUT_PAYMENT_METHOD,
+  paymentMethod
+})
+
+export const deleteOrderModalStatus = (status) => ({
+  type: constants.DELETE_ORDER_MODAL_STATUS,
+  status
+})
+
+export const completeOrder = (extra) => ({
+  type: constants.COMPLETE_ORDER,
+  extra
+})
+
+export const completedOrderModalStatus = (status) => ({
+  type: constants.COMPLETED_ORDER_MODAL_STATUS,
+  status
+})
+
+export const confirmCustomerData = (customer) => ({
+  type: constants.CONFIRM_CUSTOMER_DATA,
+  customer
+})
+
 export const itemModalStatus = (status) => {
   return {
     type: constants.ITEM_MODAL,
@@ -78,14 +113,20 @@ export const itemSelected = (product) => {
   };
 };
 
-export const orderSent = () => ({
+export const orderSent = (status) => ({
   type: constants.ORDER_SENT,
+  status
 });
 
 export const orderSentMsg = (status) => ({
   type: constants.ORDER_SENT_MSG,
   status,
 });
+
+export const orderID = (value) => ({
+  type: constants.ORDER_ID,
+  value
+})
 
 export const newUser = (name, value) => {
   return {
@@ -128,4 +169,10 @@ export const deleteUserModalStatus = (status) => ({
 export const deletedUserTriggers = (status) => ({
   type: constants.DELETED_USER_TRIGGERS,
   status
+})
+
+export const guestCheckoutUser = (param, value) => ({
+  type: constants.GUEST_CHECKOUT_USER,
+  param,
+  value
 })

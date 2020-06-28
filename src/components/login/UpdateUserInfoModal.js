@@ -1,24 +1,32 @@
 import React from "react";
 import {Modal, Button, Form} from "react-bootstrap";
 import {useSelector, useDispatch} from "react-redux";
-import {updateUserInfo} from "../../redux/actions"
+import {updateUserInfo, guestCheckoutUser} from "../../redux/actions"
 import db, {auth} from "../../services/firebase"
 
 const UpdateUserInfoModal = (props) => {
   const user = useSelector(state => state.updateUserInfo) || {}
   const dispatch = useDispatch();
+
   const handleUpdate = () => {
-    const userRef = db.collection('users').doc(auth.currentUser.uid)
-    userRef.update({
-      "information": user
-    })
-    .then(function(){
+    if(props.guest){
+      console.log("Guest user")
+      dispatch(guestCheckoutUser('all',user))
       props.onHide()
-    })
-    .catch(function(error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-});
+    }
+    else{
+      const userRef = db.collection('users').doc(auth.currentUser.uid)
+      userRef.update({
+        "information": user
+      })
+      .then(function(){
+        props.onHide()
+      })
+      .catch(function(error) {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+      });
+    }
   }
   return(
     <Modal

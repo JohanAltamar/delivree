@@ -9,7 +9,8 @@ import {LoginSuccessful, UserNotFound, WrongPassword,
   TooManyRequests} from "./login/LoginAlertMessages";
 import * as Alerts from "./signup/SignUpAlertMessages";
 
-export const Login = () => {
+export const Login = (props) => {
+
   const dispatch = useDispatch();
   const loggedInUser = useSelector(state => state.loggedUser) || {}
   const logStatus = useSelector(state => state.userIsLogged)
@@ -28,6 +29,7 @@ export const Login = () => {
       [param]: event.target.value
     })
   }
+
   const handleLogUser = async(event) => {
     event.preventDefault();
     await auth.signInWithEmailAndPassword(logUser.email, logUser.password)
@@ -146,10 +148,10 @@ export const Login = () => {
           </Form.Label>
         </Form.Group>
         <Button variant="warning" type="submit">
-          Log in
+          {props.loginButton || "Ingresar"}
         </Button>
       </Form>
-      {(loggedUser !== undefined && loggedInUser.uid !== undefined && logStatus) && <Redirect to={`/login/${loggedInUser.uid}`}/>}
+      {(loggedUser !== undefined && loggedInUser.uid !== "" && logStatus) && <Redirect to={props.redirectTo ? `${props.redirectTo}/${loggedInUser.uid}` : `/login/${loggedInUser.uid}`}/>}
     </div>
   );
 };

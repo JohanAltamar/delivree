@@ -12,12 +12,12 @@ function Location() {
           title="map"
         //   width="400"
         //   height="200"
-          frameborder="0"
+          frameBorder="0"
           style={{border:"0"}}
-          allowfullscreen=""
+          allowFullScreen=""
           aria-hidden="false"
-          tabindex="0"
-        ></iframe> 
+          tabIndex="0"
+        ></iframe>
         <figcaption className="brand-color-main brand-font-family"><strong>Dirección: </strong> Calle 19 # 4B - 16</figcaption>
       </figure>
     </section>
