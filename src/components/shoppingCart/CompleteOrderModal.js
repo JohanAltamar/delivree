@@ -1,6 +1,5 @@
 import React from "react"
 import {Modal, Button} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
 
 const CompletedOrderModal = (props) => {
   return(
@@ -22,8 +21,8 @@ const CompletedOrderModal = (props) => {
           Volver al inicio
         </Button>
         <Button
-        variant="warning"
-        onClick={props.followOrderStatus}
+          variant="warning"
+          onClick={props.followOrderStatus}
         >
         Seguir Pedido
         </Button>

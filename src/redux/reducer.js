@@ -17,7 +17,8 @@ export const initialState = {
   order:{
     cart:[],
     paymentMethod: "cash",
-    userInfo: initialUser
+    userInfo: initialUser,
+    delivery: "",
   },
   deleteOrderModalStatus: false,
   completedOrderModalStatus: false,
@@ -28,6 +29,7 @@ export const initialState = {
   itemSelected: {},
   orderSent: false,
   orderSentMsg: false,
+  orderID:"",
   newUser: initialUser,
   createUserFlagStatus: false,
   loggedUser: {
@@ -127,15 +129,17 @@ export const reducer = (state = initialState, action) => {
         order: {
           ...state.order,
           cart: state.cart,
-          status: "pending for restaurant confirmation"
+          status: "pending for restaurant confirmation",
+          delivery: action.delivery
         },
         orderSent: true,
-        completedOrderModalStatus: true
+        completedOrderModalStatus: true,
       }
     case actions.COMPLETED_ORDER_MODAL_STATUS:
       return{
         ...state,
-        completedOrderModalStatus: action.status
+        completedOrderModalStatus: action.status,
+        orderSent: false
       }
     case actions.CONFIRM_CUSTOMER_DATA:
       return{
@@ -194,6 +198,11 @@ export const reducer = (state = initialState, action) => {
         orderSentMsg: action.status,
       };
     }
+    case actions.ORDER_ID:
+      return{
+        ...state,
+        orderID: action.value
+      }
     /** USERS */
     case actions.NEW_USER_FORM: {
       return{

@@ -12,7 +12,7 @@ export const GUEST_INFO_MODAL = "GUEST_INFO_MODAL";
 export const CHECKOUT_PAYMENT_METHOD = "CHECKOUT_PAYMENT_METHOD";
 export const DELETE_ORDER_MODAL_STATUS = "DELETE_ORDER_MODAL_STATUS";
 export const COMPLETE_ORDER = "COMPLETE_ORDER";
-export const COMPLETED_ORDER_MODAL_STATUS ="COMPLETED_ORDER_MODAL_STATUS"; 
+export const COMPLETED_ORDER_MODAL_STATUS ="COMPLETED_ORDER_MODAL_STATUS";
 export const CONFIRM_CUSTOMER_DATA = "CONFIRM_CUSTOMER_DATA"
 
 /******************************* MENU ITEMS ********************************* */
@@ -26,6 +26,7 @@ export const ITEM_SELECTED = "ITEM_SELECTED";
 /**------------------------------- ORDERS ----------------------------------- */
 export const ORDER_SENT = "ORDER_SENT";
 export const ORDER_SENT_MSG = "ORDER_SENT_MSG";
+export const ORDER_ID = "ORDER_ID";
 
 /**--------------------------------- USERS ---------------------------------- */
 export const NEW_USER_FORM = "NEW_USER_FORM";

@@ -17,6 +17,7 @@ const Checkout = () => {
   const completedOrderModalStatus = useSelector(state => state.completedOrderModalStatus);
   const deleteModalStatus = useSelector(state => state.deleteOrderModalStatus);
   const paymentMethod = useSelector(state => state.order.paymentMethod)
+  const orderID = useSelector(state => state.orderID)
   const dispatch = useDispatch();
 
   const getTotal = (total, product) => {
@@ -26,7 +27,7 @@ const Checkout = () => {
   const total = cart.reduce(getTotal, 0) + delivery;
 
   const handleCompleteOrder = () => {
-    dispatch(actions.completeOrder())
+    dispatch(actions.completeOrder(delivery))
   }
 
   const handleDeleteOrder = () => {
@@ -35,12 +36,19 @@ const Checkout = () => {
     history.push("/");
   }
 
+  const handleFollowOrderStatus = () => {
+    dispatch(actions.emptyCart())
+    dispatch(actions.completedOrderModalStatus(false))
+    history.push(`/orders?id=${orderID}`)
+  }
+
   useEffect(() => {
     if(orderSent && cart.length > 0){
       // console.log(order);
       db.collection("orders").add(order)
       .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
+          // console.log("Document written with ID: ", docRef.id);
+          dispatch(actions.orderID(docRef.id))
       })
       .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -126,7 +134,7 @@ const Checkout = () => {
           history.push("/");
           handleDeleteOrder();
         }}
-        followOrderStatus={() => {console.log('Following Order Status')}}
+        followOrderStatus={handleFollowOrderStatus}
       />
       <DeleteOrderModal
         show={deleteModalStatus}

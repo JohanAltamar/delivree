@@ -77,8 +77,9 @@ export const deleteOrderModalStatus = (status) => ({
   status
 })
 
-export const completeOrder = () => ({
-  type: constants.COMPLETE_ORDER
+export const completeOrder = (delivery) => ({
+  type: constants.COMPLETE_ORDER,
+  delivery
 })
 
 export const completedOrderModalStatus = (status) => ({
@@ -120,6 +121,11 @@ export const orderSentMsg = (status) => ({
   type: constants.ORDER_SENT_MSG,
   status,
 });
+
+export const orderID = (value) => ({
+  type: constants.ORDER_ID,
+  value
+})
 
 export const newUser = (name, value) => {
   return {
