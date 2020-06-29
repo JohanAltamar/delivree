@@ -106,7 +106,7 @@ const Checkout = () => {
             <input type="hidden" name="currency" value="COP" />
             <input type="hidden" name="amount-in-cents" value={total*100} />
             <input type="hidden" name="reference" value={date.getTime()} />
-            <input type="hidden" name="redirect-url" value="http://localhost:3000/cart/transactionStatus" />
+            <input type="hidden" name="redirect-url" value="http://192.168.1.102:3000/cart/transactionStatus" />
             <Button variant="warning" size="lg" type="submit">Pagar online</Button>
           </form>
       ) : (
