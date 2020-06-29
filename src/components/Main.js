@@ -26,8 +26,8 @@ function Main() {
         <Route path="/cart/chooseUser" component={ChooseUser} />
         <Route path="/cart/confirmData/:userID" component={ConfirmData} />
         <Route path="/cart/checkout" component={Checkout} />
-        <Route path="/cart/transactionStatus" component={TransactionStatus} />                        
-        <Route path="/order" component={OrderMain} />
+        <Route path="/cart/transactionStatus" component={TransactionStatus} />
+        <Route path="/orders" component={OrderMain} />
         <Route exact path="/login" component={Login} />
         <Route path="/login/:loggedUserUid" component={LoggedUser}/>
         <Route path="/signup" component={Signup} />
