@@ -1,13 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function CartButton({id}) {
+  const history = useHistory();
   return (
-    <Link id={id} to="/cart">
+    <div id={id} onClick={()=> history.push("/cart")}>
       <FontAwesomeIcon icon={faShoppingCart} />
-    </Link>
+    </div>
   );
 }
 

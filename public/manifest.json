@@ -1,5 +1,5 @@
 {
-  "short_name": "Foodies App",
+  "short_name": "Foodies",
   "name": "Foodies Restaurant App",
   "icons": [
     {
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#FFFFFF",
+  "background_color": "#ff1f17"
 }
