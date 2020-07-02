@@ -9,7 +9,9 @@ workbox.precaching.precacheAndRoute([{"revision":"874d7d84dc23b6376e27d7aecb2c11
 
 registerRoute(
   ({request}) => request.destination === 'script',
-    new NetworkFirst()
+    new StaleWhileRevalidate({
+      cacheName: "script-cache"
+    })
 );
 
 registerRoute(
