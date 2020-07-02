@@ -30,7 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-sw": "npm run build && workbox injectManifest && serve -s build",
-    "build-sw":"npm run build && workbox injectManifest"
+    "test-sw":"npm run build && workbox injectManifest",
+    "build-sw":"npm run build && cp src/sw.js build/"
   },
   "eslintConfig": {
     "extends": "react-app"
