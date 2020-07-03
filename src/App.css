@@ -1,3 +1,7 @@
+body {
+  overscroll-behavior-y: none;
+}
+
 #header {
   position: absolute;
   width: 100%;
