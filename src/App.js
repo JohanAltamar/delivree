@@ -36,7 +36,7 @@ function App({ toggleMenu }) {
        console.log('User dismissed the A2HS prompt');
      }
      deferredPrompt = null;
-  };
+  });
 }
 
   return (
