@@ -2,6 +2,13 @@ body {
   overscroll-behavior-y: none;
 }
 
+.ad2hs-prompt{
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+}
+
 #header {
   position: absolute;
   width: 100%;
