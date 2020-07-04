@@ -57,7 +57,6 @@ function App({ toggleMenu }) {
           }}
         />
       }
-      // <button className={clsx("ad2hs-prompt", PWAStatus === "dismissed" && "d-none")}>Instalar</button>
     </main>
   );
 }
