@@ -15,7 +15,7 @@ if(workbox){
 
   registerRoute(
     ({request}) => request.destination === 'script',
-      new StaleWhileRevalidate({
+      new NetworkFirst({
         cacheName: "script-cache"
       })
   );
