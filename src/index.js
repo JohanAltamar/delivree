@@ -6,19 +6,24 @@ import App from "./App";
 // import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import {throttle} from "lodash"
+import { throttle } from "lodash";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { saveState } from "./localStorage";
 
-store.subscribe(throttle(()=>{
-  saveState({...store.getState(), toggleMenu: false})
-}, 1000))
+store.subscribe(
+  throttle(() => {
+    saveState({
+      ...store.getState(),
+      userInterface: { toggleMenu: false, PWAInstallBanner: false },
+    });
+  }, 1000)
+);
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-        <App />
+      <App />
     </Router>
   </Provider>,
   document.getElementById("root")
