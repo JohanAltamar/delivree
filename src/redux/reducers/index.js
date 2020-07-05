@@ -1,8 +1,15 @@
-import combineReducers from "redux";
+import {combineReducers} from "redux";
 
-import menu from "./menuReducer"
+import userInterface from "./uiReducer";
+import cart from "./shoppingCartReducer";
+import items from "./menuItemsReducer";
+import order from "./orderReducer";
+import user from "./userReducer";
 
 export default combineReducers({
-  menu,
-
+  userInterface,
+  cart,
+  items,
+  order,
+  user,
 });

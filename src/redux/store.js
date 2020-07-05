@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import { reducer } from "./reducer";
+// import { reducer } from "./reducer";
+import reducer from "./reducers/index"
 import { loadState } from "../localStorage";
 
 const persistedState = loadState();
