@@ -24,31 +24,16 @@ const initialState = {
   },
   deleteOrderModalStatus: false,
   completedOrderModalStatus: false,
-  /** uiReducer */
-  toggleMenu: false, //uiReducer
-  /** itemsReducer */
-  itemQty: 1,
-  itemModalStatus: false,
-  itemAddedMsg: false,
-  itemSelected: {},
   /**orderReducer */
   orderSent: false,
   orderSentMsg: false,
   orderID: "",
   /**userReducer */
-  newUser: initialUser,
-  createUserFlagStatus: false,
   loggedUser: {
     information: initialUser,
     orders: [],
     uid: "",
   },
-  userIsLogged: false,
-  updateUserInfoModal: false,
-  updateUserInfo: initialUser,
-  deleteUserModal: false,
-  moveTrigger: false,
-  removeTrigger: false,
   guestCheckoutInfo: initialUser,
 };
 
@@ -140,11 +125,26 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         order: {
           ...state.order,
-          userInfo:
-            action.customer === "guest"
-              ? state.guestCheckoutInfo
-              : state.loggedUser.information,
+          userInfo: action.customer
         },
+      };
+    /** ORDERS */
+    case actions.ORDER_SENT: {
+      return {
+        ...state,
+        orderSent: action.status,
+      };
+    }
+    case actions.ORDER_SENT_MSG: {
+      return {
+        ...state,
+        orderSentMsg: action.status,
+      };
+    }
+    case actions.ORDER_ID:
+      return {
+        ...state,
+        orderID: action.value,
       };
     default:
       return state;

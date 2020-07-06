@@ -7,8 +7,8 @@ export const toggleMenu = () => {
 };
 
 export const logState = () => ({
-  type: constants.LOG_STATE
-})
+  type: constants.LOG_STATE,
+});
 
 export const addToCart = (product, qty) => {
   return {
@@ -59,38 +59,49 @@ export const updateProductInCart = (index, op) => {
 
 export const chooseCartUserTrigger = (status) => ({
   type: constants.CHOOSE_CART_USER_TRIGGER,
-  status
-})
+  status,
+});
 
 export const guestCheckoutModalStatus = (status) => ({
   type: constants.GUEST_INFO_MODAL,
-  status
-})
+  status,
+});
 
-export const checkoutPaymentMethod = (paymentMethod) =>({
+export const checkoutPaymentMethod = (paymentMethod) => ({
   type: constants.CHECKOUT_PAYMENT_METHOD,
-  paymentMethod
-})
+  paymentMethod,
+});
 
 export const deleteOrderModalStatus = (status) => ({
   type: constants.DELETE_ORDER_MODAL_STATUS,
-  status
-})
+  status,
+});
 
 export const completeOrder = (extra) => ({
   type: constants.COMPLETE_ORDER,
-  extra
-})
+  extra,
+});
 
 export const completedOrderModalStatus = (status) => ({
   type: constants.COMPLETED_ORDER_MODAL_STATUS,
-  status
-})
+  status,
+});
 
-export const confirmCustomerData = (customer) => ({
-  type: constants.CONFIRM_CUSTOMER_DATA,
-  customer
-})
+/** THUNK */
+export const confirmCustomerData = (customer) => (dispatch, getState) => {
+  const userInfo =
+    customer === "guest"
+      ? getState().user.guestCheckoutInfo
+      : getState().user.loggedUser.information;
+  dispatch({ type: constants.CONFIRM_CUSTOMER_DATA, customer: userInfo });
+};
+// action.customer === "guest"
+//               ? state.guestCheckoutInfo
+//               : state.loggedUser.information,
+// export const someAction = () => (dispatch, getState) => {
+//   const someVal = getState().someReducer.someVal;
+//   dispatch({ type: types.SOME_ACTION, valFromOtherReducer: someVal });
+// };
 
 export const itemModalStatus = (status) => {
   return {
@@ -115,7 +126,7 @@ export const itemSelected = (product) => {
 
 export const orderSent = (status) => ({
   type: constants.ORDER_SENT,
-  status
+  status,
 });
 
 export const orderSentMsg = (status) => ({
@@ -125,54 +136,55 @@ export const orderSentMsg = (status) => ({
 
 export const orderID = (value) => ({
   type: constants.ORDER_ID,
-  value
-})
+  value,
+});
 
 export const newUser = (name, value) => {
   return {
     type: constants.NEW_USER_FORM,
-    name, value
+    name,
+    value,
   };
 };
 
 export const createUserFlag = (status) => ({
   type: constants.CREATE_USER_FLAG,
-  status
-})
+  status,
+});
 
 export const loggedUser = (user) => ({
   type: constants.LOGGED_USER,
-  user
+  user,
 });
 
-export const userIsLogged = (status) =>({
+export const userIsLogged = (status) => ({
   type: constants.USER_IS_LOGGED,
-  status
-})
+  status,
+});
 
-export const updateUserInfoModalStatus = (status) =>({
+export const updateUserInfoModalStatus = (status) => ({
   type: constants.UPDATE_USER_INFO_MODAL,
-  status
-})
+  status,
+});
 
 export const updateUserInfo = (param, value) => ({
   type: constants.UPDATE_USER_INFO,
   param,
-  value
-})
+  value,
+});
 
 export const deleteUserModalStatus = (status) => ({
   type: constants.DELETE_USER_MODAL,
-  status
-})
+  status,
+});
 
 export const deletedUserTriggers = (status) => ({
   type: constants.DELETED_USER_TRIGGERS,
-  status
-})
+  status,
+});
 
 export const guestCheckoutUser = (param, value) => ({
   type: constants.GUEST_CHECKOUT_USER,
   param,
-  value
-})
+  value,
+});

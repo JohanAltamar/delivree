@@ -11,13 +11,13 @@ const Checkout = () => {
   let history = useHistory();
   var date = new Date();
 
-  const cart = useSelector(state => state.cart)
-  const order = useSelector(state => state.order)
-  const orderSent = useSelector(state => state.orderSent);
-  const completedOrderModalStatus = useSelector(state => state.completedOrderModalStatus);
-  const deleteModalStatus = useSelector(state => state.deleteOrderModalStatus);
-  const paymentMethod = useSelector(state => state.order.paymentMethod)
-  const orderID = useSelector(state => state.orderID)
+  const cart = useSelector(state => state.shoppingCart.cart)
+  const order = useSelector(state => state.shoppingCart.order)
+  const orderSent = useSelector(state => state.shoppingCart.orderSent);
+  const completedOrderModalStatus = useSelector(state => state.shoppingCart.completedOrderModalStatus);
+  const deleteModalStatus = useSelector(state => state.shoppingCart.deleteOrderModalStatus);
+  const paymentMethod = useSelector(state => state.shoppingCart.order.paymentMethod)
+  const orderID = useSelector(state => state.shoppingCart.orderID)
   const dispatch = useDispatch();
 
   const getTotal = (total, product) => {

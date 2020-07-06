@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import {Helmet} from "react-helmet"
 import { connect, useDispatch, useSelector } from "react-redux";
 import {
@@ -9,14 +9,14 @@ import {
   orderSentMsg,
   emptyCart,
   updateProductInCart,
-  chooseCartUserTrigger
 } from "../redux/actions";
 import OrderSentMsg from "./shoppingCart/OrderSent";
 import {auth} from "../services/firebase"
 
 export const ShoppingCart = (props) => {
+  const history = useHistory();
   const { cart, orderSent, orderSentMsg, orderMsg, emptyCart, updateProduct } = props;
-  const chooseUserStep = useSelector(state => state.chooseCartUserTrigger);
+  const chooseUserStep = useSelector(state => state.shoppingCart.chooseCartUserTrigger);
   const dispatch = useDispatch();
 
   const getTotal = (total, product) => {
@@ -31,10 +31,11 @@ export const ShoppingCart = (props) => {
     console.log('Enviando orden ...')
     if(auth.currentUser){
       console.log('User logged:', auth.currentUser.uid)
+      history.push(`/cart/confirmData/${auth.currentUser.uid}`)
     }else{
       console.log("No user logged.")
+      history.push(`/cart/chooseUser`)
     }
-    dispatch(chooseCartUserTrigger(true));
   };
 
   return (
@@ -120,16 +121,14 @@ export const ShoppingCart = (props) => {
           <Link to="/menu">Menu</Link>
         </section>
       )}
-      {(chooseUserStep && !auth.currentUser) && <Redirect push to="/cart/chooseUser"/>}
-      {(chooseUserStep && auth.currentUser) && <Redirect push to ={`/cart/confirmData/${auth.currentUser.uid}`}/>}      
     </section>
   );
 };
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
-  orderSent: state.OrderSent,
-  orderSentMsg: state.orderSentMsg,
+  cart: state.shoppingCart.cart,
+  orderSent: state.shoppingCart.orderSent, 
+  orderSentMsg: state.shoppingCart.orderSentMsg,
 });
 
 const mapDispatchToProps = (dispatch) => ({

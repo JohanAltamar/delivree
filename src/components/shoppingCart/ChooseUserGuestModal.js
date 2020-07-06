@@ -10,7 +10,7 @@ import {initialUser} from "../../redux/reducer";
 const ChooseUserGuestModal = (props) => {
   let history = useHistory();
   const dispatch = useDispatch();
-  const guestInfo = useSelector(state => state.guestCheckoutInfo) || initialUser;
+  const guestInfo = useSelector(state => state.user.guestCheckoutInfo) || initialUser;
 
   const handleChange = name => event => {
       dispatch(actions.guestCheckoutUser(name, event.target.value))
