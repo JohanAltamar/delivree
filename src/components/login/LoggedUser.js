@@ -11,7 +11,7 @@ import UserInfoTable from "./UserInfoTable"
 import RecentOrders from "./RecentOrders"
 
 const LoggedUser = () => {
-  const userLogged = useSelector(state => state.userIsLogged);
+  const userLogged = useSelector(state => state.user.userIsLogged);
   const dispatch = useDispatch();
 
   const logOut = () => {
