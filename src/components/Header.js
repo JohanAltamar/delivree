@@ -2,12 +2,14 @@ import React from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import BurgerIcon from "./header/BurgerMenu";
-import { connect, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { toggleMenu} from "../redux/actions";
 import { Row, Col } from "react-bootstrap";
 
-function Header({ toggleMenu }) {
-  const menu = useSelector((state) => state.toggleMenu);
+function Header( ) {
+  const menu = useSelector((state) => state.userInterface.toggleMenu);
+  const dispatch = useDispatch();
+
   return (
     <header>
       <Row id="header">
@@ -18,7 +20,7 @@ function Header({ toggleMenu }) {
           <div
             id="burger-icon"
             className="d-sm-none"
-            onClick={() => toggleMenu()}
+            onClick={() => dispatch(toggleMenu())}
           >
             <BurgerIcon />
           </div>
@@ -49,24 +51,24 @@ function Header({ toggleMenu }) {
       >
         <div
           id="burger-menu-display-blank-section"
-          onClick={() => toggleMenu()}
+          onClick={() => dispatch(toggleMenu())}
         ></div>
         <div id="burger-menu-display">
           <nav>
             <li>
-              <Link to="/" onClick={() => toggleMenu()}>Inicio</Link>
+              <Link to="/" onClick={() => dispatch(toggleMenu())}>Inicio</Link>
             </li>
             <hr/>
             <li>
-              <Link to="/menu" onClick={() => toggleMenu()}>Menu</Link>
+              <Link to="/menu" onClick={() => dispatch(toggleMenu())}>Menu</Link>
             </li>
             <hr/>
             <li>
-              <Link to="/cart" onClick={() => toggleMenu()}>Carrito</Link>
+              <Link to="/cart" onClick={() => dispatch(toggleMenu())}>Carrito</Link>
             </li>
             <hr/>
             <li>
-              <Link to="/login" onClick={() => toggleMenu()}>Ingreso</Link>
+              <Link to="/login" onClick={() => dispatch(toggleMenu())}>Ingreso</Link>
             </li>
             <hr/>
           </nav>
@@ -75,12 +77,5 @@ function Header({ toggleMenu }) {
     </header>
   );
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleMenu() {
-      dispatch(toggleMenu());
-    },
-  };
-};
 
-export default connect(null, mapDispatchToProps)(Header);
+export default Header;

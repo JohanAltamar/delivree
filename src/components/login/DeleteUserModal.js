@@ -10,13 +10,13 @@ import * as actions from "../../redux/actions";
 
 const DeleteUserModal = (props) => {
   const dispatch = useDispatch();
-  const authUser = useSelector(state => state.loggedUser);
+  const authUser = useSelector(state => state.user.loggedUser);
 
   const [userProvidedPassword, setUserProvidedPassword] = useState("")
   const [showRequestPassword, setShowRequestPassword] = useState(false);
 
-  const moveUserInfoTrigger = useSelector(state => state.moveTrigger);
-  const removeUserInfoTrigger = useSelector(state => state.removeTrigger);
+  const moveUserInfoTrigger = useSelector(state => state.user.moveTrigger);
+  const removeUserInfoTrigger = useSelector(state => state.user.removeTrigger);
 
   const removeUserInfoFromCollection = useCallback(() => {
     // console.log('Removing authUser info from users collection')

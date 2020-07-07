@@ -2,9 +2,10 @@ import * as actions from "../constants";
 
 const initialState = {
   toggleMenu: false,
-}
+  PWAInstallBanner: false,
+};
 
-export default const menuReducer = (state = initialState, action) => {
+const uiReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.TOGGLE_MENU:
       return {
@@ -12,6 +13,7 @@ export default const menuReducer = (state = initialState, action) => {
         toggleMenu: !state.toggleMenu,
       };
     default:
-      return state
+      return state;
   }
-}
+};
+export default uiReducer;

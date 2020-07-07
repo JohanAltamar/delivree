@@ -10,11 +10,11 @@ import DeleteUserModal from "./DeleteUserModal"
 import db, {auth} from "../../services/firebase"
 
 const UserInfoTable = (props) => {
-  const guestInfo = useSelector(state => state.guestCheckoutInfo) || {}
-  const userInfo = useSelector(state => state.loggedUser.information) || {};
-  const updateUserInfo = useSelector(state => state.updateUserInfo);
-  const modalShow = useSelector(state => state.updateUserInfoModal) || false;
-  const deleteUserrModalShow = useSelector(state => state.deleteUserModal) || false
+  const guestInfo = useSelector(state => state.user.guestCheckoutInfo) || {}
+  const userInfo = useSelector(state => state.user.loggedUser.information) || {};
+  const updateUserInfo = useSelector(state => state.user.updateUserInfo);
+  const modalShow = useSelector(state => state.user.updateUserInfoModal) || false;
+  const deleteUserrModalShow = useSelector(state => state.user.deleteUserModal) || false
   const dispatch = useDispatch();
 
   const handleOpenEditModal = () => {

@@ -11,9 +11,11 @@ export const initialUser = {
 };
 
 export const initialState = {
+  /** ShoppingCartReducer */
   cart: [],
   chooseCartUserTrigger: false,
   guestInfoModalStatus: false,
+  /** OrderReducer */
   order:{
     cart:[],
     paymentMethod: "cash",
@@ -22,14 +24,18 @@ export const initialState = {
   },
   deleteOrderModalStatus: false,
   completedOrderModalStatus: false,
-  toggleMenu: false,
+  /** uiReducer */
+  toggleMenu: false, //uiReducer
+  /** itemsReducer */
   itemQty: 1,
   itemModalStatus: false,
   itemAddedMsg: false,
   itemSelected: {},
+  /**orderReducer */
   orderSent: false,
   orderSentMsg: false,
   orderID:"",
+  /**userReducer */
   newUser: initialUser,
   createUserFlagStatus: false,
   loggedUser: {
@@ -187,6 +193,7 @@ export const reducer = (state = initialState, action) => {
         itemSelected: action.product,
       };
     }
+    /** ORDER */
     case actions.ORDER_SENT: {
       return {
         ...state,

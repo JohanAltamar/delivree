@@ -22,7 +22,8 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,8 +31,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-sw": "npm run build && workbox injectManifest && serve -s build",
-    "test-sw":"npm run build && workbox injectManifest",
-    "build-sw":"npm run build && cp src/sw.js build/"
+    "test-sw": "npm run build && workbox injectManifest",
+    "build-sw": "npm run build && cp src/sw.js build/"
   },
   "eslintConfig": {
     "extends": "react-app"

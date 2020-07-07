@@ -16,7 +16,8 @@ function ItemToCart(props) {
   };
   return (
     <Modal
-      {...props}
+      show={props.show}
+      onHide={onHide}
       size="xs"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -59,8 +60,8 @@ function ItemToCart(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    itemQty: state.itemQty,
-    itemSelected: state.itemSelected
+    itemQty: state.items.itemQty,
+    itemSelected: state.items.itemSelected
   };
 };
 

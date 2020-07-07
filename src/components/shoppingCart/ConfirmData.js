@@ -10,17 +10,16 @@ const ConfirmData = () => {
   const {userID} = useParams();
   let history = useHistory();
   const dispatch = useDispatch();
-  const loggedUser = useSelector(state => state.loggedUser);
-  const guestInfo = useSelector(state => state.guestCheckoutInfo);
+  const loggedUser = useSelector(state => state.user.loggedUser);
+  const guestInfo = useSelector(state => state.user.guestCheckoutInfo);
 
   useEffect(() => {
-    dispatch(actions.chooseCartUserTrigger(false))
     dispatch(actions.guestCheckoutModalStatus(false))
   },[dispatch])
 
   const confirmData = () => {
-    history.push("/cart/checkout")
     dispatch(actions.confirmCustomerData(userID === "guest" ? "guest" : "loggedUser"))
+    history.push("/cart/checkout")
   }
 
   const editData = () => {
@@ -29,14 +28,16 @@ const ConfirmData = () => {
   }
 
   const cancelConfirmData = () => {
-    auth.signOut()
-    .then(function () {
-      dispatch(actions.userIsLogged(false));
-      history.push("/cart")
-    })
-    .catch(function (error) {
-      console.log(error.code, error.message)
-    });
+    if(auth.currentUser){
+      auth.signOut()
+      .then(function () {
+        dispatch(actions.userIsLogged(false));
+      })
+      .catch(function (error) {
+        console.log(error.code, error.message)
+      });
+    }
+    history.push("/cart")
   }
 
   return(

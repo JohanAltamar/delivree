@@ -12,8 +12,8 @@ import * as Alerts from "./signup/SignUpAlertMessages";
 export const Login = (props) => {
 
   const dispatch = useDispatch();
-  const loggedInUser = useSelector(state => state.loggedUser) || {}
-  const logStatus = useSelector(state => state.userIsLogged)
+  const loggedInUser = useSelector(state => state.user.loggedUser) || {}
+  const logStatus = useSelector(state => state.user.userIsLogged)
 
   const [logUser, setLogUser] = useState({email: '', password: ''})
   const [loginSuccessful, setLoginSuccessful] = useState(false);

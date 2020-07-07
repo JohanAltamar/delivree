@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {Helmet} from "react-helmet"
-import Modal from "./ItemToCart";
+import { Helmet } from "react-helmet";
+import Modal from "./ItemToCartModal";
 import Message from "./AddedToCart";
 import data from "./menuApi";
 import CartButton from "../CartButton";
@@ -37,13 +37,20 @@ function Categories({
     resetItems();
   };
 
+  useEffect(() => {
+    const noItemSelected = () => {
+      closeModal();
+      itemAddedToCart(false);
+    }
+    noItemSelected();
+  }, []);
   return (
     <section
       id="menu-category-container"
       className="brand-font-family brand-color-secondary"
     >
       <Helmet>
-  <title>Foodies restaurant - {categoryName} Menu</title>
+        <title>Foodies restaurant - {categoryName} Menu</title>
         <meta
           name="description"
           content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
@@ -81,9 +88,9 @@ function Categories({
 }
 const mapStateToProps = (state) => {
   return {
-    itemModal: state.itemModalStatus,
-    itemAddedMsg: state.itemAddedMsg,
-    selected: state.itemSelected,
+    itemModal: state.items.itemModalStatus,
+    itemAddedMsg: state.items.itemAddedMsg,
+    selected: state.items.itemSelected,
   };
 };
 const mapDispatchToProps = (dispatch) => {

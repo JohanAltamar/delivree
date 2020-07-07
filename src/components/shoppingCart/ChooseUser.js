@@ -6,13 +6,9 @@ import Login from "../Login"
 import GuestModal from "./ChooseUserGuestModal";
 
 const ChooseUser = () => {
-  const guestModalStatus = useSelector(state => state.guestInfoModalStatus)
-  const loggedUser = useSelector(state => state.loggedUser.uid)
+  const guestModalStatus = useSelector(state => state.shoppingCart.guestInfoModalStatus)
+  const loggedUser = useSelector(state => state.user.loggedUser.uid)
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(actions.chooseCartUserTrigger(false))
-  },[dispatch])
 
   return(
     <section id="choose-user-container" className="brand-font-family">

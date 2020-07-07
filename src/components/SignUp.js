@@ -9,7 +9,7 @@ import {SignUpSuccessMessage, EmailInUse, NetworkRequestFailed} from "./signup/S
 
 export const SignUp = () => {
   const delayTime = 2000;
-  const userIsLoggedState = useSelector(state => state.userIsLogged);
+  const userIsLoggedState = useSelector(state => state.user.userIsLogged);
   // const createNewUser = useSelector(state => state.createUserFlagStatus);
   // const loggedUserState = useSelector(state => state.loggedUserState);
   const [userUid, setUserUid] = useState('')
@@ -17,7 +17,7 @@ export const SignUp = () => {
   const [emailInUse, setEmailInUse] = useState(false);
   const [networkRequestFailedMsg, setNetworkRequestFailedMsg]=useState(false);
 
-  const user = useSelector((state) => state.newUser);
+  const user = useSelector((state) => state.user.newUser);
   const dispatch = useDispatch();
 
   const handleSubmit = async(event) => {

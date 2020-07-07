@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {Link} from "react-router-dom"
 
 const RecentOrders = () => {
-  const recentOrders = useSelector(state => state.loggedUser.orders) || [];
+  const recentOrders = useSelector(state => state.user.loggedUser.orders) || [];
   console.log(recentOrders)
   return(
     <section id="orders-container">

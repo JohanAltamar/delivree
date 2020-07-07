@@ -5,7 +5,7 @@ import {updateUserInfo, guestCheckoutUser} from "../../redux/actions"
 import db, {auth} from "../../services/firebase"
 
 const UpdateUserInfoModal = (props) => {
-  const user = useSelector(state => state.updateUserInfo) || {}
+  const user = useSelector(state => state.user.updateUserInfo) || {}
   const dispatch = useDispatch();
 
   const handleUpdate = () => {
