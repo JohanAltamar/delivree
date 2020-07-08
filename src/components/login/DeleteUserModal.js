@@ -124,16 +124,16 @@ const DeleteUserModal = (props) => {
         <Modal.Body>
           <div id="delete-user-buttons-container">
             <Button
-              variant="danger"
+              variant="outline-danger"
               onClick={() => {setShowRequestPassword(true)}}
             >
-              SI <FontAwesomeIcon icon={faSadCry}/>
+              Borrar Perfil <FontAwesomeIcon icon={faSadCry}/>
             </Button>
             <Button
               variant="success"
               onClick={props.onHide}
             >
-              NO <FontAwesomeIcon icon={faSmile}/>
+              Me Quedo <FontAwesomeIcon icon={faSmile}/>
             </Button>
           </div>
           <Form id="request-password-form" className={clsx(!showRequestPassword && ("d-none"))}>

@@ -42,3 +42,15 @@
 #request-password-form input{
   margin-bottom: 15px;
 }
+
+.recent-order-container{
+  margin: 20px 0px;
+  border: 1px solid #ff7f0c;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#signOutTab{
+  position: absolute;
+  right: 8.33%;
+}

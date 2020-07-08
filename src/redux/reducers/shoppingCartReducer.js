@@ -110,6 +110,7 @@ const cartReducer = (state = initialState, action) => {
           ...action.extra,
           cart: state.cart,
           status: "pending for restaurant confirmation",
+          timestamp: Date().toString(),
         },
         orderSent: true,
         completedOrderModalStatus: true,
@@ -125,7 +126,8 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         order: {
           ...state.order,
-          userInfo: action.customer
+          userInfo: action.customerInfo,
+          uid: action.customerID
         },
       };
     /** ORDERS */

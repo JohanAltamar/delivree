@@ -93,8 +93,13 @@ export const confirmCustomerData = (customer) => (dispatch, getState) => {
     customer === "guest"
       ? getState().user.guestCheckoutInfo
       : getState().user.loggedUser.information;
-  dispatch({ type: constants.CONFIRM_CUSTOMER_DATA, customer: userInfo });
+  dispatch({
+    type: constants.CONFIRM_CUSTOMER_DATA,
+    customerInfo: userInfo,
+    customerID: customer,
+  });
 };
+
 // action.customer === "guest"
 //               ? state.guestCheckoutInfo
 //               : state.loggedUser.information,
@@ -187,4 +192,9 @@ export const guestCheckoutUser = (param, value) => ({
   type: constants.GUEST_CHECKOUT_USER,
   param,
   value,
+});
+
+export const addOrderToProfile = (newOrder) => ({
+  type: constants.ADD_ORDER_TO_CUSTOMER_PROFILE,
+  newOrder,
 });

@@ -33,6 +33,14 @@ const removePassword = (userInformation) => {
   return info;
 };
 
+const addNewOrder = (ordersArr, newOrder) => {
+  const newOrdersArr = ordersArr.concat(newOrder);
+  if(newOrdersArr.length > 10){
+    return newOrdersArr.slice(1);
+  }
+  return newOrdersArr;
+}
+
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.NEW_USER_FORM: {
@@ -127,6 +135,14 @@ const userReducer = (state = initialState, action) => {
                 [action.param]: action.value,
               },
       };
+    case actions.ADD_ORDER_TO_CUSTOMER_PROFILE:
+      return{
+        ...state,
+        loggedUser:{
+          ...state.loggedUser,
+          orders: addNewOrder(state.loggedUser.orders, action.newOrder)
+        }
+      }
     default:
       return state;
   }

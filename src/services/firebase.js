@@ -17,6 +17,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
+export const timeStamp = firebase.firestore.FieldValue.serverTimestamp();
 export const auth = firebase.auth();
 export const firestore = firebase.firestore;
 export default db;
