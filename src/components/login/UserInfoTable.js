@@ -88,7 +88,7 @@ const UserInfoTable = (props) => {
         Editar  <FontAwesomeIcon icon={faUserEdit}/>
     </Button>
     <Button
-      variant="danger"
+      variant="outline-danger"
       onClick={handleOpenDeleteUserModal}
     >
       Eliminar  <FontAwesomeIcon icon={faTrashAlt}/>

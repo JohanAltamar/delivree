@@ -18,7 +18,7 @@ const ConfirmData = () => {
   },[dispatch])
 
   const confirmData = () => {
-    dispatch(actions.confirmCustomerData(userID === "guest" ? "guest" : "loggedUser"))
+    dispatch(actions.confirmCustomerData(userID))
     history.push("/cart/checkout")
   }
 
