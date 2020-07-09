@@ -1,36 +1,42 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import {Form, Button, Col, InputGroup} from "react-bootstrap"
-import {useLocation, useHistory} from "react-router-dom";
-import db from "../services/firebase"
+import { Form, Button, Col, InputGroup } from "react-bootstrap";
+import { useLocation, useHistory } from "react-router-dom";
+import db from "../services/firebase";
 import { faSearch, faHome } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./order/order.css"
+import "./order/order.css";
+import moment from "moment";
+import "moment/locale/es";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 function Order() {
+  moment.locale("es");
   const query = useQuery();
   const orderID = query.get("id");
   const history = useHistory();
-  const [orderInfo, setOrderInfo] = useState(false)
-  const [orderNumber, setOrderNumber] = useState("")
+  const [orderInfo, setOrderInfo] = useState(false);
+  const [orderNumber, setOrderNumber] = useState("");
 
   useEffect(() => {
-    if(orderID){
+    if (orderID) {
       const checkOrderNumber = () => {
-        db.collection("orders").doc(orderID)
-        .onSnapshot(function(doc) {
-          console.log("Current data: ", doc.data());
-          setOrderInfo(doc.data())
-        });
-      }
+        db.collection("orders")
+          .doc(orderID)
+          .onSnapshot(function (doc) {
+            if (process.env.NODE_ENV === "development") {
+              console.log("Current data: ", doc.data());
+            }
+            setOrderInfo(doc.data());
+          });
+      };
       checkOrderNumber();
     }
-  },[orderID])
+  }, [orderID]);
 
   return (
     <section id="order" className="brand-font-family">
@@ -41,7 +47,7 @@ function Order() {
           content="Foodies web app lets you track your order status."
         />
       </Helmet>
-      <Form >
+      <Form>
         <InputGroup>
           <Form.Control
             type="search"
@@ -55,7 +61,9 @@ function Order() {
               variant="danger"
               onClick={() => history.push(`/orders?id=${orderNumber}`)}
             >
-              <span><FontAwesomeIcon icon={faSearch}/> Buscar</span>
+              <span>
+                <FontAwesomeIcon icon={faSearch} /> Buscar
+              </span>
             </Button>
           </InputGroup.Append>
         </InputGroup>
@@ -65,7 +73,7 @@ function Order() {
           <h5 className="text-center">Información del pedido</h5>
           <table>
             <tbody>
-              <tr id="order-id-row" >
+              <tr id="order-id-row">
                 <th>Id</th>
                 <td>{orderID}</td>
               </tr>
@@ -76,6 +84,12 @@ function Order() {
               <tr id="order-address-row">
                 <th>Dirección</th>
                 <td>{orderInfo.userInfo.address}</td>
+              </tr>
+              <tr id="order-date-row">
+                <th>Creado</th>
+                <td>
+                  {moment(orderInfo.timestamp).format("DD/MM/YYYY, HH:mm")}
+                </td>
               </tr>
               <tr id="order-cart-row">
                 <th>Pedido</th>
@@ -89,26 +103,28 @@ function Order() {
               </tr>
               <tr id="order-payment-method-row">
                 <th>Pago con</th>
-                <td>{orderInfo.paymentMethod === "cash" ? "Efectivo" : "Online"}</td>
+                <td>
+                  {orderInfo.paymentMethod === "cash" ? "Efectivo" : "Online"}
+                </td>
               </tr>
-              {orderInfo.paymentMethod === "online" &&
+              {orderInfo.paymentMethod === "online" && (
                 <tr id="order-payment-status-row">
                   <th>Pago</th>
                   <td>{orderInfo.paymentStatus}</td>
                 </tr>
-              }
-              {orderInfo.paymentMethod === "online" &&
+              )}
+              {orderInfo.paymentMethod === "online" && (
                 <tr id="order-payment-type-row">
-                <th>Medio</th>
-                <td>{orderInfo.payment_method_type}</td>
+                  <th>Medio</th>
+                  <td>{orderInfo.payment_method_type}</td>
                 </tr>
-              }
-              {orderInfo.total &&
+              )}
+              {orderInfo.total && (
                 <tr id="order-total-row">
                   <th>Total</th>
-                  <td>$ {(orderInfo.total).toLocaleString('de-DE')}</td>
+                  <td>$ {orderInfo.total.toLocaleString("de-DE")}</td>
                 </tr>
-              }
+              )}
               <tr id="order-status-row">
                 <th>Estado</th>
                 <td>{orderInfo.status}</td>
@@ -117,26 +133,23 @@ function Order() {
           </table>
           <div id="order-button-container">
             <a
-            target="_blank"
-            href={`https://wa.me/573016669240?text=Quiero%20obtener%20informacion%20sobre%20la%20orden%20${orderID}`}>
+              target="_blank"
+              href={`https://wa.me/573016669240?text=Quiero%20obtener%20informacion%20sobre%20la%20orden%20${orderID}`}
+            >
               <Button variant="outline-success" id="whatsapp-button">
-                <FontAwesomeIcon icon={faWhatsapp}/> Escríbenos
+                <FontAwesomeIcon icon={faWhatsapp} /> Escríbenos
               </Button>
             </a>
-            <Button
-              variant="outline-danger"
-              onClick={() => history.push("/")}
-            >
-              <FontAwesomeIcon icon={faHome}/> Volver a inicio
+            <Button variant="outline-danger" onClick={() => history.push("/")}>
+              <FontAwesomeIcon icon={faHome} /> Volver a inicio
             </Button>
           </div>
         </section>
-      ): (
-      <div id="no-order-selected">
-        <h6>No hay alguna orden en seguimiento</h6>
-      </div>
-      )
-    }
+      ) : (
+        <div id="no-order-selected">
+          <h6>No hay alguna orden en seguimiento</h6>
+        </div>
+      )}
     </section>
   );
 }
