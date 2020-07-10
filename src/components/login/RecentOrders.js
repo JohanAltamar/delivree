@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import db, { auth } from "../../services/firebase";
+import db from "../../services/firebase";
+import { developmentLog } from "../../services/functions";
 import moment from "moment";
 import "moment/locale/es";
 
 const RecentOrders = () => {
   moment.locale("es");
-  // const recentOrders = useSelector((state) => state.user.loggedUser.orders) || [];
   const [recentOrders, setRecentOrders] = useState([]);
   const userID = useSelector((state) => state.user.loggedUser.uid);
 
   useEffect(() => {
-    db.collection("orders")
+    var unsubscribe = db.collection("orders")
       .where("uid", "==", userID)
       .onSnapshot(function (querySnapshot) {
         var userOrders = [];
@@ -20,17 +20,23 @@ const RecentOrders = () => {
           const orderObj = { ...doc.data(), orderId: doc.id };
           userOrders.push(orderObj);
         });
-
         userOrders.sort(
           (a, b) =>
             moment(b.timestamp).format("X") - moment(a.timestamp).format("X")
         );
-        if (process.env.NODE_ENV === "development") {
-          console.log(userOrders);
-        }
+          developmentLog(userOrders);
         setRecentOrders(userOrders);
       });
-  }, []);
+    return(()=>{
+      unsubscribe();
+    })
+  }, [userID]);
+
+  useEffect(() => {
+    return(()=>{
+      setRecentOrders([])
+    })
+  }, [])
 
   return (
     <section id="orders-container">

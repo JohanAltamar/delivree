@@ -1,37 +1,39 @@
-import React, {useState, useEffect} from "react";
-import { connect } from "react-redux";
-import clsx from "clsx";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {showPWAInstallBanner, setPWAStatus} from "./redux/actions"
 import "./App.css";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
 import PwaModal from "./components/PwaModal";
 
-function App({ toggleMenu }) {
-  const [beforeinstallpromptEventData, setEventData] = useState(false)
-  const [showPWAModal, setShowPWAModal] = useState(true);
+function App() {
+  // const [showPWAModal, setShowPWAModal] = useState(true);
+  const dispatch = useDispatch();
+  const showPWAModal = useSelector(
+    (state) => state.userInterface.PWAInstallBanner
+  );
+  const [beforeinstallpromptEventData, setEventData] = useState(false);
   //Add pwaStatus to redux
-  const [PWAStatus, setPWAStatus] = useState(false);
+  // const [PWAStatus, setPWAStatus] = useState(false);
   var deferredPrompt;
 
-  window.addEventListener('beforeinstallprompt', function (e) {
+  window.addEventListener("beforeinstallprompt", function (e) {
     e.preventDefault();
     setEventData(e);
   });
 
   function addToHomeScreen() {
-    setShowPWAModal(false);
+    dispatch(showPWAInstallBanner(false));
     deferredPrompt = beforeinstallpromptEventData;
-    if(deferredPrompt){
+    if (deferredPrompt) {
       deferredPrompt.prompt();
-      deferredPrompt.userChoice
-      .then(function(choiceResult){
-        if (choiceResult.outcome === 'accepted') {
+      deferredPrompt.userChoice.then(function (choiceResult) {
+        if (choiceResult.outcome === "accepted") {
           // console.log('User accepted the A2HS prompt');
-        }
-        else {
+        } else {
           // console.log('User dismissed the A2HS prompt');
-          setPWAStatus(choiceResult.outcome);
+          // setPWAStatus(choiceResult.outcome); //Could be saved to remember user choice
         }
         deferredPrompt = null;
       });
@@ -42,29 +44,22 @@ function App({ toggleMenu }) {
     <main>
       <Header />
       <Main />
-      {beforeinstallpromptEventData &&
+      {beforeinstallpromptEventData && (
         <PwaModal
           show={showPWAModal}
-          onHide={() => setShowPWAModal(false)}
+          onHide={() => dispatch(showPWAInstallBanner(false))}
           installPWA={(value) => {
-            if(value){
+            if (value) {
               addToHomeScreen();
-            }
-            else{
-              setPWAStatus("dismissed");
-              setShowPWAModal(false);
+            } else {
+              dispatch(setPWAStatus("dismissed"));
+              dispatch(showPWAInstallBanner(false));
             }
           }}
         />
-      }
+      )}
     </main>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    toggleMenu: state.toggleMenu,
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

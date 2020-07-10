@@ -1,23 +1,16 @@
 import React from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
-import {Helmet} from "react-helmet"
-import { connect, useDispatch, useSelector } from "react-redux";
-import {
-  addUnit,
-  removeUnit,
-  orderSent,
-  orderSentMsg,
-  emptyCart,
-  updateProductInCart,
-} from "../redux/actions";
-import OrderSentMsg from "./shoppingCart/OrderSent";
-import {auth} from "../services/firebase"
+import { Link, useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProductInCart } from "../redux/actions";
+import { auth } from "../services/firebase";
+import {developmentLog} from "../services/functions";
 
-export const ShoppingCart = (props) => {
+export const ShoppingCart = () => {
   const history = useHistory();
-  const { cart, orderSent, orderSentMsg, orderMsg, emptyCart, updateProduct } = props;
-  const chooseUserStep = useSelector(state => state.shoppingCart.chooseCartUserTrigger);
+
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.shoppingCart.cart);
 
   const getTotal = (total, product) => {
     return total + product.qty * product.price;
@@ -25,16 +18,14 @@ export const ShoppingCart = (props) => {
   const total = cart.reduce(getTotal, 0);
 
   const orderNow = () => {
-    // orderMsg(true);
-    // orderSent();
-    // emptyCart();
-    console.log('Enviando orden ...')
-    if(auth.currentUser){
-      console.log('User logged:', auth.currentUser.uid)
-      history.push(`/cart/confirmData/${auth.currentUser.uid}`)
-    }else{
-      console.log("No user logged.")
-      history.push(`/cart/chooseUser`)
+    developmentLog("Enviando orden ...")
+    if (auth.currentUser) {
+
+      developmentLog(`User logged: ${auth.currentUser.uid}`);
+      history.push(`/cart/confirmData/${auth.currentUser.uid}`);
+    } else {
+      developmentLog("No user logged.");
+      history.push(`/cart/chooseUser`);
     }
   };
 
@@ -47,7 +38,6 @@ export const ShoppingCart = (props) => {
           content="Foodies cart lets you edit your order before confirm it."
         />
       </Helmet>
-      <OrderSentMsg show={orderSentMsg} onClose={() => orderMsg(false)} />
       <h3 className="text-center">Resume</h3>
       <section id="cart-products">
         {cart.map((item, idx) => (
@@ -58,11 +48,17 @@ export const ShoppingCart = (props) => {
               </h5>
               <div id="cart-item-content-second-section">
                 <div id="cart-item-buttons">
-                  <button className="less-button" onClick={() => updateProduct(idx, 'less')}>
+                  <button
+                    className="less-button"
+                    onClick={() => dispatch(updateProductInCart(idx, "less"))}
+                  >
                     -
                   </button>
                   <input value={item.qty} disabled />
-                  <button className="add-button" onClick={() => updateProduct(idx, 'add')}>
+                  <button
+                    className="add-button"
+                    onClick={() => dispatch(updateProductInCart(idx, "add"))}
+                  >
                     +
                   </button>
                 </div>
@@ -125,31 +121,4 @@ export const ShoppingCart = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  cart: state.shoppingCart.cart,
-  orderSent: state.shoppingCart.orderSent, 
-  orderSentMsg: state.shoppingCart.orderSentMsg,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addUnit() {
-    dispatch(addUnit());
-  },
-  removeUnit() {
-    dispatch(removeUnit());
-  },
-  emptyCart() {
-    dispatch(emptyCart());
-  },
-  orderSent() {
-    dispatch(orderSent());
-  },
-  orderMsg(status) {
-    dispatch(orderSentMsg(status));
-  },
-  updateProduct(index, operation){
-    dispatch(updateProductInCart(index, operation))
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
+export default ShoppingCart;

@@ -12,7 +12,7 @@ import db, {auth} from "../../services/firebase"
 const UserInfoTable = (props) => {
   const guestInfo = useSelector(state => state.user.guestCheckoutInfo) || {}
   const userInfo = useSelector(state => state.user.loggedUser.information) || {};
-  const updateUserInfo = useSelector(state => state.user.updateUserInfo);
+  // const updateUserInfo = useSelector(state => state.user.updateUserInfo);
   const modalShow = useSelector(state => state.user.updateUserInfoModal) || false;
   const deleteUserrModalShow = useSelector(state => state.user.deleteUserModal) || false
   const dispatch = useDispatch();

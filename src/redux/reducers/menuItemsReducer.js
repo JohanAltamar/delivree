@@ -43,6 +43,25 @@ const menuItemsReducer = (state = initialState, action) => {
         ...state,
         itemSelected: action.product,
       };
+    case actions.RESET_ITEMS_STATE:
+      return{
+        ...state,
+        ...initialState
+      }
+    case actions.OPEN_MENU_ITEM_MODAL:
+      return{
+        ...state,
+        itemSelected: action.product,
+        itemModalStatus: true,
+      }
+    case actions.CLOSE_MENU_ITEM_MODAL:{
+      return{
+        ...state,
+        itemModalStatus: initialState.itemModalStatus,
+        itemSelected: initialState.itemSelected,
+        itemQty: initialState.itemQty
+      }
+    }
     default:
       return state;
   }

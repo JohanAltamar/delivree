@@ -6,16 +6,26 @@ export const toggleMenu = () => {
   };
 };
 
+export const showPWAInstallBanner = (status) => ({
+  type: constants.PWA_INSTALL_BANNER_STATUS,
+  status
+})
+
+export const setPWAStatus = (status) => ({
+  type: constants.SET_PWA_STATUS,
+  status
+})
+
 export const logState = () => ({
   type: constants.LOG_STATE,
 });
 
-export const addToCart = (product, qty) => {
-  return {
-    type: constants.ADD_TO_CART,
-    product,
-    qty,
-  };
+export const addItemToCart = (product, qty) => (dispatch) => {
+  Promise.resolve(dispatch({ type: constants.ADD_TO_CART, product, qty }))
+    .then(
+      dispatch({ type: constants.ITEM_ADDED_TO_CART_MSG, itemAddedMsg: true })
+    )
+    .then(dispatch({ type: constants.CLOSE_MENU_ITEM_MODAL }));
 };
 
 export const removeFromCart = (product) => {
@@ -100,14 +110,6 @@ export const confirmCustomerData = (customer) => (dispatch, getState) => {
   });
 };
 
-// action.customer === "guest"
-//               ? state.guestCheckoutInfo
-//               : state.loggedUser.information,
-// export const someAction = () => (dispatch, getState) => {
-//   const someVal = getState().someReducer.someVal;
-//   dispatch({ type: types.SOME_ACTION, valFromOtherReducer: someVal });
-// };
-
 export const itemModalStatus = (status) => {
   return {
     type: constants.ITEM_MODAL,
@@ -128,6 +130,24 @@ export const itemSelected = (product) => {
     product,
   };
 };
+
+// export const resetItemsState = () => ({
+//   type: constants.RESET_ITEMS_STATE
+// })
+export const resetItemsState = () => (dispatch, getState) => {
+  if (getState().items.itemAddedMsg || getState().items.itemModalStatus) {
+    dispatch({ type: constants.RESET_ITEMS_STATE });
+  }
+};
+
+export const openMenuItemModal = (product) => ({
+  type: constants.OPEN_MENU_ITEM_MODAL,
+  product,
+});
+
+export const closeMenuItemModal = () => ({
+  type: constants.CLOSE_MENU_ITEM_MODAL,
+});
 
 export const orderSent = (status) => ({
   type: constants.ORDER_SENT,
@@ -167,6 +187,11 @@ export const userIsLogged = (status) => ({
   status,
 });
 
+export const logUserIn = (status, user) => (dispatch) => {
+  Promise.resolve(dispatch({ type: constants.USER_IS_LOGGED, status })).then(
+    dispatch({ type: constants.LOGGED_USER, user })
+  );
+};
 export const updateUserInfoModalStatus = (status) => ({
   type: constants.UPDATE_USER_INFO_MODAL,
   status,

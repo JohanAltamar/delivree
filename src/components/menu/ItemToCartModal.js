@@ -2,21 +2,22 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { connect } from "react-redux";
-import { addUnit, removeUnit, addToCart } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addUnit, removeUnit, addItemToCart } from "../../redux/actions";
 
-function ItemToCart(props) {
-  const { item, onHide, onAdd } = props;
-  const { itemQty, addUnit, removeUnit, itemSelected, addItemToCart } = props; //React-redux
+function ItemToCart({item, onHide, show}) {
+
+  const dispatch = useDispatch();
+  const itemQty = useSelector((state) => state.items.itemQty);
+  const itemSelected = useSelector((state) => state.items.itemSelected);
 
   const addToCart = () => {
-    onHide();
-    onAdd();
-    addItemToCart(itemSelected, itemQty)
+    dispatch(addItemToCart(itemSelected, itemQty));
   };
+
   return (
     <Modal
-      show={props.show}
+      show={show}
       onHide={onHide}
       size="xs"
       aria-labelledby="contained-modal-title-vcenter"
@@ -39,12 +40,15 @@ function ItemToCart(props) {
           </figcaption>
         </section>
         <section id="second-section">
-          <button className="less-button" onClick={() => removeUnit()}>
+          <button
+            className="less-button"
+            onClick={() => dispatch(removeUnit())}
+          >
             {" "}
             -{" "}
           </button>
           <input value={itemQty} disabled />
-          <button className="add-button" onClick={() => addUnit()}>
+          <button className="add-button" onClick={() => dispatch(addUnit())}>
             {" "}
             +{" "}
           </button>
@@ -58,25 +62,5 @@ function ItemToCart(props) {
     </Modal>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    itemQty: state.items.itemQty,
-    itemSelected: state.items.itemSelected
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addUnit() {
-      dispatch(addUnit());
-    },
-    removeUnit() {
-      dispatch(removeUnit());
-    },
-    addItemToCart(product, qty){
-      dispatch(addToCart(product, qty))
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemToCart);
+export default ItemToCart;
