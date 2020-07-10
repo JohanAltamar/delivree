@@ -18,6 +18,7 @@ export const Login = (props) => {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user.loggedUser) || {};
   const logStatus = useSelector((state) => state.user.userIsLogged);
+  const PWAStatus = useSelector((state) => state.userInterface.PWAStatus);
 
   const [logUser, setLogUser] = useState({ email: "", password: "" });
   const [loginSuccessful, setLoginSuccessful] = useState(false);
@@ -69,7 +70,9 @@ export const Login = (props) => {
   useEffect(() => {
     const authUser = auth.currentUser;
     if (authUser === null) {
-      dispatch(showPWAInstallBanner(true))
+      if (PWAStatus !== "dismissed") {
+        dispatch(showPWAInstallBanner(true));
+      }
       return;
     } else if (!logStatus) {
       var userRef = db.collection("users").doc(authUser.uid);

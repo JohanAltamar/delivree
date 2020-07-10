@@ -11,6 +11,11 @@ export const showPWAInstallBanner = (status) => ({
   status
 })
 
+export const setPWAStatus = (status) => ({
+  type: constants.SET_PWA_STATUS,
+  status
+})
+
 export const logState = () => ({
   type: constants.LOG_STATE,
 });

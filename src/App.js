@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {showPWAInstallBanner} from "./redux/actions"
+import {showPWAInstallBanner, setPWAStatus} from "./redux/actions"
 import "./App.css";
 
 import Header from "./components/Header";
@@ -52,7 +52,7 @@ function App() {
             if (value) {
               addToHomeScreen();
             } else {
-              // setPWAStatus("dismissed");
+              dispatch(setPWAStatus("dismissed"));
               dispatch(showPWAInstallBanner(false));
             }
           }}
