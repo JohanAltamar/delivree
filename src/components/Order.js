@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Form, Button, Col, InputGroup } from "react-bootstrap";
+import { Form, Button, InputGroup } from "react-bootstrap";
 import { useLocation, useHistory } from "react-router-dom";
 import db from "../services/firebase";
 import { faSearch, faHome } from "@fortawesome/free-solid-svg-icons";
@@ -134,6 +134,7 @@ function Order() {
           <div id="order-button-container">
             <a
               target="_blank"
+              rel="noopener noreferrer"
               href={`https://wa.me/573016669240?text=Quiero%20obtener%20informacion%20sobre%20la%20orden%20${orderID}`}
             >
               <Button variant="outline-success" id="whatsapp-button">

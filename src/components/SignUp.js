@@ -1,30 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, { auth } from "../services/firebase";
 import * as actions from "../redux/actions";
-import {SignUpSuccessMessage, EmailInUse, NetworkRequestFailed} from "./signup/SignUpAlertMessages"
+import {
+  SignUpSuccessMessage,
+  EmailInUse,
+  NetworkRequestFailed,
+} from "./signup/SignUpAlertMessages";
 
 export const SignUp = () => {
-  const delayTime = 2000;
-  const userIsLoggedState = useSelector(state => state.user.userIsLogged);
-  // const createNewUser = useSelector(state => state.createUserFlagStatus);
-  // const loggedUserState = useSelector(state => state.loggedUserState);
-  const [userUid, setUserUid] = useState('')
+  const delayTime = 1500;
+  const userIsLoggedState = useSelector((state) => state.user.userIsLogged);
+  const loggedUser = useSelector(state => state.user.loggedUser.uid)
+
+  const [userUid, setUserUid] = useState("");
   const [signUpSuccessMessage, setSignUpSuccessMessage] = useState(false);
   const [emailInUse, setEmailInUse] = useState(false);
-  const [networkRequestFailedMsg, setNetworkRequestFailedMsg]=useState(false);
+  const [networkRequestFailedMsg, setNetworkRequestFailedMsg] = useState(false);
 
   const user = useSelector((state) => state.user.newUser);
   const dispatch = useDispatch();
 
-  const handleSubmit = async(event) => {
+  useEffect(() => {
+    if(userIsLoggedState){
+      setUserUid(loggedUser)
+    }
+    // eslint-disable-next-line
+  }, [])
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    await auth.createUserWithEmailAndPassword(user.email, user.password)
-      .then(function(){
-        dispatch(actions.createUserFlag(true))
+    await auth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then(function () {
+        dispatch(actions.createUserFlag(true));
         setSignUpSuccessMessage(true);
       })
       .catch(function (error) {
@@ -41,54 +52,28 @@ export const SignUp = () => {
             break;
         }
       });
-    setUserUid(auth.currentUser.uid)
-    let userRef = db.collection("users").doc(auth.currentUser.uid)
-    let payload = {
-      information: user,
-      orders: [],
-      uid: auth.currentUser.uid,
-    };
-    await userRef.set(payload)
-      .then(function () {
-        //New User info added to database successfully
-        // console.log('User created successfully')
-        setTimeout(function(){
-          dispatch(actions.loggedUser(payload));
-        },delayTime-300);
-      })
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
+    if (auth.currentUser) {
+      setUserUid(auth.currentUser.uid);
+      let userRef = db.collection("users").doc(auth.currentUser.uid);
+      let payload = {
+        information: user,
+        orders: [],
+        uid: auth.currentUser.uid,
+      };
+      await userRef
+        .set(payload)
+        .then(function () {
+          //New User info added to database successfully
+          // console.log('User created successfully')
+          setTimeout(function () {
+            dispatch(actions.loggedUser(payload));
+          }, delayTime - 300);
+        })
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
+        });
+    }
   };
-
-  // useEffect(()=>{
-  //   const createEffect = async () => {
-  //     console.log('Create new user:', createNewUser)
-      // console.log(auth.currentUser.uid)
-      // if(auth.currentUser && createNewUser){
-      //   // console.log(auth.currentUser.uid)
-      //   setUserUid(auth.currentUser.uid)
-      //   let userRef = db.collection("users").doc(auth.currentUser.uid)
-      //   let payload = {
-      //     information: user,
-      //     orders: [],
-      //     uid: auth.currentUser.uid,
-      //   };
-      //   await userRef.set(payload)
-      //   .then(function () {
-      //     //New User info added to database successfully
-      //     console.log('User created successfully')
-      //     setTimeout(function(){
-      //       dispatch(actions.loggedUser(payload));
-      //     },delayTime-300);
-      //   })
-      //   .catch(function (error) {
-      //     console.error("Error adding document: ", error);
-      //   });
-      // }
-  //   }
-  //   createEffect();
-  // },[createNewUser])
 
   return (
     <div id="login-container">
@@ -110,10 +95,10 @@ export const SignUp = () => {
         delay={delayTime}
       />
       <NetworkRequestFailed
-       show={networkRequestFailedMsg}
-       onClose={()=> setNetworkRequestFailedMsg(false)}
-       delay={delayTime}
-       />
+        show={networkRequestFailedMsg}
+        onClose={() => setNetworkRequestFailedMsg(false)}
+        delay={delayTime}
+      />
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
@@ -121,7 +106,9 @@ export const SignUp = () => {
             type="email"
             placeholder="name@foodies.com"
             value={user.email}
-            onChange={(event) => dispatch(actions.newUser("email", event.target.value))}
+            onChange={(event) =>
+              dispatch(actions.newUser("email", event.target.value))
+            }
             required
           />
         </Form.Group>
@@ -191,7 +178,9 @@ export const SignUp = () => {
             type="input"
             placeholder="Barranquilla"
             value={user.city}
-            onChange={(event) => dispatch(actions.newUser("city", event.target.value))}
+            onChange={(event) =>
+              dispatch(actions.newUser("city", event.target.value))
+            }
           />
         </Form.Group>
 
@@ -204,7 +193,9 @@ export const SignUp = () => {
           Crear
         </Button>
       </Form>
-      {(userIsLoggedState && userUid !== "" && userUid !== undefined) && (<Redirect to={`/login/${userUid}`}/>)}
+      {userIsLoggedState && userUid !== "" && userUid !== undefined && (
+        <Redirect to={`/login/${userUid}`} />
+      )}
     </div>
   );
 };

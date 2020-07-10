@@ -35,6 +35,7 @@ const TransactionStatus = () => {
       setStatus(result.data.data);
     };
     checkTransactionStatus();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -55,6 +56,7 @@ const TransactionStatus = () => {
         );
       }
     }
+    // eslint-disable-next-line
   }, [status]);
 
   useEffect(() => {
@@ -71,6 +73,7 @@ const TransactionStatus = () => {
         });
       dispatch(actions.orderSent(false));
     }
+    // eslint-disable-next-line
   }, [order]);
 
   const handleFollowOrderStatus = () => {

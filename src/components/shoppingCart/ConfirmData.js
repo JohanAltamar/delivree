@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams, useHistory, Redirect} from "react-router-dom";
@@ -9,13 +9,10 @@ import {auth} from "../../services/firebase"
 const ConfirmData = () => {
   const {userID} = useParams();
   let history = useHistory();
+  
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.user.loggedUser);
   const guestInfo = useSelector(state => state.user.guestCheckoutInfo);
-
-  useEffect(() => {
-    dispatch(actions.guestCheckoutModalStatus(false))
-  },[dispatch])
 
   const confirmData = () => {
     dispatch(actions.confirmCustomerData(userID))

@@ -1,49 +1,37 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Modal from "./ItemToCartModal";
 import Message from "./AddedToCart";
 import data from "./menuApi";
 import CartButton from "../CartButton";
-import { connect } from "react-redux";
-import {
-  itemModalStatus,
-  itemAddedToCart,
-  itemSelected,
-  resetUnits,
-} from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../../redux/actions";
 
-function Categories({
-  itemModalStatus,
-  itemModal,
-  itemAddedMsg,
-  itemAddedToCart,
-  selected,
-  setSelected,
-  resetItems,
-}) {
+function Categories() {
   let { categoryName } = useParams();
   let category = data.filter((data) => data.category === categoryName);
   let items = category[0].items;
 
+  const dispatch = useDispatch();
+  const itemModal = useSelector((state) => state.items.itemModalStatus);
+  const itemAddedMsg = useSelector((state) => state.items.itemAddedMsg);
+  const selected = useSelector((state) => state.items.itemSelected);
+
   const openModal = (item) => {
-    itemModalStatus(true);
-    setSelected(item);
+    dispatch(actions.openMenuItemModal(item))
   };
 
   const closeModal = () => {
-    itemModalStatus(false);
-    setSelected({});
-    resetItems();
+    dispatch(actions.closeMenuItemModal())
   };
 
   useEffect(() => {
-    const noItemSelected = () => {
-      closeModal();
-      itemAddedToCart(false);
-    }
-    noItemSelected();
-  }, []);
+    return(()=>{
+      dispatch(actions.resetItemsState())
+    })
+  }, [dispatch]);
+
   return (
     <section
       id="menu-category-container"
@@ -59,7 +47,7 @@ function Categories({
       <Message
         show={itemAddedMsg}
         delay={3000}
-        onClose={() => itemAddedToCart(false)}
+        onClose={() => dispatch(actions.itemAddedToCart(false))}
       />
       <h3 className="font-weight-bold text-capitalize text-center">
         {categoryName}
@@ -79,34 +67,11 @@ function Categories({
         id="item-modal"
         show={itemModal}
         onHide={() => closeModal()}
-        onAdd={() => itemAddedToCart(true)}
         item={selected}
       />
       <CartButton id="cart-floating-button-home" />
     </section>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    itemModal: state.items.itemModalStatus,
-    itemAddedMsg: state.items.itemAddedMsg,
-    selected: state.items.itemSelected,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    itemModalStatus(status) {
-      dispatch(itemModalStatus(status));
-    },
-    itemAddedToCart(satus) {
-      dispatch(itemAddedToCart(satus));
-    },
-    setSelected(product) {
-      dispatch(itemSelected(product));
-    },
-    resetItems() {
-      dispatch(resetUnits());
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+
+export default Categories;

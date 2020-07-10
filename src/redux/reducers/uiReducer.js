@@ -12,6 +12,11 @@ const uiReducer = (state = initialState, action) => {
         ...state,
         toggleMenu: !state.toggleMenu,
       };
+    case actions.PWA_INSTALL_BANNER_STATUS:
+      return{
+        ...state,
+        PWAInstallBanner: action.status
+      }
     default:
       return state;
   }

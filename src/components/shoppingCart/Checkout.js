@@ -5,15 +5,17 @@ import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import DeleteOrderModal from "./DeleteOrderCheckoutModal";
 import CompletedOrderModal from "./CompleteOrderModal";
-import db, {auth} from "../../services/firebase";
+import db, { auth } from "../../services/firebase";
+import {developmentLog} from "../../services/functions";
 
 const Checkout = () => {
   let history = useHistory();
   var date = new Date();
 
-  const [updateOrdersInProfile, setUpdateOrdersInProfile] = useState(false)
+  const [updateOrdersInProfile, setUpdateOrdersInProfile] = useState(false);
 
-  const loggedUserOrders = useSelector(state => state.user.loggedUser.orders)
+  const dispatch = useDispatch();
+  const loggedUserOrders = useSelector((state) => state.user.loggedUser.orders);
   const cart = useSelector((state) => state.shoppingCart.cart);
   const order = useSelector((state) => state.shoppingCart.order);
   const orderSent = useSelector((state) => state.shoppingCart.orderSent);
@@ -27,7 +29,6 @@ const Checkout = () => {
     (state) => state.shoppingCart.order.paymentMethod
   );
   const orderID = useSelector((state) => state.shoppingCart.orderID);
-  const dispatch = useDispatch();
 
   const getTotal = (total, product) => {
     return total + product.qty * product.price;
@@ -41,23 +42,26 @@ const Checkout = () => {
 
   const handleDeleteOrder = () => {
     dispatch(actions.emptyCart());
-    dispatch(actions.deleteOrderModalStatus(false));
     history.push("/");
   };
 
   const handleFollowOrderStatus = () => {
     dispatch(actions.emptyCart());
-    dispatch(actions.completedOrderModalStatus(false));
     history.push(`/orders?id=${orderID}`);
   };
 
   const addOrder2customerProfile = (orderInfo, orderId) => {
-    if(auth.currentUser){
-      const newOrder = {...orderInfo, orderId}
-      dispatch(actions.addOrderToProfile(newOrder))
-      setUpdateOrdersInProfile(true)
+    if (auth.currentUser) {
+      const newOrder = { ...orderInfo, orderId };
+      dispatch(actions.addOrderToProfile(newOrder));
+      setUpdateOrdersInProfile(true);
     }
-  }
+  };
+  useEffect(() => {
+    return () => {
+      dispatch(actions.deleteOrderModalStatus(false));
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     if (paymentMethod === "cash" && orderSent && cart.length > 0) {
@@ -68,35 +72,40 @@ const Checkout = () => {
           // console.log("Document written with ID: ", docRef.id);
           const { id } = docRef;
           dispatch(actions.orderID(id));
-          addOrder2customerProfile(order, id)
+          addOrder2customerProfile(order, id);
         })
         .catch(function (error) {
           console.error("Error adding document: ", error);
         });
       dispatch(actions.orderSent(false));
     }
+    // eslint-disable-next-line
   }, [order]);
 
   useEffect(() => {
     if (cart.length === 0) {
       history.push("/");
     }
+    // eslint-disable-next-line
   }, [cart]);
 
   useEffect(() => {
     const updateOrders = () => {
-      if(updateOrdersInProfile && auth.currentUser){
+      if (updateOrdersInProfile && auth.currentUser) {
         const userRef = db.collection("users").doc(auth.currentUser.uid);
-        userRef.update({
-          orders: loggedUserOrders
-        }).then(function(){
-          console.log("Order added to customer profile.")
-        })
-        setUpdateOrdersInProfile(false)
+        userRef
+          .update({
+            orders: loggedUserOrders,
+          })
+          .then(function () {
+            developmentLog("Order added to customer profile.");
+          });
+        setUpdateOrdersInProfile(false);
       }
     };
-    updateOrders()
-  }, [updateOrdersInProfile])
+    updateOrders();
+    // eslint-disable-next-line
+  }, [updateOrdersInProfile]);
 
   return (
     <section className="brand-font-family" id="checkout-container">
