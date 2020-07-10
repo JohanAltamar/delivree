@@ -15,7 +15,7 @@ store.subscribe(
   throttle(() => {
     saveState({
       ...store.getState(),
-      userInterface: { toggleMenu: false, PWAInstallBanner: false },
+      userInterface: { ...store.getState().userInterface, toggleMenu: false },
     });
   }, 1000)
 );
