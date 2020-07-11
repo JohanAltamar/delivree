@@ -6,6 +6,11 @@ export const toggleMenu = () => {
   };
 };
 
+export const setBeforeinstallpromptEventData = (data) => ({
+  type: constants.BEFORE_INSTALL_PROMPT_EVENT_DATA,
+  data
+})
+
 export const showPWAInstallBanner = (status) => ({
   type: constants.PWA_INSTALL_BANNER_STATUS,
   status
@@ -15,6 +20,14 @@ export const setPWAStatus = (status) => ({
   type: constants.SET_PWA_STATUS,
   status
 })
+
+export const pwaInstallProcess = () => (dispatch, getState) =>{
+  const PWAStatus = getState().userInterface.PWAStatus !== "dismissed";
+  const beforeinstallpromptEventData = getState().userInterface.beforeinstallpromptEventData !== null;
+  if(PWAStatus && beforeinstallpromptEventData){
+    dispatch({type: constants.PWA_INSTALL_BANNER_STATUS, status: true})
+  }
+}
 
 export const logState = () => ({
   type: constants.LOG_STATE,

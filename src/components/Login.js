@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import db, { auth } from "../services/firebase";
-import { logUserIn, showPWAInstallBanner } from "../redux/actions";
+import { logUserIn, pwaInstallProcess } from "../redux/actions";
 import {
   LoginSuccessful,
   UserNotFound,
@@ -18,7 +18,6 @@ export const Login = (props) => {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user.loggedUser) || {};
   const logStatus = useSelector((state) => state.user.userIsLogged);
-  const PWAStatus = useSelector((state) => state.userInterface.PWAStatus);
 
   const [logUser, setLogUser] = useState({ email: "", password: "" });
   const [loginSuccessful, setLoginSuccessful] = useState(false);
@@ -70,9 +69,7 @@ export const Login = (props) => {
   useEffect(() => {
     const authUser = auth.currentUser;
     if (authUser === null) {
-      if (PWAStatus !== "dismissed") {
-        dispatch(showPWAInstallBanner(true));
-      }
+      dispatch(pwaInstallProcess())
       return;
     } else if (!logStatus) {
       var userRef = db.collection("users").doc(authUser.uid);

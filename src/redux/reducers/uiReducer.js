@@ -2,6 +2,7 @@ import * as actions from "../constants";
 
 const initialState = {
   toggleMenu: false,
+  beforeinstallpromptEventData: null,
   PWAInstallBanner: false,
   PWAStatus: "first_time",
 };
@@ -22,6 +23,11 @@ const uiReducer = (state = initialState, action) => {
       return{
         ...state,
         PWAStatus: action.status
+      }
+    case actions.BEFORE_INSTALL_PROMPT_EVENT_DATA:
+      return{
+        ...state,
+        beforeinstallpromptEventData: action.data
       }
     default:
       return state;

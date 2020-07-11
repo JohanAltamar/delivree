@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {showPWAInstallBanner, setPWAStatus} from "./redux/actions"
+import {
+  showPWAInstallBanner,
+  setPWAStatus,
+  setBeforeinstallpromptEventData,
+} from "./redux/actions";
 import "./App.css";
 
 import Header from "./components/Header";
@@ -13,14 +17,16 @@ function App() {
   const showPWAModal = useSelector(
     (state) => state.userInterface.PWAInstallBanner
   );
-  const [beforeinstallpromptEventData, setEventData] = useState(false);
+  const beforeinstallpromptEventData = useSelector(
+    (state) => state.userInterface.beforeinstallpromptEventData
+  );
   //Add pwaStatus to redux
   // const [PWAStatus, setPWAStatus] = useState(false);
   var deferredPrompt;
 
   window.addEventListener("beforeinstallprompt", function (e) {
     e.preventDefault();
-    setEventData(e);
+    dispatch(setBeforeinstallpromptEventData(e));
   });
 
   function addToHomeScreen() {
@@ -36,6 +42,7 @@ function App() {
           // setPWAStatus(choiceResult.outcome); //Could be saved to remember user choice
         }
         deferredPrompt = null;
+        dispatch((setBeforeinstallpromptEventData(null)))
       });
     }
   }

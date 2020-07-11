@@ -1,7 +1,9 @@
 /******************************* TOGGLE MENU ******************************** */
 export const TOGGLE_MENU = "TOGGLE_MENU";
-export const PWA_INSTALL_BANNER_STATUS = "PWA_INSTALL_BANNER_STATUS"
-export const SET_PWA_STATUS = "SET_PWA_STATUS"
+export const BEFORE_INSTALL_PROMPT_EVENT_DATA =
+  "BEFORE_INSTALL_PROMPT_EVENT_DATA";
+export const PWA_INSTALL_BANNER_STATUS = "PWA_INSTALL_BANNER_STATUS";
+export const SET_PWA_STATUS = "SET_PWA_STATUS";
 export const LOG_STATE = "LOG_STATE";
 
 /***************************** SHOPPING CART ******************************** */

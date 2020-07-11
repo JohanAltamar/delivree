@@ -31,7 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-sw": "npm run build && workbox injectManifest && serve -s build",
+    "start-server": "npm run build && cp src/sw.js build/ && serve -s build",
     "test-sw": "npm run build && workbox injectManifest",
     "build-sw": "npm run build && cp src/sw.js build/"
   },
