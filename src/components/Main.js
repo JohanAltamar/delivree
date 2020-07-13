@@ -17,7 +17,7 @@ const OrderMain = lazy(() => import ("./Order"));
 
 function Main() {
   return (
-    <div style={{ marginTop: "80px" }}>
+    <div id="main-container">
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/" component={Home} />
