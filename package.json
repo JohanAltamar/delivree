@@ -32,7 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-server": "npm run build && cp src/sw.js build/ && serve -s build",
-    "test-sw": "npm run build && workbox injectManifest && cp src/sw.js build/ && serve -s build",
+    "test-sw": "npm run build && workbox injectManifest",
     "build-sw": "npm run build && cp src/sw.js build/"
   },
   "eslintConfig": {

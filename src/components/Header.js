@@ -1,29 +1,31 @@
 import React from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import BurgerIcon from "./header/BurgerMenu";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleMenu} from "../redux/actions";
-import { Row, Col } from "react-bootstrap";
+import { toggleMenu } from "../redux/actions";
+import { Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import "./header/header.css";
 
-function Header( ) {
+function Header() {
   const menu = useSelector((state) => state.userInterface.toggleMenu);
   const dispatch = useDispatch();
 
   return (
     <header>
-      <Row id="header">
+      <section id="header">
         <Col xs={12} sm={{ offset: 1, span: 4 }}>
-          <h1 className="brand-name brand-color-main d-flex justify-content-center justify-content-sm-start align-items-center font-weight-bold text-decoration-none">
-            <Link to="/">Foodies</Link>
-          </h1>
           <div
-            id="burger-icon"
+            id="burger-icon-container"
             className="d-sm-none"
             onClick={() => dispatch(toggleMenu())}
           >
-            <BurgerIcon />
+            <FontAwesomeIcon icon={faBars} />
           </div>
+          <h1 className="brand-name brand-color-main d-flex justify-content-center justify-content-sm-start align-items-center font-weight-bold text-decoration-none">
+            <Link to="/">Delivree</Link>
+          </h1>
         </Col>
         <Col
           sm={{ offset: 1, span: 6 }}
@@ -44,35 +46,53 @@ function Header( ) {
             </li>
           </nav>
         </Col>
-      </Row>
+      </section>
       <section
         id="burger-menu-display-container"
-        className={clsx("d-sm-none text-center", menu ? "" : "d-none")}
+        className="d-sm-none text-center"
+        style={
+          menu
+            ? { backgroundColor: "rgba(0,0,0,0.4)", width: "100%" }
+            : { }
+        }
       >
         <div
-          id="burger-menu-display-blank-section"
-          onClick={() => dispatch(toggleMenu())}
-        ></div>
-        <div id="burger-menu-display">
+          id="burger-menu-display"
+          // className="sidenav"
+          style={menu ? { width: "200px" } : { width: "0px" }}
+        >
           <nav>
             <li>
-              <Link to="/" onClick={() => dispatch(toggleMenu())}>Inicio</Link>
+              <Link to="/" onClick={() => dispatch(toggleMenu())}>
+                Inicio
+              </Link>
             </li>
-            <hr/>
+            <hr />
             <li>
-              <Link to="/menu" onClick={() => dispatch(toggleMenu())}>Menu</Link>
+              <Link to="/menu" onClick={() => dispatch(toggleMenu())}>
+                Menu
+              </Link>
             </li>
-            <hr/>
+            <hr />
             <li>
-              <Link to="/cart" onClick={() => dispatch(toggleMenu())}>Carrito</Link>
+              <Link to="/cart" onClick={() => dispatch(toggleMenu())}>
+                Carrito
+              </Link>
             </li>
-            <hr/>
+            <hr />
             <li>
-              <Link to="/login" onClick={() => dispatch(toggleMenu())}>Ingreso</Link>
+              <Link to="/login" onClick={() => dispatch(toggleMenu())}>
+                Ingreso
+              </Link>
             </li>
-            <hr/>
+            <hr />
           </nav>
         </div>
+        <div
+          id="burger-menu-display-blank-section"
+          className={menu ? "sidenav-opened" : undefined}
+          onClick={() => dispatch(toggleMenu())}
+        ></div>
       </section>
     </header>
   );

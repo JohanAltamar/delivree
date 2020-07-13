@@ -1,0 +1,138 @@
+:root {
+  --primary-brand-color: #ff1f17;
+  --secondary-brand-color: #ff7f0c;
+  --primary-bg-color: #ffffff;
+  --header-height: 80px;
+  --burger-icon: 25px;
+  --burger-icon-container-left: 5%;
+  --brand-name-font-size: 45px;
+  --sidenav-width: 200px;
+  --transition-duration: 0.5s;
+}
+
+@media (max-width: 349px) {
+  :root {
+    --burger-icon: 20px;
+    --header-height: 70px;
+    --burger-icon-container-left: 10px;
+    --brand-name-font-size: 38px;
+  }
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+  height: var(--header-height);
+  top: 0px;
+  z-index: 1;
+  background-color: var(--primary-bg-color);
+}
+
+#header a,
+#header a:hover {
+  text-decoration: none;
+  color: var(--primary-brand-color);
+}
+
+#header nav {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+#header nav a {
+  margin: 0px 10px;
+}
+
+/*-------------------------------BURGER ICON ---------------------------*/
+#burger-icon-container {
+  position: absolute;
+  width: 60px;
+  height: var(--header-height);
+  left: var(--burger-icon-container-left);
+  top: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#burger-icon-container svg {
+  width: var(--burger-icon);
+  height: var(--burger-icon);
+  color: var(--primary-brand-color);
+}
+
+/*--------------------------- BURGER MENU OPTIONS ----------------------------*/
+#burger-menu-display-container {
+  position: fixed;
+  top: var(--header-height);
+  left: 0px;
+  min-height: calc(100vh - var(--header-height));
+  width: 0px;
+  z-index: 1;
+}
+
+#burger-menu-display {
+  position: fixed;
+  left: 0;
+  background-color: var(--primary-bg-color);
+  width: 0px;
+  min-height: 100%;
+  z-index: 1;
+  border: 1px solid var(--secondary-brand-color);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  overflow-x: hidden;
+  transition: var(--transition-duration);
+}
+#burger-menu-display a {
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  transition: var(--transition-duration);
+  color: var(--secondary-brand-color);
+}
+
+#burger-menu-display a:hover {
+  text-decoration: none;
+  color: var(--primary-brand-color);
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#burger-menu-display li {
+  list-style-type: none;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#burger-menu-display hr {
+  margin: 0px;
+  border-color: var(--secondary-brand-color);
+}
+
+#burger-menu-display-blank-section {
+  position: fixed;
+  left: var(--sidenav-width);
+  width: 0;
+  height: 100%;
+  z-index: 1;
+}
+
+#burger-menu-display-blank-section.sidenav-opened{
+  width: calc(100vw - var(--sidenav-width));
+}
+
+/* -----------------------------BRAND NAME ---------------------------- */
+.brand-name {
+  /* width: 100%; */
+  height: var(--header-height);
+
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: var(--brand-name-font-size);
+  line-height: 55px;
+}
