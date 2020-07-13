@@ -68,9 +68,8 @@
   position: fixed;
   top: var(--header-height);
   left: 0px;
-  transition: var(--transition-duration);
   min-height: calc(100vh - var(--header-height));
-  width: 100%;
+  width: 0px;
   z-index: 1;
 }
 
@@ -86,7 +85,7 @@
   border-left: none;
   border-right: none;
   overflow-x: hidden;
-  transition: var(--transition-duration); 
+  transition: var(--transition-duration);
 }
 #burger-menu-display a {
   text-decoration: none;
@@ -116,12 +115,16 @@
   border-color: var(--secondary-brand-color);
 }
 
-#burger-menu-display-blank-section{
+#burger-menu-display-blank-section {
   position: fixed;
   left: var(--sidenav-width);
-  width: calc(100vw - var(--sidenav-width));
+  width: 0;
   height: 100%;
   z-index: 1;
+}
+
+#burger-menu-display-blank-section.sidenav-opened{
+  width: calc(100vw - var(--sidenav-width));
 }
 
 /* -----------------------------BRAND NAME ---------------------------- */

@@ -52,7 +52,7 @@ function Header() {
         className="d-sm-none text-center"
         style={
           menu
-            ? { backgroundColor: "rgba(0,0,0,0.4)" }
+            ? { backgroundColor: "rgba(0,0,0,0.4)", width: "100%" }
             : { }
         }
       >
@@ -90,6 +90,7 @@ function Header() {
         </div>
         <div
           id="burger-menu-display-blank-section"
+          className={menu ? "sidenav-opened" : undefined}
           onClick={() => dispatch(toggleMenu())}
         ></div>
       </section>
