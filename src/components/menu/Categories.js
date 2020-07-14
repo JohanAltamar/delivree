@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import Modal from "./ItemToCartModal";
 import Message from "./AddedToCart";
 import data from "./menuApi";
-import CartButton from "../CartButton";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions";
 
@@ -69,7 +68,6 @@ function Categories() {
         onHide={() => closeModal()}
         item={selected}
       />
-      <CartButton id="cart-floating-button-home" />
     </section>
   );
 }
