@@ -1,0 +1,143 @@
+/*---------------------------  HERO  -----------------------------*/
+
+#hero {
+  position: relative;
+}
+
+#hero-image{
+    width: 100vw;
+    height: auto;
+}
+
+#hero-caption-container {
+  position: absolute;
+  width: 83vw;
+  height: 11vw;
+  left: 8vw;
+  top: 6.3vw;
+  background: rgba(255, 31, 23, 0.6);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#hero-caption {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8vw;
+  line-height: 10.46vw;
+  flex-grow: 1;
+  text-align: center;
+  color: #ffffff;
+}
+
+#hero-button-container {
+  position: absolute;
+  width: 33vw;
+  height: 14.35vw;
+  left: 8.27vw;
+  top: 42.25vw;
+  background: rgba(255, 31, 23, 0.7);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#hero-button-container:hover {
+  background: rgba(255, 127, 12, 0.7);
+}
+
+#hero-button {
+  width: 33vw;
+  height: 14.35vw;
+  left: 8.27vw;
+  top: 36.25vw;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 6.1vw;
+  line-height: 7.3vw;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+#hero a,
+#hero a:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  #hero {
+    background: url(https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fhero%2Fhero768.webp?alt=media&token=66d8bd52-fce5-40ab-822c-6e23163bf85b)
+      no-repeat;
+    background-size: contain;
+    background-position: center;
+    min-height: 67.09vw;
+    min-width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  #hero {
+    background: url(https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fhero%2Fhero992.webp?alt=media&token=4982213b-cc5c-4528-a9ba-cdc4dc7460a3)
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-width: 100%;
+    min-height: 63.09vw;
+    max-height: calc(100vh - 80px);
+  }
+}
+
+@media (min-width: 993px) {
+  #hero {
+    background: url(https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2Fhero%2Fhero1200.webp?alt=media&token=2f40cbc4-dfcc-4805-91b9-5cddb78b0f5e)
+      no-repeat;
+    background-size: cover;
+    background-position-y: center;
+    height: 48vw;
+    min-width: 100%;
+  }
+
+  #hero-caption-container {
+    position: absolute;
+    width: 70vw;
+    height: 10vw;
+    left: calc((100vw - 70vw) / 2);
+    top: 5.6vw;
+    background: rgba(255, 31, 23, 0.6);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #hero-caption {
+    font-size: 6vw;
+  }
+
+  #hero-button-container {
+    position: absolute;
+    width: 25vw;
+    height: 11.8vw;
+    left: 8.27vw;
+    top: 30.25vw;
+    background: rgba(255, 31, 23, 0.7);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #hero-button {
+    font-family: "Montserrat Alternates", sans-serif;
+    width: 25vw;
+    height: 11.8vw;
+    font-size: 5.3vw;
+    line-height: 6vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+}
