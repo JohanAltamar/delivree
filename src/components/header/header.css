@@ -26,6 +26,7 @@
   top: 0px;
   z-index: 1;
   background-color: var(--primary-bg-color);
+  display: flex;
 }
 
 #header a,
@@ -44,12 +45,11 @@
   margin: 0px 10px;
 }
 
-/*-------------------------------BURGER ICON ---------------------------*/
-#burger-icon-container {
+/*------------------------------ ICON CONTAINERS -----------------------*/
+.icon-container{
   position: absolute;
   width: 60px;
   height: var(--header-height);
-  left: var(--burger-icon-container-left);
   top: 0;
   cursor: pointer;
   display: flex;
@@ -57,7 +57,17 @@
   align-items: center;
 }
 
-#burger-icon-container svg {
+/*------------------------------ CART ICON -----------------------------*/
+#cart-icon-container{
+  right: var(--burger-icon-container-left);;
+}
+
+/*-------------------------------BURGER ICON ---------------------------*/
+#burger-icon-container {
+  left: var(--burger-icon-container-left);
+}
+
+#burger-icon-container svg, #cart-icon-container svg{
   width: var(--burger-icon);
   height: var(--burger-icon);
   color: var(--primary-brand-color);
@@ -136,3 +146,4 @@
   font-size: var(--brand-name-font-size);
   line-height: 55px;
 }
+

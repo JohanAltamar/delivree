@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import CartButton from "./CartButton";
 
 const data = [
   {
@@ -72,7 +71,6 @@ function Menu() {
           );
         })}
       </section>
-      <CartButton id="cart-floating-button-home" />
     </section>
   );
 }

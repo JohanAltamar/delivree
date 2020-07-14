@@ -5,7 +5,6 @@ import Featured from "./home/FeaturedProducts"
 import Location from "./home/Location"
 import WorkingHours from "./home/WorkingHours"
 import Contact from "./home/Contact"
-import CartButton from "./CartButton"
 import Footer from "./Footer"
 import {Helmet} from "react-helmet"
 
@@ -22,7 +21,6 @@ function Home() {
             <Location />
             <WorkingHours/>
             <Contact/>
-            <CartButton id="cart-floating-button-home"/>
             <Footer/>
         </section>
     )

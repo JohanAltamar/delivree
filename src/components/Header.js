@@ -1,11 +1,10 @@
 import React from "react";
-import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleMenu } from "../redux/actions";
 import { Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./header/header.css";
 
 function Header() {
@@ -18,14 +17,29 @@ function Header() {
         <Col xs={12} sm={{ offset: 1, span: 4 }}>
           <div
             id="burger-icon-container"
-            className="d-sm-none"
+            className="d-sm-none icon-container"
             onClick={() => dispatch(toggleMenu())}
           >
             <FontAwesomeIcon icon={faBars} />
           </div>
-          <h1 className="brand-name brand-color-main d-flex justify-content-center justify-content-sm-start align-items-center font-weight-bold text-decoration-none">
+          <h1
+            className="brand-name brand-color-main d-flex justify-content-center justify-content-sm-start align-items-center font-weight-bold text-decoration-none"
+            onClick={() => {
+              if (menu) {
+                dispatch(toggleMenu());
+              }
+            }}
+          >
             <Link to="/">Delivree</Link>
           </h1>
+          <Link
+            id="cart-icon-container"
+            className="d-sm-none icon-container"
+            to="/cart"
+            // onClick={() => history.push("/cart")}
+          >
+            <FontAwesomeIcon icon={faShoppingCart} />
+          </Link>
         </Col>
         <Col
           sm={{ offset: 1, span: 6 }}
@@ -51,9 +65,7 @@ function Header() {
         id="burger-menu-display-container"
         className="d-sm-none text-center"
         style={
-          menu
-            ? { backgroundColor: "rgba(0,0,0,0.4)", width: "100%" }
-            : { }
+          menu ? { backgroundColor: "rgba(0,0,0,0.4)", width: "100%" } : {}
         }
       >
         <div
