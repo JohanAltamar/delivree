@@ -38,16 +38,6 @@ body {
   margin-top: var(--header-height);
 }
 
-/* --------------------------- ABOUT US ------------------------- */
-#about-us {
-  padding: 40px 8.27vw;
-}
-
-#about-us h2 {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
 /* ----------------------- FEATURED PRODUCTS --------------------- */
 #featured-products {
   background-color: rgba(255, 31, 23, 0.8);
