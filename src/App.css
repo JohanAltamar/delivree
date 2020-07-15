@@ -39,7 +39,7 @@ body {
 }
 
 /*------------------------------ LOCATION -----------------------------*/
-#location h2:first-child {
+#location h3:first-child {
   padding-left: 8.33vw;
   padding-top: 30px;
   padding-bottom: 20px;
