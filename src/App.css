@@ -38,75 +38,8 @@ body {
   margin-top: var(--header-height);
 }
 
-/* --------------------------- ABOUT US ------------------------- */
-#about-us {
-  padding: 40px 8.27vw;
-}
-
-#about-us h2 {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-/* ----------------------- FEATURED PRODUCTS --------------------- */
-#featured-products {
-  background-color: rgba(255, 31, 23, 0.8);
-  position: relative;
-}
-
-.featured-products-title {
-  margin-left: 8.33vw;
-  margin-bottom: 0px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  font-size: 25px;
-  line-height: 30px;
-}
-
-.featured-products-container {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 8.33vw;
-  padding-bottom: 60px;
-}
-.featured-products-item img {
-  max-width: 25vw;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.featured-products-item figcaption {
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-}
-
-.featured-products-view-all {
-  position: absolute;
-  height: 33px;
-  width: 30vw;
-  margin: 0;
-  left: 50%;
-  -ms-transform: translate(-50%, -170%);
-  transform: translate(-50%, -170%);
-  border-radius: 5px;
-  border: none;
-  background-color: rgba(255, 127, 12);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.featured-products-view-all:hover {
-  text-decoration: none;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: rgba(255, 127, 12, 0.7);
-}
-
 /*------------------------------ LOCATION -----------------------------*/
-#location h2:first-child {
+#location h3:first-child {
   padding-left: 8.33vw;
   padding-top: 30px;
   padding-bottom: 20px;
