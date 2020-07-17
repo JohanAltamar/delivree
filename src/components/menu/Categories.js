@@ -6,6 +6,7 @@ import Message from "./AddedToCart";
 import data from "./menuApi";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions";
+import "./menu.css";
 
 function Categories() {
   let { categoryName } = useParams();
@@ -18,17 +19,17 @@ function Categories() {
   const selected = useSelector((state) => state.items.itemSelected);
 
   const openModal = (item) => {
-    dispatch(actions.openMenuItemModal(item))
+    dispatch(actions.openMenuItemModal(item));
   };
 
   const closeModal = () => {
-    dispatch(actions.closeMenuItemModal())
+    dispatch(actions.closeMenuItemModal());
   };
 
   useEffect(() => {
-    return(()=>{
-      dispatch(actions.resetItemsState())
-    })
+    return () => {
+      dispatch(actions.resetItemsState());
+    };
   }, [dispatch]);
 
   return (
@@ -48,17 +49,29 @@ function Categories() {
         delay={3000}
         onClose={() => dispatch(actions.itemAddedToCart(false))}
       />
-      <h3 className="font-weight-bold text-capitalize text-center">
+      <h3 className="section-title font-weight-bold text-capitalize text-center">
         {categoryName}
       </h3>
       <section id="menu-category-items-container">
         {items.map((product) => (
-          <figure key={product.id} onClick={() => openModal(product)}>
+          <figure
+            className="col-12 col-sm-4 col-lg-3"
+            key={product.id}
+            onClick={() => openModal(product)}
+          >
             <img src={product.url} alt={product.name} width="100%" />
             <figcaption>
-              <strong>{product.name}</strong>
+              <h5>
+                <strong>{product.name}</strong>
+              </h5>
             </figcaption>
-            <figcaption>Price: {product.price}</figcaption>
+            <figcaption>
+              Precio: ${product.price.toLocaleString("DE-de")}
+            </figcaption>
+            <figcaption>
+              Ingredientes: Pan de papa, carne 180 grs, tomate, cebolla
+              caramelizada, lechuga romana, queso cheddar
+            </figcaption>
           </figure>
         ))}
       </section>
