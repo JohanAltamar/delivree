@@ -44,7 +44,6 @@ const data = [
 
 function Menu() {
   let { url } = useRouteMatch();
-  console.log(window.history)
 
   return (
     <section
