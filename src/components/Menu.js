@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import "./menu/menu.css";
 
 const data = [
   {
@@ -43,6 +44,7 @@ const data = [
 
 function Menu() {
   let { url } = useRouteMatch();
+  console.log(window.history)
 
   return (
     <section
@@ -56,11 +58,11 @@ function Menu() {
           content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
         />
       </Helmet>
-      <h4 className="font-weight-bold text-center">Menu</h4>
+      <h3 className="section-title font-weight-bold text-center">Menu</h3>
       <section id="menu-categories">
         {data.map((product) => {
           return (
-            <figure key={product.id}>
+            <figure key={product.id} className="col-6 col-sm-4 col-lg-3">
               <Link to={`${url}/${product.category}`}>
                 <img src={product.image} alt={product.category} />
                 <figcaption className="text-capitalize font-weight-bold">
