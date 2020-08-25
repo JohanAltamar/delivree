@@ -18,6 +18,7 @@ export const DELETE_ORDER_MODAL_STATUS = "DELETE_ORDER_MODAL_STATUS";
 export const COMPLETE_ORDER = "COMPLETE_ORDER";
 export const COMPLETED_ORDER_MODAL_STATUS = "COMPLETED_ORDER_MODAL_STATUS";
 export const CONFIRM_CUSTOMER_DATA = "CONFIRM_CUSTOMER_DATA";
+export const SET_DELIVERY_VALUE = "SET_DELIVERY_VALUE";
 
 /******************************* MENU ITEMS ********************************* */
 export const ADD_UNIT = "ADD_UNIT";

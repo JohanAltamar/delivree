@@ -33,7 +33,7 @@ const Checkout = () => {
   const getTotal = (total, product) => {
     return total + product.qty * product.price;
   };
-  const delivery = 5000;
+  const delivery = order.delivery;
   const total = cart.reduce(getTotal, 0) + delivery;
 
   const handleCompleteOrder = () => {
