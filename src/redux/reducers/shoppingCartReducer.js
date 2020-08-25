@@ -1,13 +1,13 @@
-import * as actions from "../constants";
+import * as actions from '../constants';
 
 export const initialUser = {
-  fullname: "",
-  address: "",
-  telephone: "",
-  email: "",
-  password: "",
-  neighborhood: "",
-  city: "",
+  fullname: '',
+  address: '',
+  telephone: '',
+  email: '',
+  password: '',
+  neighborhood: '',
+  city: '',
 };
 
 const initialState = {
@@ -18,28 +18,28 @@ const initialState = {
   /** OrderReducer */
   order: {
     cart: [],
-    paymentMethod: "cash",
+    paymentMethod: 'cash',
     userInfo: initialUser,
-    delivery: "",
+    delivery: '',
   },
   deleteOrderModalStatus: false,
   completedOrderModalStatus: false,
   /**orderReducer */
   orderSent: false,
   orderSentMsg: false,
-  orderID: "",
+  orderID: '',
   /**userReducer */
   loggedUser: {
     information: initialUser,
     orders: [],
-    uid: "",
+    uid: '',
   },
   guestCheckoutInfo: initialUser,
 };
 
 const update_item = (array, item, operation) => {
   const newArray = array.slice();
-  if (operation === "add") {
+  if (operation === 'add') {
     newArray[item].qty = newArray[item].qty + 1;
   } else {
     if (newArray[item].qty > 1) {
@@ -61,14 +61,16 @@ const cartReducer = (state = initialState, action) => {
     case actions.REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((product) => product.url !== action.product.url),
+        cart: state.cart.filter(
+          (product) => product.url !== action.product.url
+        ),
       };
     case actions.EMPTY_CART:
       return {
         ...state,
         cart: [],
         order: {
-          paymentMethod: "cash",
+          paymentMethod: 'cash',
         },
         guestCheckoutInfo: initialState.guestCheckoutInfo,
         completedOrderModalStatus: false,
@@ -88,6 +90,14 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         guestInfoModalStatus: action.status,
+      };
+    case actions.SET_DELIVERY_VALUE:
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          delivery: action.delivery,
+        },
       };
     case actions.CHECKOUT_PAYMENT_METHOD:
       return {
@@ -109,7 +119,7 @@ const cartReducer = (state = initialState, action) => {
           ...state.order,
           ...action.extra,
           cart: state.cart,
-          status: "pending for restaurant confirmation",
+          status: 'pending for restaurant confirmation',
           timestamp: Date().toString(),
         },
         orderSent: true,
@@ -127,7 +137,7 @@ const cartReducer = (state = initialState, action) => {
         order: {
           ...state.order,
           userInfo: action.customerInfo,
-          uid: action.customerID
+          uid: action.customerID,
         },
       };
     /** ORDERS */

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import {guestCheckoutModalStatus} from "../../redux/actions";
-import Login from "../Login";
-import GuestModal from "./ChooseUserGuestModal";
+import React, { useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { guestCheckoutModalStatus } from '../../redux/actions';
+import Login from '../Login';
+import GuestModal from './ChooseUserGuestModal';
+import './shoppingCart.css';
 
 const ChooseUser = () => {
   const guestModalStatus = useSelector(
@@ -19,12 +20,12 @@ const ChooseUser = () => {
 
   return (
     <section id="choose-user-container" className="brand-font-family">
-      <div>
+      <>
         <Login
           loginButton="Seguir como miembro"
           redirectTo={`/cart/confirmData`}
         />
-      </div>
+      </>
       <hr />
       <div id="checkout-as-guest">
         <h6 className="brand-color-main">Deseo continuar como invitado.</h6>

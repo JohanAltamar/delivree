@@ -1,4 +1,4 @@
-import * as constants from "./constants";
+import * as constants from './constants';
 
 export const toggleMenu = () => {
   return {
@@ -8,26 +8,27 @@ export const toggleMenu = () => {
 
 export const setBeforeinstallpromptEventData = (data) => ({
   type: constants.BEFORE_INSTALL_PROMPT_EVENT_DATA,
-  data
-})
+  data,
+});
 
 export const showPWAInstallBanner = (status) => ({
   type: constants.PWA_INSTALL_BANNER_STATUS,
-  status
-})
+  status,
+});
 
 export const setPWAStatus = (status) => ({
   type: constants.SET_PWA_STATUS,
-  status
-})
+  status,
+});
 
-export const pwaInstallProcess = () => (dispatch, getState) =>{
-  const PWAStatus = getState().userInterface.PWAStatus !== "dismissed";
-  const beforeinstallpromptEventData = getState().userInterface.beforeinstallpromptEventData !== null;
-  if(PWAStatus && beforeinstallpromptEventData){
-    dispatch({type: constants.PWA_INSTALL_BANNER_STATUS, status: true})
+export const pwaInstallProcess = () => (dispatch, getState) => {
+  const PWAStatus = getState().userInterface.PWAStatus !== 'dismissed';
+  const beforeinstallpromptEventData =
+    getState().userInterface.beforeinstallpromptEventData !== null;
+  if (PWAStatus && beforeinstallpromptEventData) {
+    dispatch({ type: constants.PWA_INSTALL_BANNER_STATUS, status: true });
   }
-}
+};
 
 export const logState = () => ({
   type: constants.LOG_STATE,
@@ -113,7 +114,7 @@ export const completedOrderModalStatus = (status) => ({
 /** THUNK */
 export const confirmCustomerData = (customer) => (dispatch, getState) => {
   const userInfo =
-    customer === "guest"
+    customer === 'guest'
       ? getState().user.guestCheckoutInfo
       : getState().user.loggedUser.information;
   dispatch({
@@ -205,6 +206,7 @@ export const logUserIn = (status, user) => (dispatch) => {
     dispatch({ type: constants.LOGGED_USER, user })
   );
 };
+
 export const updateUserInfoModalStatus = (status) => ({
   type: constants.UPDATE_USER_INFO_MODAL,
   status,
@@ -230,6 +232,11 @@ export const guestCheckoutUser = (param, value) => ({
   type: constants.GUEST_CHECKOUT_USER,
   param,
   value,
+});
+
+export const setDeliveryValue = (delivery) => ({
+  type: constants.SET_DELIVERY_VALUE,
+  delivery,
 });
 
 export const addOrderToProfile = (newOrder) => ({
