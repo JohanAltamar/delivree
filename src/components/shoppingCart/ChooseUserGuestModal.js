@@ -12,29 +12,38 @@ import {
 } from '../../redux/actions';
 import { cities, neighborhoods } from '../../helpers/areas';
 import { getDeliveryValue } from '../../helpers/getDeliveryValue';
+import { useHandleFieldChange } from '../../hooks/useHandleFieldChange';
 
 const ChooseUserGuestModal = (props) => {
   let history = useHistory();
+
   const dispatch = useDispatch();
   const guestInfo = useSelector((state) => state.user.guestCheckoutInfo);
+  const modalStatus = useSelector(
+    (state) => state.shoppingCart.guestInfoModalStatus
+  );
 
-  const handleChange = (name) => (event) => {
-    if (name === 'city') {
+  useEffect(() => {
+    const dispatchDelivery = () => {
+      dispatch(
+        setDeliveryValue(
+          getDeliveryValue(guestInfo.city, guestInfo.neighborhood)
+        )
+      );
+    };
+    if (guestInfo.city && guestInfo.neighborhood && modalStatus) {
+      dispatchDelivery();
+    } else if (!guestInfo.city) {
+      dispatch(guestCheckoutUser('city', cities[0]));
+    } else if (!guestInfo.neighborhood) {
       dispatch(
         guestCheckoutUser(
           'neighborhood',
-          neighborhoods[event.target.value][0].neighborhood
+          neighborhoods[guestInfo.city][0]['neighborhood']
         )
       );
     }
-    dispatch(guestCheckoutUser(name, event.target.value));
-  };
-
-  useEffect(() => {
-    dispatch(
-      setDeliveryValue(getDeliveryValue(guestInfo.city, guestInfo.neighborhood))
-    );
-  }, [guestInfo.neighborhood, guestInfo.city, dispatch]);
+  }, [guestInfo.neighborhood, guestInfo.city, dispatch, modalStatus]);
 
   return (
     <Modal
@@ -60,7 +69,7 @@ const ChooseUserGuestModal = (props) => {
             type="text"
             placeholder="Juanito Perez"
             value={guestInfo.fullname}
-            onChange={handleChange('fullname')}
+            onChange={useHandleFieldChange('fullname')}
             required
           />
         </Form.Group>
@@ -70,7 +79,7 @@ const ChooseUserGuestModal = (props) => {
             type="text"
             placeholder="Calle XX # XX - XX"
             value={guestInfo.address}
-            onChange={handleChange('address')}
+            onChange={useHandleFieldChange('address')}
             required
           />
         </Form.Group>
@@ -80,7 +89,7 @@ const ChooseUserGuestModal = (props) => {
             type="text"
             placeholder="3001231212"
             value={guestInfo.telephone}
-            onChange={handleChange('telephone')}
+            onChange={useHandleFieldChange('telephone')}
             required
           />
         </Form.Group>
@@ -90,7 +99,7 @@ const ChooseUserGuestModal = (props) => {
             as="select"
             placeholder="Barranquilla"
             value={guestInfo.city}
-            onChange={handleChange('city')}
+            onChange={useHandleFieldChange('city')}
             required
           >
             {cities.map((city, idx) => (
@@ -104,12 +113,14 @@ const ChooseUserGuestModal = (props) => {
             as="select"
             name="neighborhood"
             value={guestInfo.neighborhood}
-            onChange={handleChange('neighborhood')}
+            onChange={useHandleFieldChange('neighborhood')}
             required
           >
-            {neighborhoods[guestInfo.city].map(({ neighborhood }, key) => (
-              <option key={key}>{neighborhood}</option>
-            ))}
+            {neighborhoods[guestInfo.city || cities[0]].map(
+              ({ neighborhood }, key) => (
+                <option key={key}>{neighborhood}</option>
+              )
+            )}
           </Form.Control>
         </Form.Group>
         <div id="guest-modal-continue-button">
