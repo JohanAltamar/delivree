@@ -1,7 +1,7 @@
 /* ----------------- CART PAGE ------------------ */
 #cart-products {
   max-width: 600px;
-  padding: 20px 8.33%;
+  padding: 1.25rem 8.33%;
   width: 100%;
 }
 
@@ -92,7 +92,9 @@
   width: 100%;
 }
 
-#cart-resume-preview {
+#cart-resume-preview,
+#cart-resume-delivery,
+#cart-resume-total {
   display: flex;
   justify-content: space-between;
 }
@@ -274,22 +276,22 @@
   #choose-user-container {
     display: flex;
   }
-  #login-container{
-      min-width: 50%;
-      border-right: 1px solid #ff1f17;
+  #login-container {
+    min-width: 50%;
+    border-right: 1px solid #ff1f17;
   }
-  #checkout-as-guest{
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: center;
+  #checkout-as-guest {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
   }
   #checkout-as-guest > * {
-      margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 }
 
 select {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 #confirm-data-container {
@@ -305,60 +307,74 @@ select {
   justify-content: space-around;
 }
 
-#cart-resume-checkout {
-  padding: 15px 10%;
-}
-
 #checkout-container {
   height: calc(100vh - 80px);
-  padding: 0 8.33%;
+  margin: 0 8.33%;
+}
+
+#cart-resume-checkout {
+  padding: 1rem 10%;
 }
 
 #checkout-form {
-  margin-bottom: 10px;
-  padding: 20px 10%;
+  margin-bottom: 0.5rem;
+  padding: 1.25rem 10%;
 }
 
 #checkout-button-container {
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: 30px 0;
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 768px) {
+  #checkout-container {
+    width: 600px;
+    margin: auto;
+  }
+  #checkout-container > * {
+    margin-bottom: 2.5rem;
+  }
 }
 
 #transaction-status-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 20px 16.66%;
+  padding: 1.25rem 16.66%;
 }
 
 #transaction-status-container > * {
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 #transaction-status-container #redirect-buttons > * {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .delete-order-modal .modal-content {
-  padding: 20px 8.33%;
+  padding: 1.25rem 1.5rem;
 }
 
 #close-icon {
   align-items: center;
   cursor: pointer;
   display: flex;
-  height: 40px;
+  height: 2.5rem;
   justify-content: center;
   position: absolute;
   right: 0;
   top: 0;
-  width: 40px;
+  width: 2.5rem;
 }
 
 .delete-order-modal .modal-content .delete-order-modal-title {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.delete-order-modal-title {
+  font-size: 1rem;
 }
 
 .delete-order-button-container {
@@ -368,5 +384,44 @@ select {
 }
 
 .delete-order-button-container button:nth-child(1) {
-  margin-right: 15px;
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 374px) {
+  .delete-order-modal-title {
+    letter-spacing: .1rem;
+  }
+
+  .delete-order-button-container button{
+    max-width: 8.25rem;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .delete-order-modal-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .delete-order-modal .modal-content {
+    margin: auto;
+    max-width: 400px;
+    padding: 1.25rem 2rem;
+  }
+
+  .delete-order-modal-title {
+    font-size: 1.35rem;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .delete-order-modal .modal-content{
+    min-width: 510px;
+    max-width: 510px;
+  }
+
+  .delete-order-button-container button{
+    font-size: 1.25rem;
+  }
 }
