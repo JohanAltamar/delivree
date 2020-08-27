@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../../redux/actions";
-import { Form, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import DeleteOrderModal from "./DeleteOrderCheckoutModal";
-import CompletedOrderModal from "./CompleteOrderModal";
-import db, { auth } from "../../services/firebase";
-import {developmentLog} from "../../services/functions";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../../redux/actions';
+import { Form, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import DeleteOrderModal from './DeleteOrderCheckoutModal';
+import CompletedOrderModal from './CompleteOrderModal';
+import db, { auth } from '../../services/firebase';
+import { developmentLog } from '../../services/functions';
+import './shoppingCart.css';
 
 const Checkout = () => {
   let history = useHistory();
@@ -33,7 +34,9 @@ const Checkout = () => {
   const getTotal = (total, product) => {
     return total + product.qty * product.price;
   };
+
   const delivery = order.delivery;
+
   const total = cart.reduce(getTotal, 0) + delivery;
 
   const handleCompleteOrder = () => {
@@ -42,7 +45,7 @@ const Checkout = () => {
 
   const handleDeleteOrder = () => {
     dispatch(actions.emptyCart());
-    history.push("/");
+    history.push('/');
   };
 
   const handleFollowOrderStatus = () => {
@@ -57,6 +60,7 @@ const Checkout = () => {
       setUpdateOrdersInProfile(true);
     }
   };
+
   useEffect(() => {
     return () => {
       dispatch(actions.deleteOrderModalStatus(false));
@@ -64,9 +68,9 @@ const Checkout = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (paymentMethod === "cash" && orderSent && cart.length > 0) {
+    if (paymentMethod === 'cash' && orderSent && cart.length > 0) {
       // console.log(order);
-      db.collection("orders")
+      db.collection('orders')
         .add(order)
         .then(function (docRef) {
           // console.log("Document written with ID: ", docRef.id);
@@ -75,7 +79,7 @@ const Checkout = () => {
           addOrder2customerProfile(order, id);
         })
         .catch(function (error) {
-          console.error("Error adding document: ", error);
+          console.error('Error adding document: ', error);
         });
       dispatch(actions.orderSent(false));
     }
@@ -84,7 +88,7 @@ const Checkout = () => {
 
   useEffect(() => {
     if (cart.length === 0) {
-      history.push("/");
+      history.push('/');
     }
     // eslint-disable-next-line
   }, [cart]);
@@ -92,13 +96,13 @@ const Checkout = () => {
   useEffect(() => {
     const updateOrders = () => {
       if (updateOrdersInProfile && auth.currentUser) {
-        const userRef = db.collection("users").doc(auth.currentUser.uid);
+        const userRef = db.collection('users').doc(auth.currentUser.uid);
         userRef
           .update({
             orders: loggedUserOrders,
           })
           .then(function () {
-            developmentLog("Order added to customer profile.");
+            developmentLog('Order added to customer profile.');
           });
         setUpdateOrdersInProfile(false);
       }
@@ -113,17 +117,17 @@ const Checkout = () => {
       <section id="cart-resume-checkout">
         <div id="cart-resume-preview">
           <h6>Subtotal:</h6>
-          <h6>$ {(total - delivery).toLocaleString("de-DE")}</h6>
+          <h6>$ {(total - delivery).toLocaleString('de-DE')}</h6>
         </div>
         <div id="cart-resume-delivery">
           <h6>Delivery:</h6>
-          <h6>$ {delivery.toLocaleString("de-DE")}</h6>
+          <h6>$ {delivery.toLocaleString('de-DE')}</h6>
         </div>
         <div id="cart-resume-total">
           <h4>
             <strong>Total: </strong>
           </h4>
-          <h4> $ {total.toLocaleString("de-DE")}</h4>
+          <h4> $ {total.toLocaleString('de-DE')}</h4>
         </div>
       </section>
       <Form id="checkout-form">
@@ -142,7 +146,7 @@ const Checkout = () => {
         </Form.Control>
       </Form>
       <div className="d-flex align-items-center justify-content-center">
-        {paymentMethod === "online" ? (
+        {paymentMethod === 'online' ? (
           <form action={process.env.REACT_APP_WOMPI_PAYMENT_URL} method="GET">
             <input
               type="hidden"
@@ -179,7 +183,7 @@ const Checkout = () => {
         show={completedOrderModalStatus}
         onHide={() => dispatch(actions.completedOrderModalStatus(false))}
         onEscapeKeyDown={() => {
-          history.push("/");
+          history.push('/');
           handleDeleteOrder();
         }}
         followOrderStatus={handleFollowOrderStatus}
