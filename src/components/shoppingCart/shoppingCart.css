@@ -342,7 +342,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 1.25rem 16.66%;
+  padding: 1.25rem 8.33%;
 }
 
 #transaction-status-container > * {
@@ -351,6 +351,22 @@ select {
 
 #transaction-status-container #redirect-buttons > * {
   margin-bottom: 1.25rem;
+}
+
+#transaction-title{
+  min-width: 100%;
+  text-align: center;
+}
+
+#transaction-table {
+  min-width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+#transaction-table table {
+  margin: auto;
+  text-transform: capitalize;
 }
 
 .delete-order-modal .modal-content {
@@ -389,10 +405,11 @@ select {
 
 @media screen and (max-width: 374px) {
   .delete-order-modal-title {
-    letter-spacing: .1rem;
+    letter-spacing: 0.1rem;
   }
 
-  .delete-order-button-container button{
+  .delete-order-button-container button {
+    min-width: 8.25rem;
     max-width: 8.25rem;
   }
 }
@@ -415,13 +432,15 @@ select {
   }
 }
 
-@media screen and (min-width: 768px){
-  .delete-order-modal .modal-content{
+@media screen and (min-width: 768px) {
+  .delete-order-modal .modal-content {
     min-width: 510px;
     max-width: 510px;
   }
 
-  .delete-order-button-container button{
+  .delete-order-button-container button {
     font-size: 1.25rem;
+    min-width: 10.75rem;
+    max-width: 10.75rem;
   }
 }
