@@ -121,7 +121,7 @@ const Checkout = () => {
         </div>
         <div id="cart-resume-delivery">
           <h6>Delivery:</h6>
-          <h6>$ {delivery.toLocaleString('de-DE')}</h6>
+          <h6>$ {delivery.toLocaleString('de-DE') || delivery}</h6>
         </div>
         <div id="cart-resume-total">
           <h4>
@@ -159,7 +159,7 @@ const Checkout = () => {
             <input
               type="hidden"
               name="redirect-url"
-              value="http://192.168.1.102:3000/cart/transactionStatus"
+              value={`https://${window.location.host}/cart/transactionStatus`}
             />
             <Button variant="warning" size="lg" type="submit">
               Pagar online

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../../redux/actions";
-import db from "../../services/firebase";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../../redux/actions';
+import db from '../../services/firebase';
+import './shoppingCart.css';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -27,7 +28,7 @@ const TransactionStatus = () => {
 
   useEffect(() => {
     const checkTransactionStatus = async () => {
-      const id = query.get("id");
+      const id = query.get('id');
       const result = await axios.get(
         `https://sandbox.wompi.co/v1/transactions/${id}`
       );
@@ -39,11 +40,11 @@ const TransactionStatus = () => {
   }, []);
 
   useEffect(() => {
-    if(cart.length === 0){
-      return history.push("/");
+    if (cart.length === 0) {
+      return history.push('/');
     }
     if (status) {
-      if (status.status === "APPROVED") {
+      if (status.status === 'APPROVED') {
         dispatch(
           actions.completeOrder({
             // delivery: delivery,
@@ -60,16 +61,16 @@ const TransactionStatus = () => {
   }, [status]);
 
   useEffect(() => {
-    if (paymentMethod === "online" && orderSent && cart.length > 0) {
+    if (paymentMethod === 'online' && orderSent && cart.length > 0) {
       // console.log(order);
-      db.collection("orders")
+      db.collection('orders')
         .add(order)
         .then(function (docRef) {
           // console.log("Document written with ID: ", docRef.id);
           dispatch(actions.orderID(docRef.id));
         })
         .catch(function (error) {
-          console.error("Error adding document: ", error);
+          console.error('Error adding document: ', error);
         });
       dispatch(actions.orderSent(false));
     }
@@ -82,46 +83,48 @@ const TransactionStatus = () => {
   };
   return (
     <div className="brand-font-family" id="transaction-status-container">
-      <h5>Transacción finalizada.</h5>
-      <table>
-        <tbody>
-          <tr>
-            <th>Referencia:</th>
-            {status && <td>{status.reference}</td>}
-          </tr>
-          <tr>
-            <th>Pagado por:</th>
-            {status && (
-              <td>
-                {status.payment_method_type === "CARD"
-                  ? status.payment_method.extra.brand
-                  : status.payment_method_type}
-              </td>
-            )}
-          </tr>
-          <tr>
-            <th>Estado</th>
-            {status && <td>{status.status && status.status}</td>}
-          </tr>
-          <tr>
-            <th>Total Pagado</th>
-            {status && (
-              <td>
-                $ {(status.amount_in_cents / 100).toLocaleString("de-DE")}
-              </td>
-            )}
-          </tr>
-        </tbody>
-      </table>
+      <h5 id='transaction-title'>Transacción finalizada.</h5>
+      <div id="transaction-table">
+        <table>
+          <tbody>
+            <tr>
+              <th>Referencia:</th>
+              {status && <td>{status.reference}</td>}
+            </tr>
+            <tr>
+              <th>Pagado por:</th>
+              {status && (
+                <td>
+                  {status.payment_method_type === 'CARD'
+                    ? status.payment_method.extra.brand
+                    : status.payment_method_type}
+                </td>
+              )}
+            </tr>
+            <tr>
+              <th>Estado</th>
+              {status && <td>{status.status && status.status}</td>}
+            </tr>
+            <tr>
+              <th>Total Pagado</th>
+              {status && (
+                <td>
+                  $ {(status.amount_in_cents / 100).toLocaleString('de-DE')}
+                </td>
+              )}
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div
         id="redirect-buttons"
         className="d-flex flex-column"
-        style={{ padding: "0 8.33%" }}
+        style={{ padding: '0 8.33%' }}
       >
         <Button variant="warning" onClick={handleFollowOrderStatus}>
           Seguimiento del pedido
         </Button>
-        <Button variant="danger" onClick={() => history.push("/")}>
+        <Button variant="danger" onClick={() => history.push('/')}>
           Volver a Inicio
         </Button>
       </div>
