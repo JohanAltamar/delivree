@@ -2,6 +2,7 @@
   text-align: center;
   margin: 50% 0px;
 }
+
 #order-info-container{
   margin: 40px 0px;
   display: flex;
@@ -9,6 +10,9 @@
   align-items: center;
 }
 
+#order-info-container > * {
+  margin-bottom: 1.25rem;
+}
 table{
   margin: 20px 0px;
 }
@@ -35,4 +39,18 @@ button a, button a:hover{
 
 #whatsapp-button:hover{
   color: #FFF;
+}
+
+#order-table-container {
+  min-width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+#order-table-container table {
+  margin: auto;
+}
+
+.input-group-append .btn {
+  z-index: 0;
 }
