@@ -1,16 +1,32 @@
-#logged-user-container{
+/*------------------------------  LOGIN PAGE  -------------------------------*/
+#login-container {
+  padding: 1.25rem 0rem;
+  margin: 0% 8.33%;
+}
+
+#login-container form {
+  margin: auto;
+  max-width: 500px;
+}
+
+#logged-user-container {
   padding: 0 8.33%;
 }
 
-#logged-user-container .tab-content{
+#logged-user-container .tab-content {
   min-height: 250px;
 }
 
-#orders-container{
+#orders-container {
   height: 250px;
 }
 
-#no-recent-orders{
+#orders-container.orders-container-overflow {
+  height: calc(100vh - 10rem);
+  overflow: auto;
+}
+
+#no-recent-orders {
   min-height: 100%;
   min-width: 100%;
   display: flex;
@@ -18,39 +34,45 @@
   justify-content: center;
 }
 
-#user-info-buttons-container{
+#user-info-buttons-container {
   width: 90%;
   margin: auto;
   display: flex;
   justify-content: space-around;
 }
 
-#delete-user-buttons-container{
+#delete-user-buttons-container {
   display: flex;
   width: 80%;
   margin: auto;
   justify-content: space-around;
 }
 
-#request-password-form{
-  margin-top: 15px;
+#request-password-form {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#request-password-form input{
-  margin-bottom: 15px;
+#request-password-form input {
+  margin-bottom: 1rem;
 }
 
-.recent-order-container{
-  margin: 20px 0px;
+.recent-order-container {
+  margin: 1.25rem auto;
   border: 1px solid #ff7f0c;
-  border-radius: 5px;
+  border-radius: 0.25rem;
   padding: 10px;
 }
 
-#signOutTab{
+#signOutTab {
   position: absolute;
   right: 8.33%;
+}
+
+@media screen and (min-width: 550px) {
+  .recent-order-container {
+    width: 29rem;
+  }
 }

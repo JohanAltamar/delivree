@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
-import { Form, Button } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
-import db, { auth } from "../services/firebase";
-import { logUserIn, pwaInstallProcess } from "../redux/actions";
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form, Button } from 'react-bootstrap';
+import { Link, Redirect } from 'react-router-dom';
+import db, { auth } from '../services/firebase';
+import { logUserIn, pwaInstallProcess } from '../redux/actions';
 import {
   LoginSuccessful,
   UserNotFound,
   WrongPassword,
   TooManyRequests,
-} from "./login/LoginAlertMessages";
-import * as Alerts from "./signup/SignUpAlertMessages";
-import { developmentLog } from "../services/functions";
+} from './login/LoginAlertMessages';
+import * as Alerts from './signup/SignUpAlertMessages';
+import { developmentLog } from '../services/functions';
+
+import './login/login.css';
 
 export const Login = (props) => {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user.loggedUser) || {};
   const logStatus = useSelector((state) => state.user.userIsLogged);
 
-  const [logUser, setLogUser] = useState({ email: "", password: "" });
+  const [logUser, setLogUser] = useState({ email: '', password: '' });
+
   const [loginSuccessful, setLoginSuccessful] = useState(false);
-  const [userNotFoundMsg, setUserNotFoundMsg] = useState(false);
-  const [wrongPasswordMsg, setWrongPasswordMsg] = useState(false);
-  const [tooManyRequestsMsg, setTooManyRequests] = useState(false);
-  const [networkRequestFailedMsg, setNetworkRequestFailedMsg] = useState(false);
+
+  const [error, setError] = useState('');
+
   const delayTime = 1000;
 
   const handleChange = (param) => (event) => {
@@ -39,26 +41,26 @@ export const Login = (props) => {
     await auth
       .signInWithEmailAndPassword(logUser.email, logUser.password)
       .then(function (result) {
-        developmentLog("User sign in");
-        setLogUser({ email: "", password: "" });
+        developmentLog('User sign in');
+        setLogUser({ email: '', password: '' });
       })
       .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        developmentLog(errorCode, errorMessage);
         switch (errorCode) {
-          case "auth/user-not-found":
-            setUserNotFoundMsg(true);
+          case 'auth/user-not-found':
+            setError('user-not-found');
             break;
-          case "auth/wrong-password":
-            setWrongPasswordMsg(true);
+          case 'auth/wrong-password':
+            setError('wrong-password');
             break;
-          case "auth/too-many-requests":
-            setTooManyRequests(true);
+          case 'auth/too-many-requests':
+            setError('too-many-requests');
             break;
-          case "auth/network-request-failed":
-            setNetworkRequestFailedMsg(true);
+          case 'auth/network-request-failed':
+            setError('network-request-failed');
             break;
           default:
             break;
@@ -69,10 +71,10 @@ export const Login = (props) => {
   useEffect(() => {
     const authUser = auth.currentUser;
     if (authUser === null) {
-      dispatch(pwaInstallProcess())
+      dispatch(pwaInstallProcess());
       return;
     } else if (!logStatus) {
-      var userRef = db.collection("users").doc(authUser.uid);
+      var userRef = db.collection('users').doc(authUser.uid);
       userRef
         .get()
         .then(function (doc) {
@@ -85,11 +87,11 @@ export const Login = (props) => {
               dispatch(logUserIn(true, { ...userInfo, uid }));
             }, delayTime);
           } else {
-            developmentLog("No such document!");
+            developmentLog('No such document!');
           }
         })
         .catch(function (error) {
-          console.log("Error getting document:", error);
+          console.log('Error getting document:', error);
         });
     }
     // eslint-disable-next-line
@@ -97,50 +99,49 @@ export const Login = (props) => {
 
   return (
     <div id="login-container">
-      <Helmet>
-        <title>Foodies restaurant - Login</title>
-        <meta
-          name="description"
-          content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
+      <>
+        <Helmet>
+          <title>Foodies restaurant - Login</title>
+          <meta
+            name="description"
+            content="Foodies menu is too different. We offer burgers, cocktails, salads, hot dogs, pastas, italian food, fast food and sandwich"
+          />
+        </Helmet>
+        <LoginSuccessful
+          show={loginSuccessful}
+          onClose={() => setLoginSuccessful(false)}
+          delay={delayTime}
         />
-      </Helmet>
-      <LoginSuccessful
-        show={loginSuccessful}
-        onClose={() => setLoginSuccessful(false)}
-        delay={delayTime}
-      />
-      <UserNotFound
-        show={userNotFoundMsg}
-        onClose={() => setUserNotFoundMsg(false)}
-        delay={delayTime}
-      />
-      <WrongPassword
-        show={wrongPasswordMsg}
-        onClose={() => {
-          setWrongPasswordMsg(false);
-        }}
-        delay={delayTime}
-      />
-      <TooManyRequests
-        show={tooManyRequestsMsg}
-        onClose={() => {
-          setTooManyRequests(false);
-        }}
-        delay={delayTime}
-      />
-      <Alerts.NetworkRequestFailed
-        show={networkRequestFailedMsg}
-        onClose={() => setNetworkRequestFailedMsg(false)}
-        delay={delayTime}
-      />
+        <UserNotFound
+          show={error === 'user-not-found'}
+          onClose={() => setError('')}
+          delay={delayTime}
+        />
+        <WrongPassword
+          show={error === 'wrong-password'}
+          onClose={() => setError('')}
+          delay={delayTime}
+        />
+        <TooManyRequests
+          show={error === 'too-many-requests'}
+          onClose={() => setError('')}
+          delay={delayTime}
+        />
+        <Alerts.NetworkRequestFailed
+          show={error === 'network-request-failed'}
+          onClose={() => setError('')}
+          delay={delayTime}
+        />
+      </>
       <Form onSubmit={handleLogUser}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Correo Electrónico</Form.Label>
           <Form.Control
             type="email"
-            placeholder="name@foodies.com"
+            placeholder="name@delivree.club"
             value={logUser.email}
-            onChange={handleChange("email")}
+            onChange={handleChange('email')}
+            required
           />
         </Form.Group>
 
@@ -150,7 +151,8 @@ export const Login = (props) => {
             type="password"
             placeholder="Password"
             value={logUser.password}
-            onChange={handleChange("password")}
+            onChange={handleChange('password')}
+            required
           />
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
@@ -163,11 +165,17 @@ export const Login = (props) => {
             <Link to="/signup">Primera vez? Crea un usuario!</Link>
           </Form.Label>
         </Form.Group>
-        <Button variant="warning" type="submit">
-          {props.loginButton || "Ingresar"}
-        </Button>
+        <div className="text-center">
+          <Button
+            variant="warning"
+            type="submit"
+            disabled={!(logUser.email && logUser.password)}
+          >
+            {props.loginButton || 'Ingresar'}
+          </Button>
+        </div>
       </Form>
-      {loggedInUser !== undefined && loggedInUser.uid !== "" && logStatus && (
+      {loggedInUser !== undefined && loggedInUser.uid !== '' && logStatus && (
         <Redirect
           to={
             props.redirectTo
