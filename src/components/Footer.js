@@ -1,6 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 function Footer({ ...props }) {
     return (
@@ -16,7 +14,6 @@ function Footer({ ...props }) {
                     target="blank"
                 >
                     <strong>Johan Altamar</strong>{' '}
-                    <FontAwesomeIcon icon={faGithub} />
                 </a>
             </h5>
         </footer>
