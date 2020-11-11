@@ -1,6 +1,7 @@
 import React from 'react'
 import Hero from "./home/Hero"
 import About from "./home/About"
+import OrderTracker from "./home/OrderTracker";
 import Featured from "./home/FeaturedProducts"
 import Location from "./home/Location"
 import WorkingHours from "./home/WorkingHours"
@@ -17,6 +18,7 @@ function Home() {
             </Helmet>
             <Hero />
             <About />
+            <OrderTracker/>
             <Featured/>
             <Location />
             <WorkingHours/>
