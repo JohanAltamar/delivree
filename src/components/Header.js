@@ -8,6 +8,7 @@ import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./header/header.css";
 
 function Header() {
+  const restaurantName = process.env.REACT_APP_Restaurant_Name || "Delivree";
   const menu = useSelector((state) => state.userInterface.toggleMenu);
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ function Header() {
               }
             }}
           >
-            <Link to="/">Delivree</Link>
+            <Link to="/">{restaurantName}</Link>
           </h1>
           <Link
             id="cart-icon-container"
