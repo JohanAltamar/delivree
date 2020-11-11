@@ -272,24 +272,6 @@
   width: 50px;
 }
 
-@media screen and (min-width: 768px) {
-  #choose-user-container {
-    display: flex;
-  }
-  #login-container {
-    min-width: 50%;
-    border-right: 1px solid #ff1f17;
-  }
-  #checkout-as-guest {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-  }
-  #checkout-as-guest > * {
-    margin-bottom: 1.5rem;
-  }
-}
-
 select {
   text-transform: capitalize;
 }

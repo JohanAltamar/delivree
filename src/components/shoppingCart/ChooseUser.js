@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { guestCheckoutModalStatus } from '../../redux/actions';
 import Login from '../Login';
 import GuestModal from './ChooseUserGuestModal';
-import './shoppingCart.css';
+import './ChooseUser.css';
 
 const ChooseUser = () => {
   const guestModalStatus = useSelector(
