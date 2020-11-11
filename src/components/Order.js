@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { Form, Button, InputGroup } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-import Loading from './Loading';
-import { useOrderInfo } from '../hooks/useOrderInfo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faHome } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import moment from 'moment';
-import 'moment/locale/es';
-import './order/order.css';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import { Form, Button, InputGroup } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import Loading from "./Loading";
+import { useOrderInfo } from "../hooks/useOrderInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import "./order/order.css";
 
 function Order() {
-  moment.locale('es');
   const history = useHistory();
-  const [orderNumber, setOrderNumber] = useState('');
+  const [orderNumber, setOrderNumber] = useState("");
   const { orderInfo, loading, orderID } = useOrderInfo();
 
   return (
@@ -68,10 +65,7 @@ function Order() {
                 </tr>
                 <tr id="order-date-row">
                   <th>Creado</th>
-                  <td>
-                    {/* {moment(orderInfo.timestamp).format('DD/MM/YYYY, HH:mm')} */}
-                    {moment(orderInfo.timestamp).format()}
-                  </td>
+                  <td>{new Date(orderInfo.timestamp).toLocaleString()}</td>
                 </tr>
                 <tr id="order-cart-row">
                   <th>Pedido</th>
@@ -86,16 +80,16 @@ function Order() {
                 <tr id="order-payment-method-row">
                   <th>Pago con</th>
                   <td>
-                    {orderInfo.paymentMethod === 'cash' ? 'Efectivo' : 'Online'}
+                    {orderInfo.paymentMethod === "cash" ? "Efectivo" : "Online"}
                   </td>
                 </tr>
-                {orderInfo.paymentMethod === 'online' && (
+                {orderInfo.paymentMethod === "online" && (
                   <tr id="order-payment-status-row">
                     <th>Pago</th>
                     <td>{orderInfo.paymentStatus}</td>
                   </tr>
                 )}
-                {orderInfo.paymentMethod === 'online' && (
+                {orderInfo.paymentMethod === "online" && (
                   <tr id="order-payment-type-row">
                     <th>Medio</th>
                     <td>{orderInfo.payment_method_type}</td>
@@ -104,7 +98,7 @@ function Order() {
                 {orderInfo.total && (
                   <tr id="order-total-row">
                     <th>Total</th>
-                    <td>$ {orderInfo.total.toLocaleString('de-DE')}</td>
+                    <td>$ {orderInfo.total.toLocaleString("de-DE")}</td>
                   </tr>
                 )}
                 <tr id="order-status-row">
@@ -124,7 +118,7 @@ function Order() {
                 <FontAwesomeIcon icon={faWhatsapp} /> Escríbenos
               </Button>
             </a>
-            <Button variant="outline-danger" onClick={() => history.push('/')}>
+            <Button variant="outline-danger" onClick={() => history.push("/")}>
               <FontAwesomeIcon icon={faHome} /> Volver a inicio
             </Button>
           </div>
