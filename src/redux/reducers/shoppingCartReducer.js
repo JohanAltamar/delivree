@@ -136,8 +136,9 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         order: {
           ...state.order,
-          userInfo: action.customerInfo,
+          // userInfo: action.customerInfo,
           uid: action.customerID,
+          ...action.customerInfo,
         },
       };
     /** ORDERS */
