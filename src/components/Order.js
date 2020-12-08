@@ -57,11 +57,11 @@ function Order() {
                 </tr>
                 <tr id="order-name-row">
                   <th>Cliente</th>
-                  <td>{orderInfo.userInfo.fullname}</td>
+                  <td>{orderInfo.fullname}</td>
                 </tr>
                 <tr id="order-address-row">
                   <th>Dirección</th>
-                  <td>{orderInfo.userInfo.address}</td>
+                  <td>{orderInfo.address}</td>
                 </tr>
                 <tr id="order-date-row">
                   <th>Creado</th>
