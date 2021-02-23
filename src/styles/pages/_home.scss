@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+.home__profileInfo,
+.home__portfolio,
+.home__blog,
+.home__contact {
+  margin-bottom: $spacing * 8;
+}

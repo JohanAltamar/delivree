@@ -1,0 +1,41 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.02857em;
+  border: none;
+  border-radius: $spacing / 2;
+  cursor: pointer;
+  height: 42px;
+  min-width: 64px;
+  outline: none;
+  padding: $spacing $spacing * 2;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.btn-primary {
+  background-color: $brand-color;
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $brand-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $brand-color, $amount: 20);
+  }
+}
+
+.btn-block {
+  width: 100%;
+}

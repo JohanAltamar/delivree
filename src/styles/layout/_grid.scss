@@ -1,0 +1,66 @@
+.grid__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 64px auto;
+  grid-template-areas:
+    "navbar  "
+    "hero    "
+    "content "
+    "footer  ";
+  height: 100vh;
+
+  & > * {
+    padding: $spacing * 2 $spacing * 3;
+  }
+
+  .grid__navbar {
+    grid-area: navbar;
+  }
+
+  .grid__hero {
+    grid-area: hero;
+    padding: 0;
+  }
+
+  .grid__content {
+    grid-area: content;
+  }
+
+  .grid__sidebar-1 {
+    grid-area: sidebar-1;
+    display: none;
+  }
+
+  .grid__sidebar-2 {
+    grid-area: sidebar-2;
+    display: none;
+  }
+
+  .grid__sidebar-3 {
+    grid-area: sidebar-3;
+    display: none;
+  }
+
+  .grid__footer {
+    grid-area: footer;
+    background-color: $dark-grey;
+  }
+}
+
+@include respond-to("small"){
+  .grid__container > * {
+    padding: $spacing * 2  $spacing * 8;
+  }
+}
+
+@include respond-to("medium"){
+  .grid__container > * {
+    padding: $spacing * 2  $spacing * 15;
+  }
+}
+
+@include respond-to("large"){
+  .grid__container > * {
+    padding: $spacing * 2  $spacing * 20;
+  }
+}

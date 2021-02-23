@@ -1,0 +1,17 @@
+.hero__container{
+  height: 100vh;
+
+  @include respond-to("small"){
+    height: 300px;
+  }
+
+  @include respond-to("medium"){
+    height: 400px;
+  }
+
+  @include respond-to("large"){
+    height: 500px;
+  }
+
+
+}
