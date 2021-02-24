@@ -3,6 +3,7 @@ import About from '../components/About'
 import Hero from '../components/Hero'
 import Layout from '../components/Layout'
 import OrderTracker from '../components/Orders/Tracker'
+import FeaturedProducts from '../components/Products/FeaturedSection'
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Layout> {/*  className="grid__content" */}
         <About /> 
         <OrderTracker />
+        <FeaturedProducts /> 
       </Layout>
     </>
   )
