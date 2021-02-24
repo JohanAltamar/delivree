@@ -1,3 +1,45 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
+.footer__container {
+  color: $light-grey;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $spacing;
+
+  .footer__contact,
+  .footer__hours,
+  .footer__developer {
+    grid-column: span 12;
+  }
+
+  .footer__hours {
+    ul {
+      padding: 0;
+    }
+    li {
+      list-style: none;
+    }
+  }
+  .footer__contact {
+    .footer__logos {
+      width: 40px;
+      margin-right: $spacing * 2;
+    }
+  }
+  .footer__developer {
+    text-align: center;
+    margin: 0;
+
+    &-link {
+      color: #fff;
+      font-weight: 400;
+    }
+  }
+  @include respond-to("small") {
+    .footer__hours,
+    .footer__contact {
+      grid-column: span 6;
+    }
+  }
+}

@@ -1,7 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
+
 
 const AppRouter = () => {
   return (
@@ -28,6 +31,7 @@ const AppRouter = () => {
           <Route path="/recover_password" component={ForgotPassword} />
           <Route path="*" component={NoMatch} /> */}
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
