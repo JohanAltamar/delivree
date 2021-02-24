@@ -2,6 +2,7 @@ import React from 'react'
 import About from '../components/About'
 import Hero from '../components/Hero'
 import Layout from '../components/Layout'
+import Location from '../components/Location'
 import OrderTracker from '../components/Orders/Tracker'
 import FeaturedProducts from '../components/Products/FeaturedSection'
 
@@ -12,7 +13,8 @@ const HomePage = () => {
       <Layout> {/*  className="grid__content" */}
         <About /> 
         <OrderTracker />
-        <FeaturedProducts /> 
+        <FeaturedProducts />
+        <Location /> 
       </Layout>
     </>
   )
