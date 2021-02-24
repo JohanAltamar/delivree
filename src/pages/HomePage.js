@@ -1,10 +1,11 @@
 import React from 'react'
+import Hero from '../components/Hero'
 
 const HomePage = () => {
   return (
-    <div>
-      home page
-    </div>
+    < >
+      <Hero className="grid__hero hero__container"/>
+    </>
   )
 }
 

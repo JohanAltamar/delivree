@@ -1,7 +1,7 @@
 .grid__container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 64px auto;
+  grid-template-rows: 56px auto;
   grid-template-areas:
     "navbar  "
     "hero    "
@@ -47,20 +47,24 @@
   }
 }
 
-@include respond-to("small"){
-  .grid__container > * {
-    padding: $spacing * 2  $spacing * 8;
+@include respond-to("small") {
+  .grid__container {
+    grid-template-rows: 64px auto;
+
+    & > * {
+      padding: $spacing * 2 $spacing * 8;
+    }
   }
 }
 
-@include respond-to("medium"){
+@include respond-to("medium") {
   .grid__container > * {
-    padding: $spacing * 2  $spacing * 15;
+    padding: $spacing * 2 $spacing * 15;
   }
 }
 
-@include respond-to("large"){
+@include respond-to("large") {
   .grid__container > * {
-    padding: $spacing * 2  $spacing * 20;
+    padding: $spacing * 2 $spacing * 20;
   }
 }

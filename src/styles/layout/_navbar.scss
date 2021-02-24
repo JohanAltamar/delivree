@@ -30,16 +30,20 @@
   }
 }
 @include respond-to("small") {
-  .navbar__wrapper .navbar__sections {
-    display: block;
-    height: 56px;
-
-    & .wide {
-      display: flex;
-      align-items: center;
+  .navbar__wrapper {
+    height: 64px;
+    
+    .navbar__sections {
+      display: block;
       height: 56px;
-      & > * {
-        padding: 0 $spacing * 1.25;
+  
+      & .wide {
+        display: flex;
+        align-items: center;
+        height: 56px;
+        & > * {
+          padding: 0 $spacing * 1.25;
+        }
       }
     }
   }
