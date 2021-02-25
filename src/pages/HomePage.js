@@ -4,7 +4,7 @@ import Hero from '../components/Hero'
 import Layout from '../components/Layout'
 import Location from '../components/Location'
 import OrderTracker from '../components/Orders/Tracker'
-import FeaturedProducts from '../components/Products/FeaturedSection'
+import FeaturedProducts from '../components/Menu/FeaturedSection'
 
 const HomePage = () => {
   return (
