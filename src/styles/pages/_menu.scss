@@ -37,7 +37,7 @@ $image-border-radius: $spacing;
       border-radius: $image-border-radius;
     }
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
@@ -67,6 +67,71 @@ $image-border-radius: $spacing;
       }
       &-title {
         font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.menu__products {
+  &-list {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    row-gap: 2rem;
+
+    &-item {
+      grid-column: span $columns;
+      cursor: pointer;
+
+      &-image {
+        width: 100%;
+        height: calc(100vw - (24px * 2));
+        border-radius: $image-border-radius;
+      }
+      &-name {
+        display: block;
+        font-weight: bold;
+      }
+      &-price {
+        display: block;
+      }
+    }
+  }
+  @include respond-to("small") {
+    &-list {
+      column-gap: 2rem;
+
+      &-item {
+        grid-column: span $columns / 2;
+
+        &-image {
+          height: calc((100vw - (64px * 2) - (16px * 1)) / 2);
+        }
+      }
+    }
+  }
+  @include respond-to("medium") {
+    &-list {
+      column-gap: 2rem;
+
+      &-item {
+        grid-column: span $columns / 3;
+
+        &-image {
+          height: calc((100vw - (120px * 2) - (16px * 2)) / 3);
+        }
+      }
+    }
+  }
+  @include respond-to("large") {
+    &-list {
+      column-gap: 2rem;
+
+      &-item {
+        grid-column: span $columns / 4;
+
+        &-image {
+          height: calc((100vw - (160px * 2) - (16px * 3)) / 4);
+        }
       }
     }
   }

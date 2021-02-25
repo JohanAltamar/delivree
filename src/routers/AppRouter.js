@@ -4,21 +4,21 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
-import MenuPage from "../pages/MenuPage";
-
+import MenuCategoriesPage from "../pages/MenuPage";
+import MenuCategoryPage from "../pages/MenuPage/CategoryPage";
 
 const AppRouter = () => {
   return (
-    <Router >
+    <Router>
       <div className="grid__container">
         <Navbar />
         <Switch>
           <Route exact path="/" component={HomePage} />
 
-          <Route exact path="/menu" component={MenuPage} />
-          {/* <Route path="/menu/:categoryName" component={MenuCategory} />
+          <Route exact path="/menu" component={MenuCategoriesPage} />
+          <Route path="/menu/:categoryName" component={MenuCategoryPage} />
 
-          <Route exact path="/cart" component={ShoppingCart} />
+          {/* <Route exact path="/cart" component={ShoppingCart} />
           <Route path="/cart/chooseUser" component={ChooseUser} />
           <Route path="/cart/confirmData/:userID" component={ConfirmData} />
           <Route path="/cart/checkout" component={Checkout} />
