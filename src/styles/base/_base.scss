@@ -5,7 +5,7 @@
 /**
  * Set up a decent box model on the root element
  */
-html, 
+html,
 body {
   box-sizing: border-box;
   margin: 0;
@@ -37,43 +37,47 @@ a {
   }
 }
 
-.mt-1{
+.text-center {
+  text-align: center;
+}
+
+.mt-1 {
   margin-top: $spacing / 2;
 }
 
-.mt-2{
+.mt-2 {
   margin-top: $spacing;
 }
 
-.mt-3{
+.mt-3 {
   margin-top: $spacing * 1.5;
 }
 
-.mt-4{
+.mt-4 {
   margin-top: $spacing * 2;
 }
 
-.mt-5{
+.mt-5 {
   margin-top: $spacing * 2.5;
 }
 
-.mr-1{
+.mr-1 {
   margin-right: $spacing / 2;
 }
 
-.mr-2{
+.mr-2 {
   margin-right: $spacing;
 }
 
-.mr-3{
+.mr-3 {
   margin-right: $spacing * 1.5;
 }
 
-.mr-4{
+.mr-4 {
   margin-right: $spacing * 2;
 }
 
-.mr-5{
+.mr-5 {
   margin-right: $spacing * 2.5;
 }
 

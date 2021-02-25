@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
+import MenuPage from "../pages/MenuPage";
 
 
 const AppRouter = () => {
@@ -14,8 +15,8 @@ const AppRouter = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
 
-          {/* <Route exact path="/menu" component={Menu} />
-          <Route path="/menu/:categoryName" component={MenuCategory} />
+          <Route exact path="/menu" component={MenuPage} />
+          {/* <Route path="/menu/:categoryName" component={MenuCategory} />
 
           <Route exact path="/cart" component={ShoppingCart} />
           <Route path="/cart/chooseUser" component={ChooseUser} />
