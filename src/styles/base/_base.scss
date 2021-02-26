@@ -41,6 +41,14 @@ a {
   text-align: center;
 }
 
+.h-full{
+  height: 100%;
+}
+
+.overflow-auto{
+  overflow: auto;
+}
+
 .mt-1 {
   margin-top: $spacing / 2;
 }
@@ -81,6 +89,10 @@ a {
   margin-right: $spacing * 2.5;
 }
 
+.ml-2 {
+  margin-left: $spacing;
+}
+
 .p-0 {
   padding: 0;
 }
@@ -88,4 +100,12 @@ a {
 .py-5 {
   padding-top: $spacing * 5;
   padding-bottom: $spacing * 5;
+}
+
+.flex{
+  display: flex;
+}
+
+.justify-space-between{
+  justify-content: space-between;
 }

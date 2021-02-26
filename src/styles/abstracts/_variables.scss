@@ -35,6 +35,14 @@ $dark-grey: rgb(68, 68, 68) !default;
 /// @type Color
 $secondary-color: #ff7f0c !default;
 
+/// Error color
+/// @type Color
+$error-color: #ff1f17 !default;
+
+/// Success color
+/// @type Color
+$success-color: #00d000 !default;
+
 /// Container's maximum width
 /// @type Length
 $max-width: 1180px !default;

@@ -18,6 +18,9 @@
   &:disabled {
     cursor: default;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 .btn-primary {
@@ -37,4 +40,64 @@
 
 .btn-block {
   width: 100%;
+}
+
+.btn-error {
+  background-color: $error-color;
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $error-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $error-color, $amount: 20);
+  }
+}
+
+.btn-outline-error {
+  border:1px solid $error-color;
+  color: darken($color: $error-color, $amount: 15);
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $error-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $error-color, $amount: 20);
+  }
+}
+
+.btn-success {
+  background-color: $success-color;
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $success-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $success-color, $amount: 20);
+  }
+}
+
+.btn-outline-success {
+  border:1px solid $success-color;
+  color: darken($color: $success-color, $amount: 15);
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $success-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $success-color, $amount: 20);
+  }
 }
