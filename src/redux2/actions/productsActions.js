@@ -24,3 +24,16 @@ export const productsByCategoriesFetchSuccess = (payload) => ({
   type: types.PRODUCTS__FETCH_PRODUCTS_BY_CATEGORY_SUCCESS,
   payload,
 });
+
+export const selectProduct = (payload) => ({
+  type: types.PRODUCTS__SET_SELECTED_PRODUCT,
+  payload,
+});
+
+export const updateSelectedProduct = (payload) => ({
+  type: types.PRODUCTS__UPDATE_SELECTED_PRODUCT,
+  payload,
+});
+export const clearSelectedProduct = () => ({
+  type: types.PRODUCTS__CLEAR_SELECTED_PRODUCT,
+});
