@@ -2,7 +2,7 @@ import React from "react";
 
 function About() {
   return (
-    <section>
+    <section className="grid__padding">
       <h3>¿Qué es Delivree?</h3>
       <p>
         <em>Delivree</em> es una aplicación web que le permite a los, pequeños y

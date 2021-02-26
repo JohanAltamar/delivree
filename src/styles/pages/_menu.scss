@@ -1,11 +1,14 @@
 $columns: 12;
 $image-border-radius: $spacing;
+$grid-gap-default: $spacing * 2;
+$grid-cols-default: 2;
+$grid-cols-small: 4;
 
 .menu__categories {
   &-container {
     display: grid;
     grid-template-columns: repeat($columns, 1fr);
-    gap: $spacing * 2;
+    gap: $grid-gap-default;
   }
 
   &-loader {
@@ -13,12 +16,13 @@ $image-border-radius: $spacing;
   }
 
   &-item {
-    grid-column: span $columns / 2;
+    grid-column: span $columns / $grid-cols-default;
     position: relative;
 
     &-image {
       width: 100%;
-      height: calc((100vw - (24px * 2) - (16px * 1)) / 2);
+      height: auto;
+      aspect-ratio: 1 / 1;
       border-radius: $image-border-radius;
     }
 
@@ -43,18 +47,11 @@ $image-border-radius: $spacing;
   }
   @include respond-to("small") {
     &-item {
-      grid-column: span $columns / 4;
-
-      &-image {
-        height: calc((100vw - (64px * 2) - (16px * 3)) / 4);
-      }
+      grid-column: span $columns / $grid-cols-small;
     }
   }
   @include respond-to("medium") {
     &-item {
-      &-image {
-        height: calc((100vw - (120px * 2) - (16px * 3)) / 4);
-      }
       &-title {
         font-size: 1.3rem;
       }
@@ -62,9 +59,6 @@ $image-border-radius: $spacing;
   }
   @include respond-to("large") {
     &-item {
-      &-image {
-        height: calc((100vw - (160px * 2) - (16px * 3)) / 4);
-      }
       &-title {
         font-size: 1.8rem;
       }
@@ -84,7 +78,8 @@ $image-border-radius: $spacing;
 
       &-image {
         width: 100%;
-        height: calc(100vw - (24px * 2));
+        height: auto;
+        aspect-ratio: 1 / 1;
         border-radius: $image-border-radius;
       }
       &-name {
@@ -102,36 +97,20 @@ $image-border-radius: $spacing;
 
       &-item {
         grid-column: span $columns / 2;
-
-        &-image {
-          height: calc((100vw - (64px * 2) - (16px * 1)) / 2);
-        }
       }
     }
   }
   @include respond-to("medium") {
     &-list {
-      column-gap: 2rem;
-
       &-item {
         grid-column: span $columns / 3;
-
-        &-image {
-          height: calc((100vw - (120px * 2) - (16px * 2)) / 3);
-        }
       }
     }
   }
   @include respond-to("large") {
     &-list {
-      column-gap: 2rem;
-
       &-item {
         grid-column: span $columns / 4;
-
-        &-image {
-          height: calc((100vw - (160px * 2) - (16px * 3)) / 4);
-        }
       }
     }
   }

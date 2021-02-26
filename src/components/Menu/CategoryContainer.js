@@ -14,12 +14,12 @@ const CategoryContainer = ({ categoryName }) => {
   }, [dispatch, categoryName]);
 
   return (
-    <>
+    <section className="grid__padding">
       {loading && <h2>Loading ...</h2>}
       {!loading && products.length > 0 && (
         <ProductsList products={products} category={decodeURL(categoryName)} />
       )}
-    </>
+    </section>
   );
 };
 

@@ -1,45 +1,24 @@
 .grid__container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 56px auto;
+  grid-template-rows: 56px 1fr auto;
   grid-template-areas:
     "navbar  "
-    "hero    "
     "content "
     "footer  ";
   min-height: 100vh;
   background-color: $light-grey;
 
-  & > * {
-    padding: $spacing * 2 $spacing * 3;
+  .grid__padding {
+    padding: $spacing * 2 $lateral-padding-default;
   }
 
   .grid__navbar {
     grid-area: navbar;
   }
 
-  .grid__hero {
-    grid-area: hero;
-    padding: 0;
-  }
-
   .grid__content {
     grid-area: content;
-  }
-
-  .grid__sidebar-1 {
-    grid-area: sidebar-1;
-    display: none;
-  }
-
-  .grid__sidebar-2 {
-    grid-area: sidebar-2;
-    display: none;
-  }
-
-  .grid__sidebar-3 {
-    grid-area: sidebar-3;
-    display: none;
   }
 
   .grid__footer {
@@ -50,22 +29,25 @@
 
 @include respond-to("small") {
   .grid__container {
-    grid-template-rows: 64px auto;
+    grid-template-rows: 64px 1fr auto;
 
-    & > * {
-      padding: $spacing * 2 $spacing * 8;
+    .grid__padding {
+      padding: $spacing * 2 $lateral-padding-small;
+    }
+    .grid__footer {
+      max-height: 200px;
     }
   }
 }
 
 @include respond-to("medium") {
-  .grid__container > * {
-    padding: $spacing * 2 $spacing * 15;
+  .grid__container .grid__padding {
+    padding: $spacing * 2 $lateral-padding-medium;
   }
 }
 
 @include respond-to("large") {
-  .grid__container > * {
-    padding: $spacing * 2 $spacing * 20;
+  .grid__container .grid__padding {
+    padding: $spacing * 2 $lateral-padding-large;
   }
 }

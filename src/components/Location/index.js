@@ -2,7 +2,7 @@ import React from "react";
 
 function Location() {
   return (
-    <section className="location__container">
+    <section className="location__container grid__padding">
       <h4>Nuestra Ubicación</h4>
       <figure className="location__image">
         <iframe

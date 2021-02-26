@@ -4,7 +4,7 @@ import WorkingHours from "./WorkingHours";
 
 const Footer = () => {
   return (
-    <section className="grid__footer footer__container">
+    <section className="grid__footer grid__padding footer__container">
       <WorkingHours />
       <Contact />
       <h6 className="footer__developer">

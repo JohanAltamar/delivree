@@ -35,7 +35,7 @@ const FeaturedProducts = () => {
 
   return (
     products.length > 0 && (
-      <section className="feature__container">
+      <section className="feature__container grid__padding">
         <h4 className="feature__container-title">Los más pedidos</h4>
         <div className="feature__items-container">
           {products.map((todo) => (

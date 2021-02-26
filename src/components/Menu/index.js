@@ -14,7 +14,7 @@ const MenuContainer = () => {
   }, [dispatch]);
 
   return (
-    <section className="menu__categories-container">
+    <section className="menu__categories-container grid__padding">
       {loading && (
         <h2 className="menu__categories-loader text-center">Loading...</h2>
       )}

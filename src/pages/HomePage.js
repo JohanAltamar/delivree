@@ -9,8 +9,8 @@ import FeaturedProducts from '../components/Menu/FeaturedSection'
 const HomePage = () => {
   return (
     < >
-      <Hero className="grid__hero hero__container"/>
       <Layout> {/*  className="grid__content" */}
+        <Hero className="grid__hero hero__container mb-4"/>
         <About /> 
         <OrderTracker />
         <FeaturedProducts />

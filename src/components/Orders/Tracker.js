@@ -15,7 +15,7 @@ const OrderTracker = () => {
   };
 
   return (
-    <section>
+    <section className="grid__padding">
       <h3>Estado de su orden</h3>
       <form
         className="input__order-tracker-container"

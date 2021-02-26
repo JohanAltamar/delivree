@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`grid__navbar navbar__wrapper ${
+      className={`grid__navbar grid__padding navbar__wrapper ${
         shadow ? "navbar__shadow" : ""
       }`}
     >
