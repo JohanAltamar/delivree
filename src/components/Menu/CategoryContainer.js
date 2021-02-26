@@ -22,13 +22,15 @@ const CategoryContainer = ({ categoryName }) => {
       {!loading && products.length > 0 && (
         <ProductsList products={products} category={decodeURL(categoryName)} />
       )}
-      <div className="menu__item-selected">
-        {selectedProduct ? (
+      {selectedProduct ? (
+        <div className="menu__item-selected">
           <ProductSelected product={selectedProduct} />
-        ) : (
-          <h6 className="text-center">Selecciona un producto de la lista</h6>
-        )}
-      </div>
+        </div>
+      ) : (
+        <h6 className="text-center menu__item-selected-null">
+          Selecciona un producto de la lista
+        </h6>
+      )}
     </section>
   );
 };
