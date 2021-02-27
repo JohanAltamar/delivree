@@ -22,6 +22,8 @@ const types = {
   // Products types
   // ======================================================================
   CART__ADD_PRODUCT: "CART__ADD_PRODUCT",
+  CART__UPDATE_PRODUCT: "CART__UPDATE_PRODUCT",
+  CART__REMOVE_PRODUCT: "CART__REMOVE_PRODUCT",
 };
 
 export default types;
