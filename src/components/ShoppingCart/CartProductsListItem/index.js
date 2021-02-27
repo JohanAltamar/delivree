@@ -9,6 +9,7 @@ import ItemPriceQty from "./ItemPriceQty";
 import ItemQtyButtons from "./ItemQtyButtons";
 import ItemNotes from "./ItemNotes";
 import ItemRemoveBtn from "./ItemRemoveBtn";
+import confirm2RemoveProductFnc from "./confirm";
 
 const CartProductsListItem = ({ product }) => {
   const { id, name, categoryName, price, notes, qty } = product;
@@ -21,6 +22,9 @@ const CartProductsListItem = ({ product }) => {
   };
 
   const handleQtyChange = (factor) => {
+    if (product.qty === 1 && factor === -1) {
+      confirm2RemoveProductFnc(product.id);
+    }
     dispatch(
       updateCartProductAction({ ...product, qty: product.qty + factor })
     );
