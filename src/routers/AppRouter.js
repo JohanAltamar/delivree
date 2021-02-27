@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
 import MenuCategoriesPage from "../pages/MenuPage";
 import MenuCategoryPage from "../pages/MenuPage/CategoryPage";
+import ShoppingCartPage from "../pages/ShoppingCartPage";
 
 const AppRouter = () => {
   return (
@@ -18,8 +19,8 @@ const AppRouter = () => {
           <Route exact path="/menu" component={MenuCategoriesPage} />
           <Route path="/menu/:categoryName" component={MenuCategoryPage} />
 
-          {/* <Route exact path="/cart" component={ShoppingCart} />
-          <Route path="/cart/chooseUser" component={ChooseUser} />
+          <Route exact path="/cart" component={ShoppingCartPage} />
+          {/* <Route path="/cart/chooseUser" component={ChooseUser} />
           <Route path="/cart/confirmData/:userID" component={ConfirmData} />
           <Route path="/cart/checkout" component={Checkout} />
           <Route path="/cart/transactionStatus" component={TransactionStatus} />

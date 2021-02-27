@@ -42,6 +42,12 @@
   width: 100%;
 }
 
+.btn-h-2 {
+  min-height: 2rem;
+  padding: 0;
+  min-width: 40px;
+}
+
 .btn-error {
   background-color: $error-color;
   color: white;
@@ -58,7 +64,7 @@
 }
 
 .btn-outline-error {
-  border:1px solid $error-color;
+  border: 1px solid $error-color;
   color: darken($color: $error-color, $amount: 15);
 
   transition: $transition;
@@ -69,6 +75,20 @@
   }
   &:disabled {
     background-color: lighten($color: $error-color, $amount: 20);
+  }
+}
+
+.btn-text-error {
+  border: none;
+  color: darken($color: $error-color, $amount: 0);
+
+  transition: $transition;
+
+  &:hover {
+    color: darken($color: $error-color, $amount: 20);
+  }
+  &:disabled {
+    color: $mid-grey;
   }
 }
 
@@ -88,7 +108,7 @@
 }
 
 .btn-outline-success {
-  border:1px solid $success-color;
+  border: 1px solid $success-color;
   color: darken($color: $success-color, $amount: 15);
 
   transition: $transition;
