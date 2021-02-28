@@ -1,8 +1,9 @@
 import React from "react";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import OutsideDispatcher from "../../Misc/ClickOutsideDispatcher";
 import { guestInfoModalAction } from "../../../redux2/actions/uiActions";
@@ -14,8 +15,11 @@ import {
   additionalInfo,
 } from "../../../utils/inputsValuesMessages";
 import ErrorMessage from "../../Errors/Message";
+import { setUserInfoAction } from "../../../redux2/actions/userActions";
+
 
 const InfoModal = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const { guestInfoModal } = useSelector((state) => state.ui);
@@ -29,7 +33,8 @@ const InfoModal = () => {
   };
 
   const handleSubmitGuestInfo = (data) => {
-    console.log(data);
+    dispatch(setUserInfoAction(data));
+    history.push("/cart/checkout");
   };
 
   return (
@@ -87,7 +92,6 @@ const InfoModal = () => {
               rows={2}
             />
             <ErrorMessage error={errors.additionalInfo} />
-
             <button
               className="btn btn-outline-success"
               disabled={!formState.isValid}
