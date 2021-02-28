@@ -1,48 +1,7 @@
 import types from "../types";
 
 const initialState = {
-  products: [
-    {
-      id: "sfasdfasfasfasfd",
-      name: "spicy",
-      categoryName: "burger",
-      price: 12000,
-      notes: "sin lechuga",
-      qty: 10,
-    },
-    {
-      id: "sfasdfasfasfasfda",
-      name: "spicy",
-      categoryName: "burger",
-      price: 12000,
-      notes: "",
-      qty: 10,
-    },
-    {
-      id: "sfasdfasfasfasfdb",
-      name: "spicy",
-      categoryName: "burger",
-      price: 12000,
-      notes: "",
-      qty: 10,
-    },
-    {
-      id: "sfasdfasfasfasfdc",
-      name: "spicy",
-      categoryName: "burger",
-      price: 12000,
-      notes: "",
-      qty: 10,
-    },
-    {
-      id: "sfasdfasfasfasfdd",
-      name: "spicy",
-      categoryName: "burger",
-      price: 12000,
-      notes: "",
-      qty: 10,
-    },
-  ],
+  products: [],
 };
 
 const findIndexById = (id, products) => {
