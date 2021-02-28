@@ -35,7 +35,7 @@ const ProductSelectedControlButtons = ({ product }) => {
   };
 
   return (
-    <div className="flex justify-space-between mt-3">
+    <div className="menu__item-selected-product-buttons flex justify-space-between mt-3">
       <button
         className="btn btn-error mr-2"
         onClick={() => handleQtyBtnClick(-1)}

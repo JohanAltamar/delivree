@@ -18,7 +18,9 @@ const ProductSelected = ({ product }) => {
 
   return (
     <div className="menu__item-selected-product">
-      <h6 className="text-center mb-3">Producto seleccionado</h6>
+      <h6 className="menu__item-selected-product-title text-center mb-3">
+        Producto seleccionado
+      </h6>
       <span
         className="menu__item-selected-close-btn"
         onClick={handleCloseProductModal}
@@ -27,15 +29,17 @@ const ProductSelected = ({ product }) => {
       </span>
 
       <ProductsListItem {...product} noDescription noPrice />
-
-      {!isNaN(price * qty) ? (
-        <h6 className="flex justify-space-between mt-2">
-          <span>Total:</span>
-          <span>$ {(price * qty).toLocaleString("de-DE")}</span>
-        </h6>
-      ) : (
-        <h6 className="mt-2">Total: 0</h6>
-      )}
+      
+      <div className="menu__item-selected-product-total">
+        {!isNaN(price * qty) ? (
+          <h6 className="flex justify-space-between mt-2">
+            <span>Total:</span>
+            <span>$ {(price * qty).toLocaleString("de-DE")}</span>
+          </h6>
+        ) : (
+          <h6 className="mt-2">Total: 0</h6>
+        )}
+      </div>
 
       <ControlButtons product={product} />
       <Add2CartButton product={product} />

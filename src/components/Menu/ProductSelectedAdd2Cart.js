@@ -14,7 +14,7 @@ const ProductSelectedAdd2Cart = ({ product }) => {
 
   return (
     <button
-      className="btn btn-outline-success btn-block mt-3"
+      className="menu__item-selected-product-add-button btn btn-outline-success btn-block mt-3"
       onClick={handleButtonClick}
     >
       <span className="mr-2">

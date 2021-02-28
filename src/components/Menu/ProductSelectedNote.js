@@ -23,7 +23,7 @@ const ProductSelectedNote = ({ product }) => {
     <>
       {notesState ? (
         <textarea
-          className="mt-3"
+          className="mt-3 menu__item-selected-product-add-notes"
           maxLength={250}
           name="notes"
           placeholder="Escriba su nota aquí"
@@ -33,7 +33,7 @@ const ProductSelectedNote = ({ product }) => {
         />
       ) : (
         <button
-          className="btn btn-outline-error btn-block mt-3"
+          className="menu__item-selected-product-add-notes btn btn-outline-error btn-block mt-3"
           onClick={handleAddNote}
         >
           <span className="mr-2">
