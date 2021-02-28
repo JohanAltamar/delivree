@@ -20,11 +20,15 @@ const types = {
   PRODUCTS__FETCH_PRODUCTS_BY_CATEGORY_FAIL:
     "PRODUCTS__FETCH_PRODUCTS_BY_CATEGORY_FAIL",
   // ======================================================================
-  // Products types
+  // ShoppingCart types
   // ======================================================================
   CART__ADD_PRODUCT: "CART__ADD_PRODUCT",
   CART__UPDATE_PRODUCT: "CART__UPDATE_PRODUCT",
   CART__REMOVE_PRODUCT: "CART__REMOVE_PRODUCT",
+  // ======================================================================
+  // User types
+  // ======================================================================
+  USER__SET_INFO: "USER__SET_INFO",
 };
 
 export default types;
