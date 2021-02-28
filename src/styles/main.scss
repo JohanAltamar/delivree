@@ -20,6 +20,7 @@
 // 4. Layout-related sections
 @import
   'layout/dropdown',
+  'layout/errors',
   'layout/feature',
   'layout/footer',
   'layout/grid',
@@ -38,6 +39,7 @@
 // 6. Page-specific styles
 @import
   'pages/cart',
+  'pages/cart-user-info',
   'pages/home',
   'pages/menu';
 

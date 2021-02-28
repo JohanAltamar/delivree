@@ -113,11 +113,12 @@
 
   transition: $transition;
 
-  &:hover {
+  &:hover, &:active {
     color: white;
     background-color: darken($color: $success-color, $amount: 20);
   }
   &:disabled {
-    background-color: lighten($color: $success-color, $amount: 20);
+    color: $mid-grey;
+    border-color: $mid-grey;
   }
 }

@@ -7,6 +7,7 @@ import HomePage from "../pages/HomePage";
 import MenuCategoriesPage from "../pages/MenuPage";
 import MenuCategoryPage from "../pages/MenuPage/CategoryPage";
 import ShoppingCartPage from "../pages/ShoppingCartPage";
+import SetUserInfoPage from "../pages/ShoppingCartPage/SetUserInfoPage";
 
 const AppRouter = () => {
   return (
@@ -20,8 +21,8 @@ const AppRouter = () => {
           <Route path="/menu/:categoryName" component={MenuCategoryPage} />
 
           <Route exact path="/cart" component={ShoppingCartPage} />
-          {/* <Route path="/cart/chooseUser" component={ChooseUser} />
-          <Route path="/cart/confirmData/:userID" component={ConfirmData} />
+          <Route path="/cart/user-info" component={SetUserInfoPage} />
+          {/* <Route path="/cart/confirmData/:userID" component={ConfirmData} />
           <Route path="/cart/checkout" component={Checkout} />
           <Route path="/cart/transactionStatus" component={TransactionStatus} />
 

@@ -1,0 +1,104 @@
+import React from "react";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+
+import OutsideDispatcher from "../../Misc/ClickOutsideDispatcher";
+import { guestInfoModalAction } from "../../../redux2/actions/uiActions";
+import {
+  address,
+  contactPhone,
+  fullname,
+  neighborhood,
+  additionalInfo,
+} from "../../../utils/inputsValuesMessages";
+import ErrorMessage from "../../Errors/Message";
+
+const InfoModal = () => {
+  const dispatch = useDispatch();
+
+  const { guestInfoModal } = useSelector((state) => state.ui);
+
+  const { register, handleSubmit, errors, formState } = useForm({
+    mode: "onChange",
+  });
+
+  const handleCloseModal = () => {
+    dispatch(guestInfoModalAction(false));
+  };
+
+  const handleSubmitGuestInfo = (data) => {
+    console.log(data);
+  };
+
+  return (
+    guestInfoModal && (
+      <div className="cart__user-info-guest-modal-container">
+        <OutsideDispatcher action={guestInfoModalAction(false)}>
+          <form
+            className="cart__user-info-guest-modal-form"
+            onSubmit={handleSubmit(handleSubmitGuestInfo)}
+          >
+            <span
+              className="cart__user-info-guest-modal-close-btn btn-text-error"
+              onClick={handleCloseModal}
+            >
+              <FontAwesomeIcon icon={faTimes} />
+            </span>
+            <h5>Datos de envío</h5>
+            <input
+              name="fullname"
+              type="text"
+              placeholder="Nombre completo"
+              ref={register(fullname)}
+            />
+            <ErrorMessage error={errors.fullname} />
+
+            <input
+              name="cellphoneNumber"
+              type="number"
+              placeholder="Número de contacto"
+              ref={register(contactPhone)}
+            />
+            <ErrorMessage error={errors.cellphoneNumber} />
+
+            <input
+              name="address"
+              type="text"
+              placeholder="Dirección"
+              ref={register(address)}
+            />
+            <ErrorMessage error={errors.address} />
+
+            <input
+              name="neighborhood"
+              type="text"
+              placeholder="Barrio"
+              ref={register(neighborhood)}
+            />
+            <ErrorMessage error={errors.neighborhood} />
+
+            <textarea
+              name="additionalInfo"
+              type="text"
+              placeholder="Información adicional"
+              ref={register(additionalInfo)}
+              rows={2}
+            />
+            <ErrorMessage error={errors.additionalInfo} />
+
+            <button
+              className="btn btn-outline-success"
+              disabled={!formState.isValid}
+            >
+              Continuar
+            </button>
+          </form>
+        </OutsideDispatcher>
+      </div>
+    )
+  );
+};
+
+export default InfoModal;
