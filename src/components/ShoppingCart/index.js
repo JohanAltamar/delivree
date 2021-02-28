@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartProductsList from "./CartProductsList";
+import CartResumeContainer from "./CartResumeContainer";
 
 const ShoppingCartContainer = () => {
   const { products } = useSelector((state) => state.shoppingCart);
@@ -24,15 +25,7 @@ const ShoppingCartContainer = () => {
             <CartProductsList products={products} />
             <div className="cart__products-spacer"></div>
           </div>
-          <div className="cart__resume-wrapper">
-            <div className="cart__resume-container">
-              <h6 className="cart__resume-title">Resumen</h6>
-              <h5 className="cart__resume-total mb-3">
-                Total: $ <span>{total.toLocaleString("de-DE")}</span>
-              </h5>
-              <button className="btn btn-primary">Ordena Ahora</button>
-            </div>
-          </div>
+          <CartResumeContainer total={total} />
         </>
       )}
     </section>
