@@ -22,12 +22,13 @@ const CartProductsListItem = ({ product }) => {
   };
 
   const handleQtyChange = (factor) => {
-    if (product.qty === 1 && factor === -1) {
+    if (product.qty <= 1 && factor === -1) {
       confirm2RemoveProductFnc(product.id);
+    } else {
+      dispatch(
+        updateCartProductAction({ ...product, qty: product.qty + factor })
+      );
     }
-    dispatch(
-      updateCartProductAction({ ...product, qty: product.qty + factor })
-    );
   };
 
   return (
