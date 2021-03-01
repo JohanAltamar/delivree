@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import useRedirectToCart from "../../hooks/useRedirectToCart";
-import { startResetCartAction } from '../../redux2/actions/cartActions'
+import {
+  startResetCartAction,
+  startFinishOrderCartAction,
+} from "../../redux2/actions/cartActions";
 
 const nequiNumber = 3016669240;
 const daviplataNumber = 3016669240;
-
 
 const CheckoutContainer = () => {
   useRedirectToCart("user");
@@ -27,12 +29,20 @@ const CheckoutContainer = () => {
   };
 
   const handleFinishOrder = () => {
-
-  }
+    dispatch(
+      startFinishOrderCartAction({
+        productsTotal,
+        deliveryTotal: delivery,
+        total: productsTotal + delivery,
+        paymentMethod,
+        paymentConfirmed: false,
+      })
+    );
+  };
 
   const handleDeleteOrder = () => {
     dispatch(startResetCartAction());
-  }
+  };
 
   return (
     <section className="cart__checkout-container">

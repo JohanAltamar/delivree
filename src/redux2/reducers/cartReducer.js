@@ -47,6 +47,10 @@ export default function productsReducer(state = initialState, action) {
       };
     case types.CART__RESET_CART_PROCESS:
       return { ...initialState };
+    case types.CART__MOVE_USER_INFO_TO_CART:
+      return { ...state, ...action.payload };
+    case types.CART__START_FINISH_ORDER:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

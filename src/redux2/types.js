@@ -27,6 +27,9 @@ const types = {
   CART__REMOVE_PRODUCT: "CART__REMOVE_PRODUCT",
   CART__RESET_CART_START: "CART__RESET_CART_START",
   CART__RESET_CART_PROCESS: "CART__RESET_CART_PROCESS",
+  CART__START_FINISH_ORDER: "CART__START_FINISH_ORDER",
+  CART__PROCESS_FINISH_ORDER: "CART__PROCESS_FINISH_ORDER",
+  CART__MOVE_USER_INFO_TO_CART: "CART__MOVE_USER_INFO_TO_CART",
   // ======================================================================
   // User types
   // ======================================================================

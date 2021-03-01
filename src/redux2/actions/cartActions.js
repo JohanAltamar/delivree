@@ -22,3 +22,17 @@ export const startResetCartAction = () => ({
 export const processResetCartAction = () => ({
   type: types.CART__RESET_CART_PROCESS,
 });
+
+export const startFinishOrderCartAction = (payload) => ({
+  type: types.CART__START_FINISH_ORDER,
+  payload
+});
+
+export const processFinishOrderCartAction = () => ({
+  type: types.CART__PROCESS_FINISH_ORDER,
+});
+
+export const moveUserInfoToCartAction = (payload) => ({
+  type: types.CART__MOVE_USER_INFO_TO_CART,
+  payload
+})
