@@ -29,9 +29,10 @@ function* resetCartSaga() {
     cancelButtonText: "No, salgamos!",
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire("Borrada!", "La ha sido eliminada.", "success");
+      Swal.fire("Borrada!", "La orden ha sido eliminada.", "success");
       store.dispatch(processResetCartAction());
       store.dispatch(resetUserInfoAction());
+      window.location.assign(`${window.location.origin}`);
     }
   });
   // toast.success("Orden eliminada con éxito");
