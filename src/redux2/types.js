@@ -25,10 +25,13 @@ const types = {
   CART__ADD_PRODUCT: "CART__ADD_PRODUCT",
   CART__UPDATE_PRODUCT: "CART__UPDATE_PRODUCT",
   CART__REMOVE_PRODUCT: "CART__REMOVE_PRODUCT",
+  CART__RESET_CART_START: "CART__RESET_CART_START",
+  CART__RESET_CART_PROCESS: "CART__RESET_CART_PROCESS",
   // ======================================================================
   // User types
   // ======================================================================
   USER__SET_INFO: "USER__SET_INFO",
+  USER__RESET_INFO: "USER__RESET_INFO",
 };
 
 export default types;

@@ -14,3 +14,11 @@ export const removeCartProductAction = (id) => ({
   type: types.CART__REMOVE_PRODUCT,
   payload: id,
 });
+
+export const startResetCartAction = () => ({
+  type: types.CART__RESET_CART_START,
+});
+
+export const processResetCartAction = () => ({
+  type: types.CART__RESET_CART_PROCESS,
+});
