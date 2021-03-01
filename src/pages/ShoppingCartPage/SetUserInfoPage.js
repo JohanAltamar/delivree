@@ -4,7 +4,7 @@ import GuestUserContainer from "../../components/ShoppingCart/GuestUserContainer
 import useRedirectToCart from "../../hooks/useRedirectToCart";
 
 const SetUserInfoPage = () => {
-  useRedirectToCart();
+  useRedirectToCart("toCheckout");
 
   return (
     <Layout>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import store from "../redux2/store";
 
-const useRedirectToCart = (userInfo) => {
+const useRedirectToCart = (param) => {
   const history = useHistory();
   const { products } = store.getState().shoppingCart;
   const userInfoState = store.getState().userInfo;
@@ -10,10 +10,13 @@ const useRedirectToCart = (userInfo) => {
   useEffect(() => {
     if (products.length === 0) history.push("/cart");
 
-    if (userInfo && Object.keys(userInfoState).length === 0) {
+    if (param === "userInfo" && Object.keys(userInfoState).length === 0) {
       history.push("/cart/user-info");
     }
-  }, [history, products, userInfo, userInfoState]);
+    if (param === "toCheckout" && Object.keys(userInfoState).length > 0) {
+      history.push("/cart/checkout");
+    }
+  }, [history, products, param, userInfoState]);
 };
 
 export default useRedirectToCart;
