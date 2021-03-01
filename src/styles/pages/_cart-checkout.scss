@@ -1,0 +1,20 @@
+.cart__checkout-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  padding: 1.5rem;
+  border-radius: $image-border-radius;
+  box-shadow: 0 $spacing * 2 $spacing * 2 rgba($color: $dark-grey, $alpha: .5);
+}
+
+.cart__checkout-select,
+.cart__checkout-products,
+.cart__checkout-delivery,
+.cart__checkout-total{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

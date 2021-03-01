@@ -8,6 +8,7 @@ import MenuCategoriesPage from "../pages/MenuPage";
 import MenuCategoryPage from "../pages/MenuPage/CategoryPage";
 import ShoppingCartPage from "../pages/ShoppingCartPage";
 import SetUserInfoPage from "../pages/ShoppingCartPage/SetUserInfoPage";
+import CheckoutPage from "../pages/ShoppingCartPage/CheckoutPage";
 
 const AppRouter = () => {
   return (
@@ -22,9 +23,10 @@ const AppRouter = () => {
 
           <Route exact path="/cart" component={ShoppingCartPage} />
           <Route path="/cart/user-info" component={SetUserInfoPage} />
-          {/* <Route path="/cart/confirmData/:userID" component={ConfirmData} />
-          <Route path="/cart/checkout" component={Checkout} />
-          <Route path="/cart/transactionStatus" component={TransactionStatus} />
+          <Route path="/cart/checkout" component={CheckoutPage} />
+          
+          {/* <Route path="/cart/transactionStatus" component={TransactionStatus} />
+          <Route path="/cart/confirmData/:userID" component={ConfirmData} />
 
           <Route path="/orders" component={OrderMain} />
 
