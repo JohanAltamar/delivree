@@ -1,22 +1,24 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 
-const OrderTracker = () => {
+const OrderTracker = ({ noTitle = false }) => {
   const history = useHistory();
-  const { register, handleSubmit, formState, errors } = useForm({
+  const { register, handleSubmit, formState, errors, reset } = useForm({
     mode: "onChange",
   });
 
   const handleSearchOrder = ({ orderNumber }) => {
     history.push(`/orders/${orderNumber}`);
+    reset();
   };
 
   return (
     <section className="grid__padding">
-      <h3>Estado de su orden</h3>
+      {!noTitle && <h3>Estado de su orden</h3>}
       <form
         className="input__order-tracker-container"
         onSubmit={handleSubmit(handleSearchOrder)}
@@ -50,3 +52,7 @@ const OrderTracker = () => {
 };
 
 export default OrderTracker;
+
+OrderTracker.propTypes = {
+  noTitle: PropTypes.bool,
+};

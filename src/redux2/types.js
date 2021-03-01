@@ -35,6 +35,13 @@ const types = {
   // ======================================================================
   USER__SET_INFO: "USER__SET_INFO",
   USER__RESET_INFO: "USER__RESET_INFO",
+  // ======================================================================
+  // Orders types
+  // ======================================================================
+  ORDERS__FETCH_INFO_START: "ORDERS__FETCH_INFO_START",
+  ORDERS__FETCH_INFO_SUCCESS: "ORDERS__FETCH_INFO_SUCCESS",
+  ORDERS__FETCH_INFO_FAIL: "ORDERS__FETCH_INFO_FAIL",
+  ORDERS__ERROR_RESET: "ORDERS__ERROR_RESET",
 };
 
 export default types;

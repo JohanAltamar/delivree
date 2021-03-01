@@ -1,0 +1,62 @@
+.orders__info {
+  &-container {
+    max-width: 500px;
+    margin: auto;
+    padding: $spacing * 4;
+    border-radius: $image-border-radius;
+    box-shadow: 0 $spacing $spacing rgba($color: $dark-grey, $alpha: 0.5);
+
+    & > * {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      & > *:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &-products {
+    & > * {
+      display: block;
+      width: 100%;
+    }
+
+    ul {
+      text-align: right;
+      list-style: none;
+      padding: 0;
+    }
+  }
+
+  &-buttons {
+    & > * {
+      width: 100%;
+
+      &:first-child {
+        margin-bottom: $spacing * 2;
+      }
+    }
+
+    svg {
+      margin-right: $spacing;
+    }
+  }
+
+  @include respond-to("small") {
+    &-buttons {
+      max-width: 350px;
+      margin: auto;
+
+      & > * {
+        width: unset;
+        height: 42px;
+        
+        &:first-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

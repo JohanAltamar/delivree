@@ -9,6 +9,8 @@ import MenuCategoryPage from "../pages/MenuPage/CategoryPage";
 import ShoppingCartPage from "../pages/ShoppingCartPage";
 import SetUserInfoPage from "../pages/ShoppingCartPage/SetUserInfoPage";
 import CheckoutPage from "../pages/ShoppingCartPage/CheckoutPage";
+import OrdersPage from "../pages/OrdersPage";
+import SelectedOrderpage from "../pages/OrdersPage/SelectedOrderpage";
 
 const AppRouter = () => {
   return (
@@ -25,10 +27,11 @@ const AppRouter = () => {
           <Route path="/cart/user-info" component={SetUserInfoPage} />
           <Route path="/cart/checkout" component={CheckoutPage} />
           
+          <Route exact path="/orders" component={OrdersPage} />
+          <Route path="/orders/:orderID" component={SelectedOrderpage} />
           {/* <Route path="/cart/transactionStatus" component={TransactionStatus} />
           <Route path="/cart/confirmData/:userID" component={ConfirmData} />
 
-          <Route path="/orders" component={OrderMain} />
 
           <Route exact path="/login" component={Login} />
           <Route path="/login/:loggedUserUid" component={LoggedUser} />
