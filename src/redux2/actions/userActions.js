@@ -52,3 +52,20 @@ export const failCreateNewUserAction = (message) => ({
   type: types.USER__FAIL_CREATE_NEW_USER,
   payload: message,
 });
+
+// ==========================================================
+// Login user
+// ==========================================================
+export const startLoginUserAction = (userInfo) => ({
+  type: types.USER__START_LOGGIN,
+  payload: userInfo,
+});
+
+export const successLoginUserAction = () => ({
+  type: types.USER__SUCCESS_LOGGIN,
+});
+
+export const failLoginUserAction = (message) => ({
+  type: types.USER__FAIL_LOGGIN,
+  payload: message,
+});

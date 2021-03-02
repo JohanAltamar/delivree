@@ -46,6 +46,10 @@ const types = {
   USER__SUCCESS_CREATE_NEW_USER: "USER__SUCCESS_CREATE_NEW_USER",
   USER__FAIL_CREATE_NEW_USER: "USER__FAIL_CREATE_NEW_USER",
 
+  USER__START_LOGGIN: "USER__START_LOGGIN",
+  USER__SUCCESS_LOGGIN: "USER__SUCCESS_LOGGIN",
+  USER__FAIL_LOGGIN: "USER__FAIL_LOGGIN",
+
   // ======================================================================
   // Orders types
   // ======================================================================

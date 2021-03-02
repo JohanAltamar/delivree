@@ -3,7 +3,11 @@ import Swal from "sweetalert2";
 
 import store from "../store";
 import types from "../types";
-import { createUserApi, recoverPasswordApi } from "../api/userApi";
+import {
+  createUserApi,
+  recoverPasswordApi,
+  loginUserApi,
+} from "../api/userApi";
 import * as userActions from "../actions/userActions";
 
 const errorAlert = (error) => {
@@ -34,7 +38,15 @@ function* createUserSaga(action) {
   }
 }
 
+function* loginUserSaga(action) {
+  try {
+    const userInfo = yield call(loginUserApi, action.payload);
+    yield put(userActions.setUserInfoAction({ ...userInfo, logged: true }));
+  } catch (error) {}
+}
+
 export default function* watcherUser() {
   yield takeLatest(types.USER__START_PASSWORD_RECOVER, recoverPasswordSaga);
   yield takeLatest(types.USER__START_CREATE_NEW_USER, createUserSaga);
+  yield takeLatest(types.USER__START_LOGGIN, loginUserSaga);
 }

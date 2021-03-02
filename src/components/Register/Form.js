@@ -28,6 +28,7 @@ const RegisterForm = () => {
 
   return (
     <form className=" form__register" onSubmit={handleSubmit(handleRegister)}>
+      <h4 className="text-center">Crear Usuario</h4>
       <input
         type="text"
         name="fullname"

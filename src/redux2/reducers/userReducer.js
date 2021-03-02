@@ -31,6 +31,13 @@ const userReducer = (state = initialState, action) => {
     case types.USER__FAIL_CREATE_NEW_USER:
       return { ...state, loading: false, error: action.payload };
 
+    case types.USER__START_LOGGIN:
+      return { ...state, loading: true };
+    case types.USER__SUCCESS_LOGGIN:
+      return { ...state, loading: false };
+    case types.USER__FAIL_LOGGIN:
+      return { ...state, loading: false, error: action.payload };
+
     default:
       return state;
   }

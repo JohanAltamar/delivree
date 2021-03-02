@@ -1,8 +1,6 @@
 import { firebase, db } from "../../services/firebase";
 
-export const recoverPasswordApi = (email) => {
-  return firebase.auth().sendPasswordResetEmail(email).then();
-};
+const dbRef = db.collection("users");
 
 export const createUserApi = async (payload) => {
   const {
@@ -22,8 +20,36 @@ export const createUserApi = async (payload) => {
     displayName: fullname,
   });
 
-  const dbRef = db.collection("users");
-  await dbRef.add({ email, fullname, address, cellphoneNumber, neighborhood });
+  await dbRef
+    .doc(user.uid)
+    .set({ email, fullname, address, cellphoneNumber, neighborhood });
 
   return;
+};
+
+export const loginUserApi = async (payload) => {
+  const { email, password } = payload;
+
+  const { user } = await firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password);
+
+  const userInfo = await fetchUserInfoApi(user.uid);
+
+  return userInfo;
+};
+
+export const recoverPasswordApi = (email) => {
+  return firebase.auth().sendPasswordResetEmail(email).then();
+};
+
+export const fetchUserInfoApi = async (uid) => {
+  const userInfo = await dbRef.doc(uid).get();
+
+  return { id: userInfo.id, ...userInfo.data() };
+};
+
+export const checkUserLoggedApi = async () => {
+  const user = await firebase.auth().onAuthStateChanged();
+  console.log(user);
 };

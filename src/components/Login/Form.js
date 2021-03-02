@@ -4,18 +4,23 @@ import { Link } from "react-router-dom";
 
 import ErrorMessage from "../Errors/Message";
 import { email, password } from "../../utils/inputsValuesMessages";
+import { useDispatch } from "react-redux";
+import { startLoginUserAction } from "../../redux2/actions/userActions";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, formState, errors } = useForm({
     mode: "onChange",
   });
 
-  const handleUserLogin = (data) => {
-    console.log(data);
+  const handleUserLogin = ({ email, password }) => {
+    dispatch(startLoginUserAction({ email, password }));
   };
 
   return (
     <form className="form__login" onSubmit={handleSubmit(handleUserLogin)}>
+      <h4 className="text-center">Inicia Sesión</h4>
       <input
         className="mb-4"
         type="email"
