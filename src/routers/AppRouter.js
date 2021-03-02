@@ -11,6 +11,7 @@ import SetUserInfoPage from "../pages/ShoppingCartPage/SetUserInfoPage";
 import CheckoutPage from "../pages/ShoppingCartPage/CheckoutPage";
 import OrdersPage from "../pages/OrdersPage";
 import SelectedOrderpage from "../pages/OrdersPage/SelectedOrderpage";
+import LoginPage from "../pages/Login";
 
 const AppRouter = () => {
   return (
@@ -29,11 +30,13 @@ const AppRouter = () => {
           
           <Route exact path="/orders" component={OrdersPage} />
           <Route path="/orders/:orderID" component={SelectedOrderpage} />
+          
+          <Route exact path="/login" component={LoginPage} />
+          
           {/* <Route path="/cart/transactionStatus" component={TransactionStatus} />
           <Route path="/cart/confirmData/:userID" component={ConfirmData} />
 
 
-          <Route exact path="/login" component={Login} />
           <Route path="/login/:loggedUserUid" component={LoggedUser} />
           <Route path="/signup" component={Signup} />
           <Route path="/recover_password" component={ForgotPassword} />

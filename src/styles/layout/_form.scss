@@ -1,0 +1,7 @@
+.form__login{
+  max-width: 400px;
+  margin: auto;
+  padding: $spacing * 4;
+  border-radius: $image-border-radius;
+  box-shadow: 0 $spacing $spacing * 2 rgba($color: $dark-grey, $alpha: .5);
+}

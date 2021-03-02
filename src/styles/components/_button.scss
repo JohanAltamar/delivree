@@ -122,3 +122,18 @@
     border-color: $mid-grey;
   }
 }
+
+.btn-default {
+  background-color: rgb(18, 99, 250);
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: #00f, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: #00f, $amount: 20);
+  }
+}
