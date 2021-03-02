@@ -7,8 +7,10 @@ import {
   createUserApi,
   recoverPasswordApi,
   loginUserApi,
+  checkUserLoggedApi,
 } from "../api/userApi";
 import * as userActions from "../actions/userActions";
+import { stopLoaderAction } from "../actions/uiActions";
 
 const errorAlert = (error) => {
   Swal.fire("Error", error.message, "error").then(() =>
@@ -45,8 +47,18 @@ function* loginUserSaga(action) {
   } catch (error) {}
 }
 
+function* checkUserLoggedSaga() {
+  try {
+    yield call(checkUserLoggedApi);
+    yield put(stopLoaderAction());
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 export default function* watcherUser() {
   yield takeLatest(types.USER__START_PASSWORD_RECOVER, recoverPasswordSaga);
   yield takeLatest(types.USER__START_CREATE_NEW_USER, createUserSaga);
   yield takeLatest(types.USER__START_LOGGIN, loginUserSaga);
+  yield takeLatest(types.USER__START_CHECK_LOGGED_USER, checkUserLoggedSaga);
 }

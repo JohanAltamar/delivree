@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { throttle } from "lodash";
+// import { throttle } from "lodash";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { saveState } from "./localStorage";
+// import { saveState } from "./localStorage";
 import store from "./redux2/store";
 import App from "./App";
 

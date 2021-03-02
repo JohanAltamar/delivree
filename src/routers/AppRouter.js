@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -14,8 +15,22 @@ import SelectedOrderpage from "../pages/OrdersPage/SelectedOrderpage";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/RegisterPage";
 import RecoverPage from "../pages/RecoverPage";
+import { startCheckLoggedUserAction } from "../redux2/actions/userActions";
 
 const AppRouter = () => {
+  const dispatch = useDispatch();
+
+  const { logged } = useSelector((state) => state.userInfo);
+  const { loading } = useSelector((state) => state.ui);
+
+  useEffect(() => {
+    dispatch(startCheckLoggedUserAction());
+  }, [dispatch]);
+
+  if (loading) {
+    return <h3>Loading...</h3>;
+  }
+
   return (
     <Router>
       <div className="grid__container">
@@ -29,14 +44,14 @@ const AppRouter = () => {
           <Route exact path="/cart" component={ShoppingCartPage} />
           <Route path="/cart/user-info" component={SetUserInfoPage} />
           <Route path="/cart/checkout" component={CheckoutPage} />
-          
+
           <Route exact path="/orders" component={OrdersPage} />
           <Route path="/orders/:orderID" component={SelectedOrderpage} />
-          
+
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
-          <Route path="/recover-password" component={RecoverPage} />
-          
+          <Route exact path="/recover-password" component={RecoverPage} />
+
           {/* <Route path="/cart/transactionStatus" component={TransactionStatus} />
           <Route path="/cart/confirmData/:userID" component={ConfirmData} />
 

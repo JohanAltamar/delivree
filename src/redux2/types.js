@@ -1,6 +1,8 @@
 const types = {
   UI__TOGGLE_MENU: "UI__TOGGLE_MENU",
   UI__GUEST_USER_INFO_MODAL_STATUS: "UI__GUEST_USER_INFO_MODAL_STATUS",
+  UI__START_LOADER: "UI__START_LOADER",
+  UI__STOP_LOADER: "UI__STOP_LOADER",
   // ======================================================================
   // Products types
   // ======================================================================
