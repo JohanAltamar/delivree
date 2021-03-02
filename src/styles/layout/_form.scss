@@ -1,7 +1,16 @@
-.form__login{
+.form__login,
+.form__register {
   max-width: 400px;
   margin: auto;
   padding: $spacing * 4;
   border-radius: $image-border-radius;
-  box-shadow: 0 $spacing $spacing * 2 rgba($color: $dark-grey, $alpha: .5);
+  box-shadow: 0 $spacing $spacing * 2 rgba($color: $dark-grey, $alpha: 0.5);
+
+  & > * {
+    margin-bottom: $spacing * 2;
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
 }

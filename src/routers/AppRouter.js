@@ -12,6 +12,7 @@ import CheckoutPage from "../pages/ShoppingCartPage/CheckoutPage";
 import OrdersPage from "../pages/OrdersPage";
 import SelectedOrderpage from "../pages/OrdersPage/SelectedOrderpage";
 import LoginPage from "../pages/Login";
+import RegisterPage from "../pages/RegisterPage";
 
 const AppRouter = () => {
   return (
@@ -32,13 +33,13 @@ const AppRouter = () => {
           <Route path="/orders/:orderID" component={SelectedOrderpage} />
           
           <Route exact path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
           
           {/* <Route path="/cart/transactionStatus" component={TransactionStatus} />
           <Route path="/cart/confirmData/:userID" component={ConfirmData} />
 
 
           <Route path="/login/:loggedUserUid" component={LoggedUser} />
-          <Route path="/signup" component={Signup} />
           <Route path="/recover_password" component={ForgotPassword} />
           <Route path="*" component={NoMatch} /> */}
         </Switch>
