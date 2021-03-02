@@ -8,7 +8,6 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { startFecthOrderInfoAction } from "../../redux2/actions/ordersInfoAction";
 import statusTranslations from "../../utils/orderStatusTranslations";
 
-
 const OrderInfoContainer = () => {
   const { params } = useRouteMatch();
   const { orderID } = params;
@@ -26,7 +25,9 @@ const OrderInfoContainer = () => {
     }
   }, [orderID, dispatch]);
 
-  return Object.keys(ordersInfo).length > 2 ? ( //error and id are fixed
+  return ordersInfo.loading ? (
+    <h3 className="text-center mt-5">Cargando...</h3>
+  ) : Object.keys(ordersInfo).length > 3 ? ( //error, loading and id are fixed
     <section className="orders__info-container">
       <p>
         <span>ID del pedido: </span>
