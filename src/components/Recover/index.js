@@ -1,15 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { email } from "../../utils/inputsValuesMessages";
+import { useDispatch } from "react-redux";
+
 import ErrorMessage from "../Errors/Message";
+import { email } from "../../utils/inputsValuesMessages";
+import { startPasswordRecoverAction } from "../../redux2/actions/userActions";
 
 const RecoverPasswordContainer = () => {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, formState, errors } = useForm({
     mode: "onChange",
   });
 
-  const handleRecover = (data) => {
-    console.log(data);
+  const handleRecover = ({ email }) => {
+    dispatch(startPasswordRecoverAction(email));
   };
 
   return (

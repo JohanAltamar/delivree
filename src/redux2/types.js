@@ -35,6 +35,12 @@ const types = {
   // ======================================================================
   USER__SET_INFO: "USER__SET_INFO",
   USER__RESET_INFO: "USER__RESET_INFO",
+  USER__ERROR_RESET: "USER__ERROR_RESET",
+  USER__START_CHECK_LOGGED_USER: "USER__START_CHECK_LOGGED_USER",
+  USER__START_PASSWORD_RECOVER: "USER__START_PASSWORD_RECOVER",
+  USER__SUCCESS_PASSWORD_RECOVER: "USER__SUCCESS_PASSWORD_RECOVER",
+  USER__FAIL_PASSWORD_RECOVER: "USER__FAIL_PASSWORD_RECOVER",
+
   // ======================================================================
   // Orders types
   // ======================================================================

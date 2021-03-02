@@ -3,6 +3,7 @@ import watcherCart from "./cartSaga";
 import watcherOrdersInfo from "./orderInfoSaga";
 import watcherProducts from "./productsSaga";
 import watcherUI from "./uiSaga";
+import watcherUser from "./userSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     watcherCart(),
     watcherUI(),
     watcherOrdersInfo(),
+    watcherUser(),
   ]);
 }
