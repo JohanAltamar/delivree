@@ -1,10 +1,13 @@
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+
 import { startFecthOrderInfoAction } from "../../redux2/actions/ordersInfoAction";
+import statusTranslations from "../../utils/orderStatusTranslations";
+
 
 const OrderInfoContainer = () => {
   const { params } = useRouteMatch();
@@ -39,7 +42,7 @@ const OrderInfoContainer = () => {
       </p>
       <p>
         <span>Estado: </span>
-        <span>{ordersInfo.status}</span>
+        <span>{statusTranslations[ordersInfo.status]}</span>
       </p>
       <span className="orders__info-products">
         <span>Productos: </span>

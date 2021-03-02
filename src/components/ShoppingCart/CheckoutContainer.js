@@ -36,6 +36,7 @@ const CheckoutContainer = () => {
         total: productsTotal + delivery,
         paymentMethod,
         paymentConfirmed: false,
+        status: "pending for restaurant confirmation"
       })
     );
   };
