@@ -24,6 +24,13 @@ const userReducer = (state = initialState, action) => {
     case types.USER__FAIL_PASSWORD_RECOVER:
       return { ...state, loading: false, error: action.payload };
 
+    case types.USER__START_CREATE_NEW_USER:
+      return { ...state, loading: true };
+    case types.USER__SUCCESS_CREATE_NEW_USER:
+      return { ...state, loading: false };
+    case types.USER__FAIL_CREATE_NEW_USER:
+      return { ...state, loading: false, error: action.payload };
+
     default:
       return state;
   }

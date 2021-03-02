@@ -9,16 +9,21 @@ import {
   email,
   fullname,
   neighborhood,
+  password,
 } from "../../utils/inputsValuesMessages";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { startCreateNewUserAction } from "../../redux2/actions/userActions";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, errors, formState } = useForm({
     mode: "onChange",
   });
 
   const handleRegister = (data) => {
-    console.log(data);
+    dispatch(startCreateNewUserAction(data));
   };
 
   return (
@@ -30,6 +35,14 @@ const RegisterForm = () => {
         ref={register(fullname)}
       />
       <ErrorMessage error={errors.fullname} />
+
+      <input
+        type="password"
+        name="password"
+        placeholder="Contraseña"
+        ref={register(password)}
+      />
+      <ErrorMessage error={errors.password} />
 
       <input
         type="email"
