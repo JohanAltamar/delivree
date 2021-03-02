@@ -41,7 +41,7 @@ const OrderInfoContainer = () => {
         <span>Estado: </span>
         <span>{ordersInfo.status}</span>
       </p>
-      <p className="orders__info-products">
+      <span className="orders__info-products">
         <span>Productos: </span>
         <ul>
           {ordersInfo.products.map((item) => (
@@ -51,7 +51,7 @@ const OrderInfoContainer = () => {
             </li>
           ))}
         </ul>
-      </p>
+      </span>
       <p>
         <span>Domicilio: </span>
         <span>$ {ordersInfo.deliveryTotal.toLocaleString("de-DE")}</span>
@@ -60,10 +60,26 @@ const OrderInfoContainer = () => {
         <span>Total: </span>
         <span>$ {ordersInfo.total.toLocaleString("de-DE")}</span>
       </p>
+      <p>
+        <span>Forma de pago: </span>
+        <span>
+          {ordersInfo.paymentMethod === "cash"
+            ? "Efectivo"
+            : ordersInfo.paymentMethod}
+        </span>
+      </p>
+      {ordersInfo.paymentMethod !== "cash" && (
+        <p>
+          <span>Pago confirmado: </span>
+          <span>{ordersInfo.paymentConfirmed ? "Sí" : "No"}</span>
+        </p>
+      )}
       <div className="orders__info-buttons">
         <a
           className="btn btn-outline-success"
-          href={`https://wa.me/${whatsappNumber}?text=${encodeURI(whatsappMessage)}`}
+          href={`https://wa.me/${whatsappNumber}?text=${encodeURI(
+            whatsappMessage
+          )}`}
           target="_blank"
           rel="noopener noreferrer"
         >
