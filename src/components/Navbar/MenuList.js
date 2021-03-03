@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 const MenuList = ({ sideMenu, handleToggleMenu }) => {
+  const { userInfo } = useSelector((state) => state);
+  const { logged } = userInfo;
+
   const handleCloseMenu = () => {
     if (sideMenu) handleToggleMenu();
   };
@@ -19,7 +23,7 @@ const MenuList = ({ sideMenu, handleToggleMenu }) => {
         <li>Carrito</li>
       </Link>
       <Link to="/login" onClick={handleCloseMenu}>
-        <li>Ingreso</li>
+        <li>{logged ? "Perfil" : "Ingreso"}</li>
       </Link>
     </nav>
   );
