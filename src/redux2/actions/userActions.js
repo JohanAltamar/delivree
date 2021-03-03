@@ -15,9 +15,10 @@ export const errorResetAction = () => ({
 
 // ==========================================================
 // ==========================================================
-export const startCheckLoggedUserAction = () => ({
-  type: types.USER__START_CHECK_LOGGED_USER,
-});
+export const startFecthUserInfoAction = (userID) => ({
+  type: types.USER__START_FETCH_USER_INFO,
+  payload: userID
+})
 
 // ==========================================================
 // Password Recovery

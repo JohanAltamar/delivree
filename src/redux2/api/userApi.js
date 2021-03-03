@@ -1,6 +1,4 @@
 import { firebase, db } from "../../services/firebase";
-import { setUserInfoAction } from "../actions/userActions";
-import store from "../store";
 
 const dbRef = db.collection("users");
 
@@ -49,13 +47,4 @@ export const fetchUserInfoApi = async (uid) => {
   const userInfo = await dbRef.doc(uid).get();
 
   return { id: userInfo.id, ...userInfo.data() };
-};
-
-export const checkUserLoggedApi = async () => {
-  firebase.auth().onAuthStateChanged(async (user) => {
-    if (user?.uid) {
-      const userInfo = await fetchUserInfoApi(user.uid);
-      store.dispatch(setUserInfoAction({ ...userInfo, logged: true }));
-    }
-  });
 };
