@@ -70,3 +70,8 @@ export const failLoginUserAction = (message) => ({
   type: types.USER__FAIL_LOGGIN,
   payload: message,
 });
+
+// ==========================================================
+// Logout user
+// ==========================================================
+export const logoutUserAction = () => ({type: types.USER__LOGOUT})

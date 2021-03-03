@@ -8,6 +8,7 @@ import * as userActions from "../actions/userActions";
 import { stopLoaderAction } from "../actions/uiActions";
 
 const errorAlert = (error) => {
+  console.log(error);
   Swal.fire("Error", error.message, "error").then(() =>
     store.dispatch(userActions.errorResetAction())
   );
@@ -55,9 +56,28 @@ function* fetchUserInfoSaga(action) {
   }
 }
 
+function* logoutUserSaga() {
+  try {
+    yield Swal.fire({
+      title: `Desea cerrar la sesión?`,
+      showDenyButton: true,
+      confirmButtonText: `Salir`,
+      denyButtonText: `Volver`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await userApis.logoutUserApi;
+        store.dispatch(userActions.resetUserInfoAction());
+      }
+    });
+  } catch (error) {
+    errorAlert(error);
+  }
+}
+
 export default function* watcherUser() {
   yield takeLatest(types.USER__START_PASSWORD_RECOVER, recoverPasswordSaga);
   yield takeLatest(types.USER__START_CREATE_NEW_USER, createUserSaga);
   yield takeLatest(types.USER__START_LOGGIN, loginUserSaga);
   yield takeLatest(types.USER__START_FETCH_USER_INFO, fetchUserInfoSaga);
+  yield takeLatest(types.USER__LOGOUT, logoutUserSaga);
 }

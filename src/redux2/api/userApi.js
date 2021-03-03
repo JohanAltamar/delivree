@@ -48,3 +48,7 @@ export const fetchUserInfoApi = async (uid) => {
 
   return { id: userInfo.id, ...userInfo.data() };
 };
+
+export const logoutUserApi = async () => {
+  return await firebase.auth().signOut();
+};
