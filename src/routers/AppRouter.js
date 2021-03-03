@@ -38,6 +38,8 @@ const AppRouter = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user?.uid) {
         dispatch(startFecthUserInfoAction(user.uid));
+      } else {
+        dispatch(stopLoaderAction());
       }
     });
   }, [dispatch]);
