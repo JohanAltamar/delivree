@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import ProfileInfo from './ProfileInfo'
+import ProfileInfo from "./ProfileInfo";
 import LogoutButton from "../Buttons/LogoutButton";
-
+import { Link } from "react-router-dom";
 
 const ProfileContainer = () => {
   const { userInfo } = useSelector((state) => state);
@@ -14,11 +14,21 @@ const ProfileContainer = () => {
         <div className="profile__info-container">
           <h4>Datos del Usuario</h4>
           <LogoutButton />
-          <ProfileInfo {...userInfo}/>
+          <ProfileInfo {...userInfo} />
           <div className="mt-3 buttons-container">
-            <button className="btn btn-outline-success">Editar Perfil</button>
+            <Link
+              className="btn btn-outline-success"
+              to="/dashboard/edit-profile"
+            >
+              <span>Editar Perfil</span>
+            </Link>
             <button className="btn btn-outline-error">Borrar Perfil</button>
-            <button className="btn btn-outline-default">Ver Pedidos</button>
+            <Link
+              className="btn btn-outline-default"
+              to="/dashboard/last-orders"
+            >
+              <span>Ver Pedidos</span>
+            </Link>
           </div>
         </div>
       ) : (

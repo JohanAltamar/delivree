@@ -26,6 +26,7 @@ import {
   stopLoaderAction,
 } from "../redux2/actions/uiActions";
 import { startFecthUserInfoAction } from "../redux2/actions/userActions";
+import ProfileOptionsPage from "../pages/ProfilePage/ProfileOptionsPage";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -85,8 +86,15 @@ const AppRouter = () => {
           />
 
           <PrivateRoute
+            exact
             path="/dashboard"
             component={ProfilePage}
+            isAuthenticated={logged}
+          />
+
+          <PrivateRoute
+            path="/dashboard/:profileOption"
+            component={ProfileOptionsPage}
             isAuthenticated={logged}
           />
 
