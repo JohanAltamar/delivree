@@ -113,7 +113,8 @@
 
   transition: $transition;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: white;
     background-color: darken($color: $success-color, $amount: 20);
   }
@@ -135,5 +136,22 @@
   }
   &:disabled {
     background-color: lighten($color: #00f, $amount: 20);
+  }
+}
+
+.btn-outline-default {
+  border: 1px solid rgb(18, 99, 250);
+  color: rgb(18, 99, 250);
+
+  transition: $transition;
+
+  &:hover,
+  &:active {
+    color: white;
+    background-color: darken($color: rgb(18, 99, 250), $amount: 20);
+  }
+  &:disabled {
+    color: $mid-grey;
+    border-color: $mid-grey;
   }
 }
