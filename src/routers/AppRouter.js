@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { firebase } from "../services/firebase";
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -15,7 +16,16 @@ import SelectedOrderpage from "../pages/OrdersPage/SelectedOrderpage";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/RegisterPage";
 import RecoverPage from "../pages/RecoverPage";
-import { startCheckLoggedUserAction } from "../redux2/actions/userActions";
+import ProfilePage from "../pages/ProfilePage";
+
+import { PublicRoute } from "./PublicRoute";
+import { PrivateRoute } from "./PrivateRoute";
+
+import {
+  startLoaderAction,
+  stopLoaderAction,
+} from "../redux2/actions/uiActions";
+import { startFecthUserInfoAction } from "../redux2/actions/userActions";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -24,7 +34,12 @@ const AppRouter = () => {
   const { loading } = useSelector((state) => state.ui);
 
   useEffect(() => {
-    dispatch(startCheckLoggedUserAction());
+    dispatch(startLoaderAction());
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user?.uid) {
+        dispatch(startFecthUserInfoAction(user.uid));
+      }
+    });
   }, [dispatch]);
 
   if (loading) {
@@ -48,9 +63,30 @@ const AppRouter = () => {
           <Route exact path="/orders" component={OrdersPage} />
           <Route path="/orders/:orderID" component={SelectedOrderpage} />
 
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/recover-password" component={RecoverPage} />
+          <PublicRoute
+            exact
+            path="/login"
+            component={LoginPage}
+            isAuthenticated={logged}
+          />
+          <PublicRoute
+            exact
+            path="/register"
+            component={RegisterPage}
+            isAuthenticated={logged}
+          />
+          <PublicRoute
+            exact
+            path="/recover-password"
+            component={RecoverPage}
+            isAuthenticated={logged}
+          />
+
+          <PrivateRoute
+            path="/dashboard"
+            component={ProfilePage}
+            isAuthenticated={logged}
+          />
 
           {/* <Route path="/cart/transactionStatus" component={TransactionStatus} />
           <Route path="/cart/confirmData/:userID" component={ConfirmData} />
