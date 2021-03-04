@@ -10,6 +10,9 @@ const findIndexById = (id, products) => {
 
 export default function productsReducer(state = initialState, action) {
   switch (action.type) {
+    case types.CART__RESET_CART_PROCESS:
+      return { ...initialState };
+
     case types.CART__ADD_PRODUCT:
       const foundIndex = findIndexById(action.payload.id, state.products);
       let products = [...state.products];
@@ -45,12 +48,14 @@ export default function productsReducer(state = initialState, action) {
         ...state,
         products: state.products.filter(({ id }) => id !== action.payload),
       };
-    case types.CART__RESET_CART_PROCESS:
-      return { ...initialState };
+
     case types.CART__MOVE_USER_INFO_TO_CART:
       return { ...state, ...action.payload };
     case types.CART__START_FINISH_ORDER:
       return { ...state, ...action.payload };
+
+    case types.CART__PROCESS_REPEAT_ORDER:
+      return { ...state, products: action.payload };
     default:
       return state;
   }

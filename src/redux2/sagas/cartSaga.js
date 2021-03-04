@@ -7,6 +7,7 @@ import types from "../types";
 import { clearSelectedProduct } from "../actions/productsActions";
 import {
   moveUserInfoToCartAction,
+  processRepeatOrderCartAction,
   processResetCartAction,
 } from "../actions/cartActions";
 import { resetUserInfoAction } from "../actions/userActions";
@@ -58,7 +59,7 @@ function* placeOrderCartSaga() {
     }).then((result) => {
       if (result.isConfirmed) {
         store.dispatch(processResetCartAction());
-        if (!userInfo.logged ) {
+        if (!userInfo.logged) {
           store.dispatch(resetUserInfoAction());
         }
         window.location.assign(`${window.location.origin}/orders/${orderID}`);
@@ -73,8 +74,27 @@ function* placeOrderCartSaga() {
   }
 }
 
+function* repeatOrderCartSaga(action) {
+  yield Swal.fire({
+    title: "Deseas agregar estos productos al carrito?",
+    // text: "No podrás deshacerlo!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#00d000",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, agregalos!",
+    cancelButtonText: "No, volvamos!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire("Éxito!", "Productos agregados al carrito", "success");
+      store.dispatch(processRepeatOrderCartAction(action.payload));
+    }
+  });
+}
+
 export default function* watcherCart() {
   yield takeLatest(types.CART__ADD_PRODUCT, addProduct2CartSaga);
   yield takeLatest(types.CART__RESET_CART_START, resetCartSaga);
   yield takeLatest(types.CART__START_FINISH_ORDER, placeOrderCartSaga);
+  yield takeLatest(types.CART__START_REPEAT_ORDER, repeatOrderCartSaga);
 }

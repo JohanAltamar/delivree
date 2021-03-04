@@ -32,6 +32,9 @@ const types = {
   CART__START_FINISH_ORDER: "CART__START_FINISH_ORDER",
   CART__PROCESS_FINISH_ORDER: "CART__PROCESS_FINISH_ORDER",
   CART__MOVE_USER_INFO_TO_CART: "CART__MOVE_USER_INFO_TO_CART",
+  CART__START_REPEAT_ORDER: "CART__START_REPEAT_ORDER",
+  CART__PROCESS_REPEAT_ORDER: "CART__PROCESS_REPEAT_ORDER",
+
   // ======================================================================
   // User types
   // ======================================================================

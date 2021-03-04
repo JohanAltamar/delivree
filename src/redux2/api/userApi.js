@@ -55,8 +55,15 @@ export const logoutUserApi = async () => {
 
 export const fetchUserLatestOrdersApi = async (uid) => {
   let orders = [];
-  const dbOrdersRef = db.collection("orders").where("id", "==", uid);
-  const res = await dbOrdersRef.get();
-  res.forEach((doc) => (orders = [...orders, { orderID: doc.id, ...doc.data() }]));
+  const dbOrdersRef = db.collection("orders");
+  const query = dbOrdersRef
+    .where("id", "==", uid)
+    .orderBy("createdAt", "desc")
+    .limit(3);
+
+  const res = await query.get();
+  res.forEach(
+    (doc) => (orders = [...orders, { orderID: doc.id, ...doc.data() }])
+  );
   return orders;
 };
