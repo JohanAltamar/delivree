@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useHistory, useLocation } from "react-router-dom";
 
 export const PrivateRoute = ({
   isAuthenticated,
   component: Component,
   ...rest
 }) => {
+  const { pathname } = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (pathname?.includes("/dashboard/")) {
+      localStorage.setItem("last-location", pathname);
+    }
+    const lastLocation = localStorage.getItem("last-location");
+    if (isAuthenticated && lastLocation) {
+      history.replace(lastLocation);
+    }
+  }, []);
+
   return (
     <Route
       {...rest}
