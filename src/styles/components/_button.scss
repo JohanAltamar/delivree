@@ -155,3 +155,17 @@
     border-color: $mid-grey;
   }
 }
+
+.btn-text-default {
+  border: none;
+  color: darken($color: rgb(18, 99, 250), $amount: 0);
+
+  transition: $transition;
+
+  &:hover {
+    color: darken($color: rgb(18, 99, 250), $amount: 20);
+  }
+  &:disabled {
+    color: $mid-grey;
+  }
+}

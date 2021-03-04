@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useRouteMatch } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { useRouteMatch } from "react-router-dom";
 
 import { startFecthOrderInfoAction } from "../../redux2/actions/ordersInfoAction";
-import statusTranslations from "../../utils/orderStatusTranslations";
+import OrderInfo from "./OrderInfo";
+
 
 const OrderInfoContainer = () => {
   const { params } = useRouteMatch();
   const { orderID } = params;
-
-  const whatsappMessage = `Quiero información sobre la orden ${orderID}`;
-  const whatsappNumber = 573016669240;
 
   const dispatch = useDispatch();
 
@@ -28,74 +23,7 @@ const OrderInfoContainer = () => {
   return ordersInfo.loading ? (
     <h3 className="text-center mt-5">Cargando...</h3>
   ) : Object.keys(ordersInfo).length > 3 ? ( //error, loading and id are fixed
-    <section className="orders__info-container">
-      <p>
-        <span>ID del pedido: </span>
-        <span>{ordersInfo.id}</span>
-      </p>
-      <p>
-        <span>Cliente: </span>
-        <span>{ordersInfo.fullname}</span>
-      </p>
-      <p>
-        <span>Dirección: </span>
-        <span>{ordersInfo.address}</span>
-      </p>
-      <p>
-        <span>Estado: </span>
-        <span>{statusTranslations[ordersInfo.status]}</span>
-      </p>
-      <span className="orders__info-products">
-        <span>Productos: </span>
-        <ul>
-          {ordersInfo.products.map((item) => (
-            <li>
-              x {item.qty} {item.name} - {item.categoryName}: ${" "}
-              {(item.price * item.qty).toLocaleString("de-DE")}
-            </li>
-          ))}
-        </ul>
-      </span>
-      <p>
-        <span>Domicilio: </span>
-        <span>$ {ordersInfo.deliveryTotal.toLocaleString("de-DE")}</span>
-      </p>
-      <p>
-        <span>Total: </span>
-        <span>$ {ordersInfo.total.toLocaleString("de-DE")}</span>
-      </p>
-      <p>
-        <span>Forma de pago: </span>
-        <span>
-          {ordersInfo.paymentMethod === "cash"
-            ? "Efectivo"
-            : ordersInfo.paymentMethod}
-        </span>
-      </p>
-      {ordersInfo.paymentMethod !== "cash" && (
-        <p>
-          <span>Pago confirmado: </span>
-          <span>{ordersInfo.paymentConfirmed ? "Sí" : "No"}</span>
-        </p>
-      )}
-      <div className="orders__info-buttons">
-        <a
-          className="btn btn-outline-success"
-          href={`https://wa.me/${whatsappNumber}?text=${encodeURI(
-            whatsappMessage
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FontAwesomeIcon icon={faWhatsapp} />
-          Escríbenos
-        </a>
-        <Link to="/" className="btn btn-outline-error">
-          <FontAwesomeIcon icon={faHome} />
-          Volver al inicio
-        </Link>
-      </div>
-    </section>
+    <OrderInfo orderInfo={ordersInfo}/>
   ) : (
     <h6 className="text-center mt-5">
       No fue encontrada la orden <b>{orderID}</b>. Verifica y vuelve a
