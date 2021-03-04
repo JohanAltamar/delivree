@@ -58,7 +58,9 @@ function* placeOrderCartSaga() {
     }).then((result) => {
       if (result.isConfirmed) {
         store.dispatch(processResetCartAction());
-        store.dispatch(resetUserInfoAction());
+        if (!userInfo.logged ) {
+          store.dispatch(resetUserInfoAction());
+        }
         window.location.assign(`${window.location.origin}/orders/${orderID}`);
       } else if (result.isDenied) {
         store.dispatch(processResetCartAction());

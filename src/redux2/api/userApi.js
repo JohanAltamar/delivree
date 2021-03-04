@@ -52,3 +52,11 @@ export const fetchUserInfoApi = async (uid) => {
 export const logoutUserApi = async () => {
   return await firebase.auth().signOut();
 };
+
+export const fetchUserLatestOrdersApi = async (uid) => {
+  let orders = [];
+  const dbOrdersRef = db.collection("orders").where("id", "==", uid);
+  const res = await dbOrdersRef.get();
+  res.forEach((doc) => (orders = [...orders, { orderID: doc.id, ...doc.data() }]));
+  return orders;
+};

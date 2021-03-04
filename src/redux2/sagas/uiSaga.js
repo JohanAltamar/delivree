@@ -3,7 +3,6 @@ import types from "../types";
 import {
   guestInfoModalAction,
   startLoaderAction,
-  stopLoaderAction,
 } from "../actions/uiActions";
 const uiState = (state) => state.ui;
 
@@ -23,4 +22,5 @@ function* startLoaderSaga() {
 export default function* watcherUI() {
   yield takeLatest(types.USER__SET_INFO, guestInfoModalSaga);
   yield takeLatest(types.USER__START_CHECK_LOGGED_USER, startLoaderSaga);
+  yield takeLatest(types.USER__START_FETCH_LATEST_ORDERS, startLoaderSaga);
 }

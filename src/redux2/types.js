@@ -55,6 +55,10 @@ const types = {
   USER__START_FETCH_USER_INFO: "USER__START_FETCH_USER_INFO",
   USER__LOGOUT: "USER__LOGOUT",
 
+  USER__START_FETCH_LATEST_ORDERS: "USER__START_FETCH_LATEST_ORDERS",
+  USER__SUCCESS_FETCH_LATEST_ORDERS: "USER__SUCCESS_FETCH_LATEST_ORDERS",
+  USER__FAIL_FETCH_LATEST_ORDERS: "USER__FAIL_FETCH_LATEST_ORDERS",
+
   // ======================================================================
   // Orders types
   // ======================================================================

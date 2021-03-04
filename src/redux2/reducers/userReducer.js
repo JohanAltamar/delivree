@@ -3,7 +3,7 @@ import types from "../types";
 const initialState = {
   loading: false,
   error: null,
-  logged: false
+  logged: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -39,6 +39,8 @@ const userReducer = (state = initialState, action) => {
     case types.USER__FAIL_LOGGIN:
       return { ...state, loading: false, error: action.payload };
 
+    case types.USER__SUCCESS_FETCH_LATEST_ORDERS:
+      return { ...state, latestOrders: action.payload };
     default:
       return state;
   }

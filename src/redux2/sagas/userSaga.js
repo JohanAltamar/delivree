@@ -5,7 +5,7 @@ import store from "../store";
 import types from "../types";
 import * as userApis from "../api/userApi";
 import * as userActions from "../actions/userActions";
-import { stopLoaderAction } from "../actions/uiActions";
+import { startLoaderAction, stopLoaderAction } from "../actions/uiActions";
 
 const errorAlert = (error) => {
   console.log(error);
@@ -74,10 +74,27 @@ function* logoutUserSaga() {
   }
 }
 
+function* fetchUserLatestOrdersSaga(action) {
+  try {
+    const orders = yield call(
+      userApis.fetchUserLatestOrdersApi,
+      action.payload
+    );
+    yield put(userActions.successFetchUserLatestOrdersAction(orders));
+    yield put(stopLoaderAction());
+  } catch (error) {
+    errorAlert(error);
+  }
+}
+
 export default function* watcherUser() {
   yield takeLatest(types.USER__START_PASSWORD_RECOVER, recoverPasswordSaga);
   yield takeLatest(types.USER__START_CREATE_NEW_USER, createUserSaga);
   yield takeLatest(types.USER__START_LOGGIN, loginUserSaga);
   yield takeLatest(types.USER__START_FETCH_USER_INFO, fetchUserInfoSaga);
   yield takeLatest(types.USER__LOGOUT, logoutUserSaga);
+  yield takeLatest(
+    types.USER__START_FETCH_LATEST_ORDERS,
+    fetchUserLatestOrdersSaga
+  );
 }

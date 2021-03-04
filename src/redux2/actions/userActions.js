@@ -17,8 +17,8 @@ export const errorResetAction = () => ({
 // ==========================================================
 export const startFecthUserInfoAction = (userID) => ({
   type: types.USER__START_FETCH_USER_INFO,
-  payload: userID
-})
+  payload: userID,
+});
 
 // ==========================================================
 // Password Recovery
@@ -74,4 +74,14 @@ export const failLoginUserAction = (message) => ({
 // ==========================================================
 // Logout user
 // ==========================================================
-export const logoutUserAction = () => ({type: types.USER__LOGOUT})
+export const logoutUserAction = () => ({ type: types.USER__LOGOUT });
+
+export const startFetchUserLatestOrdersAction = (userID) => ({
+  type: types.USER__START_FETCH_LATEST_ORDERS,
+  payload: userID,
+});
+
+export const successFetchUserLatestOrdersAction = (latestOrders) => ({
+  type: types.USER__SUCCESS_FETCH_LATEST_ORDERS,
+  payload: latestOrders,
+});
