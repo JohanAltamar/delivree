@@ -1,8 +1,6 @@
 import types from "../types";
 
 const initialState = {
-  loading: false,
-  error: null,
   logged: false,
 };
 

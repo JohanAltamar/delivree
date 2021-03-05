@@ -10,10 +10,11 @@ const useRedirectToCart = (param) => {
   useEffect(() => {
     if (products.length === 0) history.push("/cart");
 
-    if (param === "userInfo" && Object.keys(userInfoState).length === 0) {
+    if (param === "userInfo" && Object.keys(userInfoState).length <= 1) {
+      //logged as default
       history.push("/cart/user-info");
     }
-    if (param === "toCheckout" && Object.keys(userInfoState).length > 0) {
+    if (param === "toCheckout" && Object.keys(userInfoState).length > 1) {
       history.push("/cart/checkout");
     }
   }, [history, products, param, userInfoState]);
