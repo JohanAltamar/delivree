@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const EditProfileInfo = () => {
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, formState, errors, getValues } = useForm({
+  const { register, handleSubmit, formState, errors } = useForm({
     mode: "onChange",
   });
 
