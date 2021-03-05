@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 import ProfileInfo from "./ProfileInfo";
 import LogoutButton from "../Buttons/LogoutButton";
 import { Link } from "react-router-dom";
+import EditProfileButton from "../Buttons/EditProfileButton";
+import DeleteProfileButton from "../Buttons/DeleteProfileButton";
+import UserLatestOrdersButton from "../Buttons/UserLatestOrdersButton";
 
 const ProfileContainer = () => {
   const { userInfo } = useSelector((state) => state);
@@ -16,19 +19,9 @@ const ProfileContainer = () => {
           <LogoutButton />
           <ProfileInfo {...userInfo} />
           <div className="mt-3 buttons-container">
-            <Link
-              className="btn btn-outline-success"
-              to="/dashboard/edit-profile"
-            >
-              <span>Editar Perfil</span>
-            </Link>
-            <button className="btn btn-outline-error">Borrar Perfil</button>
-            <Link
-              className="btn btn-outline-default"
-              to="/dashboard/last-orders"
-            >
-              <span>Ver Pedidos</span>
-            </Link>
+            <EditProfileButton />
+            <DeleteProfileButton />
+            <UserLatestOrdersButton />
           </div>
         </div>
       ) : (
