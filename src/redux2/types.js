@@ -39,6 +39,7 @@ const types = {
   // User types
   // ======================================================================
   USER__SET_INFO: "USER__SET_INFO",
+  USER__EDIT_INFO: "USER__EDIT_INFO",
   USER__RESET_INFO: "USER__RESET_INFO",
   USER__ERROR_RESET: "USER__ERROR_RESET",
   USER__START_CHECK_LOGGED_USER: "USER__START_CHECK_LOGGED_USER",

@@ -87,12 +87,36 @@ function* fetchUserLatestOrdersSaga(action) {
   }
 }
 
+function* editUserInfoSaga(action) {
+  try {
+    const userInfo = { ...action.payload };
+
+    yield call(userApis.updateInfo, userInfo);
+
+    if (action.payload.newPassword) {
+      yield call(
+        userApis.updatePassword,
+        userInfo.password,
+        userInfo.newPassword
+      );
+    }
+
+    delete userInfo.password;
+    delete userInfo.newPassword;
+    yield put(userActions.setUserInfoAction(userInfo));
+    Swal.fire("Éxito", "Información actualizada", "success");
+  } catch (error) {
+    errorAlert(error);
+  }
+}
+
 export default function* watcherUser() {
   yield takeLatest(types.USER__START_PASSWORD_RECOVER, recoverPasswordSaga);
   yield takeLatest(types.USER__START_CREATE_NEW_USER, createUserSaga);
   yield takeLatest(types.USER__START_LOGGIN, loginUserSaga);
   yield takeLatest(types.USER__START_FETCH_USER_INFO, fetchUserInfoSaga);
   yield takeLatest(types.USER__LOGOUT, logoutUserSaga);
+  yield takeLatest(types.USER__EDIT_INFO, editUserInfoSaga);
   yield takeLatest(
     types.USER__START_FETCH_LATEST_ORDERS,
     fetchUserLatestOrdersSaga

@@ -67,3 +67,38 @@ export const fetchUserLatestOrdersApi = async (uid) => {
   );
   return orders;
 };
+
+const currentUser = () => {
+  return firebase.auth().currentUser;
+};
+
+const reauthenticateUser = async (password) => {
+  const user = currentUser();
+  const credentials = firebase.auth.EmailAuthProvider.credential(
+    user.email,
+    password
+  );
+
+  return await user.reauthenticateWithCredential(credentials);
+};
+
+export const updateInfo = async (newInfo) => {
+  const user = currentUser();
+  const userInfo = { ...newInfo };
+
+  await reauthenticateUser(userInfo.password);
+
+  await user.updateEmail(userInfo.email);
+
+  delete userInfo.password;
+  delete userInfo.newPassword;
+
+  return await dbRef.doc(user.uid).update({ ...userInfo });
+};
+
+export const updatePassword = async (password, newPassword) => {
+  const user = currentUser();
+  
+  await reauthenticateUser(password);
+  return await user.updatePassword(newPassword);
+};

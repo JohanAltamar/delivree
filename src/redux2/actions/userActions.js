@@ -5,6 +5,11 @@ export const setUserInfoAction = (payload) => ({
   payload,
 });
 
+export const editUserInfoAction = (payload) => ({
+  type: types.USER__EDIT_INFO,
+  payload,
+});
+
 export const resetUserInfoAction = () => ({
   type: types.USER__RESET_INFO,
 });

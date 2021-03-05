@@ -85,3 +85,14 @@ export const password = {
     message: `Debe tener entre ${minLength.password} y ${maxLength.password} carácteres`,
   },
 };
+
+export const newPassword = {
+  minLength: {
+    value: minLength.password,
+    message: `Debe tener entre ${minLength.password} y ${maxLength.password} carácteres`,
+  },
+  maxLength: {
+    value: maxLength.password,
+    message: `Debe tener entre ${minLength.password} y ${maxLength.password} carácteres`,
+  },
+};
