@@ -63,9 +63,13 @@ function* logoutUserSaga() {
       showDenyButton: true,
       confirmButtonText: `Salir`,
       denyButtonText: `Volver`,
+      showLoaderOnConfirm: true,
+      preConfirm: async () => {
+        return await userApis.logoutUserApi();
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await userApis.logoutUserApi;
         store.dispatch(userActions.resetUserInfoAction());
       }
     });
