@@ -27,6 +27,7 @@ import {
 } from "../redux2/actions/uiActions";
 import { startFecthUserInfoAction } from "../redux2/actions/userActions";
 import ProfileOptionsPage from "../pages/ProfilePage/ProfileOptionsPage";
+import CartButton from "../components/Buttons/CartButton";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const AppRouter = () => {
     <Router>
       <div className="grid__container">
         <Navbar />
+        <CartButton />
         <Switch>
           <Route exact path="/" component={HomePage} />
 

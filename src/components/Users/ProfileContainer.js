@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 import ProfileInfo from "./ProfileInfo";
 import LogoutButton from "../Buttons/LogoutButton";
-import { Link } from "react-router-dom";
 import EditProfileButton from "../Buttons/EditProfileButton";
 import DeleteProfileButton from "../Buttons/DeleteProfileButton";
 import UserLatestOrdersButton from "../Buttons/UserLatestOrdersButton";
