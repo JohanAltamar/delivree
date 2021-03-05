@@ -19,7 +19,7 @@ const EditProfileInfo = () => {
   const { userInfo } = useSelector((state) => state);
   const {
     fullname,
-    cellphoneNumber,
+    telephone,
     address,
     neighborhood,
     email,
@@ -57,11 +57,11 @@ const EditProfileInfo = () => {
       <input
         placeholder="Celular"
         type="text"
-        name="cellphoneNumber"
-        defaultValue={cellphoneNumber}
+        name="telephone"
+        defaultValue={telephone}
         ref={register(rules.contactPhone)}
       />
-      <ErrorMessage error={errors.cellphoneNumber} />
+      <ErrorMessage error={errors.telephone} />
       <input
         placeholder="Dirección"
         type="text"

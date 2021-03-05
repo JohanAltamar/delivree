@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ProfileInfo = ({
   fullname,
-  cellphoneNumber,
+  telephone,
   address,
   neighborhood,
   email,
@@ -17,7 +17,7 @@ const ProfileInfo = ({
         <span>Email: </span> <span>{email}</span>
       </h6>
       <h6>
-        <span>Celular: </span> <span>{cellphoneNumber}</span>
+        <span>Celular: </span> <span>{telephone}</span>
       </h6>
       <h6>
         <span>Dirección: </span> <span>{address}</span>
@@ -33,7 +33,7 @@ export default ProfileInfo;
 
 ProfileInfo.propTypes = {
   address: PropTypes.string.isRequired,
-  cellphoneNumber: PropTypes.string.isRequired,
+  telephone: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   fullname: PropTypes.string.isRequired,
   neighborhood: PropTypes.string.isRequired,

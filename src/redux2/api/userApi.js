@@ -7,7 +7,7 @@ export const createUserApi = async (payload) => {
     email,
     password,
     address,
-    cellphoneNumber,
+    telephone,
     neighborhood,
     fullname,
   } = payload;
@@ -22,7 +22,7 @@ export const createUserApi = async (payload) => {
 
   await dbRef
     .doc(user.uid)
-    .set({ email, fullname, address, cellphoneNumber, neighborhood });
+    .set({ email, fullname, address, telephone, neighborhood });
 
   return;
 };

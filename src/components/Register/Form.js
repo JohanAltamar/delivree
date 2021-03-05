@@ -55,11 +55,11 @@ const RegisterForm = () => {
 
       <input
         type="number"
-        name="cellphoneNumber"
+        name="telephone"
         placeholder="Número de contacto"
         ref={register(contactPhone)}
       />
-      <ErrorMessage error={errors.cellphoneNumber} />
+      <ErrorMessage error={errors.telephone} />
 
       <input
         type="text"

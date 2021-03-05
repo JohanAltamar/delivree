@@ -61,12 +61,12 @@ const InfoModal = () => {
             <ErrorMessage error={errors.fullname} />
 
             <input
-              name="cellphoneNumber"
+              name="telephone"
               type="number"
               placeholder="Número de contacto"
               ref={register(contactPhone)}
             />
-            <ErrorMessage error={errors.cellphoneNumber} />
+            <ErrorMessage error={errors.telephone} />
 
             <input
               name="address"
