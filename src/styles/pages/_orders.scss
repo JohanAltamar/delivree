@@ -57,3 +57,22 @@
     }
   }
 }
+
+.orders__last-orders-title {
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: $spacing * 2;
+
+  &-back-btn {
+    position: absolute;
+    left: $spacing * 4;
+    top: 0;
+    color: $mid-grey;
+
+    &:hover,
+    &:active {
+      color: $dark-grey;
+    }
+  }
+}
