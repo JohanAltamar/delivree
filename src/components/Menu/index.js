@@ -11,7 +11,8 @@ const MenuContainer = () => {
   const { categories, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch({ type: types.PRODUCTS__FETCH_CATEGORIES_START });
+    if (categories.length === 0)
+      dispatch({ type: types.PRODUCTS__FETCH_CATEGORIES_START });
   }, [dispatch]);
 
   return (

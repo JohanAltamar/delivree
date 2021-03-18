@@ -14,7 +14,8 @@ const CategoryContainer = ({ categoryName }) => {
   );
 
   useEffect(() => {
-    dispatch(productsByCategoriesFetchStart(categoryName));
+    if (products.length === 0 || products[0]?.categoryName !== categoryName)
+      dispatch(productsByCategoriesFetchStart(categoryName));
   }, [dispatch, categoryName]);
 
   return (
