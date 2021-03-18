@@ -51,7 +51,7 @@ const LoginForm = () => {
       >
         Entrar
       </button>
-      <button className="btn btn-default btn-block">Entrar con Google</button>
+      {/* <button className="btn btn-default btn-block">Entrar con Google</button> */}
     </form>
   );
 };
