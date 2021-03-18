@@ -13,7 +13,7 @@ const MenuContainer = () => {
   useEffect(() => {
     if (categories.length === 0)
       dispatch({ type: types.PRODUCTS__FETCH_CATEGORIES_START });
-  }, [dispatch]);
+  }, [dispatch, categories.length]);
 
   return (
     <section className="menu__categories-container grid__padding">

@@ -14,9 +14,10 @@ const CategoryContainer = ({ categoryName }) => {
   );
 
   useEffect(() => {
-    if (products.length === 0 || products[0]?.categoryName !== categoryName)
+    if (products.length === 0 || products[0]?.categoryName !== categoryName) {
       dispatch(productsByCategoriesFetchStart(categoryName));
-  }, [dispatch, categoryName]);
+    }
+  }, [dispatch, categoryName, products]);
 
   return (
     <section className="grid__padding menu__category-container h-full overflow-auto">

@@ -33,10 +33,7 @@ export const fetchProductsByCategoryApi = async (categoryName) => {
     .where("category", "==", id);
   const res = await queryProducts.get();
   res.forEach((doc) => {
-    products = [
-      ...products,
-      { id: doc.id, ...doc.data(), categoryName: categoryNameDecoded },
-    ];
+    products = [...products, { id: doc.id, ...doc.data(), categoryName }];
   });
 
   return products;

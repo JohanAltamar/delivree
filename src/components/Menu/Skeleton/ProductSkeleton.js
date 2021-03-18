@@ -2,10 +2,7 @@ import React from "react";
 
 const ProductItem = () => (
   <div className="menu__products-list-item skeleton__products-container">
-    <img
-      className="menu__products-list-item-image skeleton__categories"
-      alt="skeleton while loading finishes"
-    />
+    <div className="menu__products-list-item-image skeleton__categories" />
     <div className="skeleton__products-line mt-3">
       <p className="menu__categories-item skeleton__products-title mt-0 mb-0">
         Titulo

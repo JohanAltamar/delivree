@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { firebase } from "../services/firebase";
@@ -62,16 +61,13 @@ const AppRouter = () => {
     });
   }, [dispatch]);
 
-  // if (loaderRoutes.includes(pathname) && loading) {
-  //   return <h3 className="loader__main-container">Loading...</h3>;
-  // }
-
   return (
     <Router>
       <div className="grid__container">
         {loaderRoutes.includes(pathname) && loading && (
           <h3 className="loader__main-container">Loading...</h3>
         )}
+        
         <Navbar />
         <CartButton />
         <Switch>
