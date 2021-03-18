@@ -5,6 +5,7 @@ import { productsByCategoriesFetchStart } from "../../redux2/actions/productsAct
 import ProductsList from "./ProductsList";
 import { decodeURL } from "../../helpers/transformURL";
 import ProductSelected from "./ProductSelected";
+import ProductSkeleton from "./Skeleton/ProductSkeleton";
 
 const CategoryContainer = ({ categoryName }) => {
   const dispatch = useDispatch();
@@ -18,18 +19,30 @@ const CategoryContainer = ({ categoryName }) => {
 
   return (
     <section className="grid__padding menu__category-container h-full overflow-auto">
-      {loading && <h2>Loading ...</h2>}
+      {loading && <ProductSkeleton />}
       {!loading && products.length > 0 && (
-        <ProductsList products={products} category={decodeURL(categoryName)} />
+        <>
+          <ProductsList
+            products={products}
+            category={decodeURL(categoryName)}
+          />
+          {selectedProduct ? (
+            <div className="menu__item-selected">
+              <ProductSelected product={selectedProduct} />
+            </div>
+          ) : (
+            <h6 className="text-center menu__item-selected-null">
+              Selecciona un producto de la lista
+            </h6>
+          )}
+        </>
       )}
-      {selectedProduct ? (
-        <div className="menu__item-selected">
-          <ProductSelected product={selectedProduct} />
-        </div>
-      ) : (
-        <h6 className="text-center menu__item-selected-null">
-          Selecciona un producto de la lista
-        </h6>
+      {!loading && products.length === 0 && (
+        <>
+          <h2 className="margin-auto text-center">
+            No hay productos en esta categoría
+          </h2>
+        </>
       )}
     </section>
   );

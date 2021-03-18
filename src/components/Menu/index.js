@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import types from "../../redux2/types";
 import { encodeURL } from "../../helpers/transformURL";
+import CategorySkeleton from "./Skeleton/CategorySkeleton";
 
 const MenuContainer = () => {
   const { path } = useRouteMatch();
@@ -16,10 +17,12 @@ const MenuContainer = () => {
   return (
     <section className="menu__categories-container grid__padding">
       {loading && (
-        <h2 className="menu__categories-loader text-center">Loading...</h2>
+        //
+        <CategorySkeleton />
       )}
 
-      {!loading && categories.length > 0 &&
+      {!loading &&
+        categories.length > 0 &&
         categories.map(({ id, name, url }) => (
           <div className="menu__categories-item" key={id}>
             <Link to={`${path}/${encodeURL(name)}`}>

@@ -41,15 +41,15 @@ a {
   text-align: center;
 }
 
-.h-full{
+.h-full {
   height: 100%;
 }
 
-.w-full{
+.w-full {
   width: 100%;
 }
 
-.overflow-auto{
+.overflow-auto {
   overflow: auto;
 }
 
@@ -97,6 +97,10 @@ a {
   margin-left: $spacing;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 .p-0 {
   padding: 0;
 }
@@ -106,14 +110,14 @@ a {
   padding-bottom: $spacing * 5;
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
-.justify-space-between{
+.justify-space-between {
   justify-content: space-between;
 }
 
-.align-center{
+.align-center {
   align-items: center;
 }

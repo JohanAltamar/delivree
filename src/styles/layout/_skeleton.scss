@@ -1,0 +1,85 @@
+$color-1: darken(
+  $color: $light-grey,
+  $amount: 5,
+);
+$color-2: darken(
+  $color: $light-grey,
+  $amount: 20,
+);
+
+.skeleton__categories {
+  // background-color: darken($color: $light-grey, $amount: 15);
+  background: linear-gradient(90deg, $color-1 50%, $color-2 100%);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: $image-border-radius;
+
+  animation: skeleton 0.8s infinite;
+}
+
+.skeleton-list {
+  width: 100%;
+}
+
+.skeleton__products {
+  &-container {
+    width: 100%;
+  }
+  &-line {
+    height: 24px;
+    padding: 4px 0;
+  }
+  &-title,
+  &-price,
+  &-description {
+    height: 1rem;
+    background: linear-gradient(90deg, $color-1 50%, $color-2 100%);
+    color: transparent;
+
+    animation: skeleton 0.8s infinite;
+  }
+
+  &-title {
+    width: 70%;
+  }
+  &-price {
+    width: 30%;
+  }
+  &-description {
+    width: 100%;
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    background: linear-gradient(90deg, $color-2 0%, $color-1 50%);
+  }
+  25% {
+    background: linear-gradient(
+      90deg,
+      $color-1 -25%,
+      $color-2 25%,
+      $color-1 75%
+    );
+  }
+  50% {
+    background: linear-gradient(
+      90deg,
+      $color-1 0%,
+      $color-2 50%,
+      $color-1 100%
+    );
+  }
+  75% {
+    background: linear-gradient(
+      90deg,
+      $color-1 25%,
+      $color-2 75%,
+      $color-1 125%
+    );
+  }
+  100% {
+    background: linear-gradient(90deg, $color-1 50%, $color-2 100%);
+  }
+}
