@@ -25,6 +25,9 @@
     &-image {
       border-radius: $spacing;
       margin-bottom: $spacing;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
     }
 
     &-name {
