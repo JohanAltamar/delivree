@@ -14,7 +14,7 @@ const ShoppingCartContainer = () => {
   return (
     <section className="cart__main-container grid__padding">
       {products.length === 0 ? (
-        <h6>
+        <h6 className="cart__products-empty text-center mt-5">
           No hay productos en el carrito, agrégalos desde el{" "}
           <Link to="/menu">menú</Link>
         </h6>

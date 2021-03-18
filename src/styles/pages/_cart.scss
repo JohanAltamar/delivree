@@ -1,6 +1,9 @@
 $padding: $spacing * 1.5;
 
 .cart__products {
+  &-empty {
+    grid-column: 1 / -1;
+  }
   &-container {
     display: flex;
     flex-direction: column;
@@ -67,8 +70,8 @@ $padding: $spacing * 1.5;
     }
   }
 
-  &-spacer{
-    min-height: .001rem;
+  &-spacer {
+    min-height: 0.001rem;
   }
 }
 
@@ -113,14 +116,14 @@ $padding: $spacing * 1.5;
         justify-content: center;
       }
 
-      &-container{
+      &-container {
         position: fixed;
       }
 
-      &-title{
+      &-title {
         display: block;
       }
-      &-total{
+      &-total {
         white-space: nowrap;
       }
     }
