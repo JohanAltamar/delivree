@@ -8,11 +8,17 @@ export const PublicRoute = ({
   component: Component,
   ...rest
 }) => {
+  const lastLocation = localStorage.getItem("last-location") || "/dashboard";
+
   return (
     <Route
       {...rest}
       component={(props) =>
-        isAuthenticated ? <Redirect to="/dashboard" /> : <Component {...props} />
+        isAuthenticated ? (
+          <Redirect to={lastLocation} />
+        ) : (
+          <Component {...props} />
+        )
       }
     />
   );
