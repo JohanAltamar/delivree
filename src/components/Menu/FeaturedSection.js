@@ -1,36 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import FeaturedItem from "./FeaturedItem";
+import { db } from "../../services/firebase";
 
-const featuredProducts = [
-  {
-    url:
-      "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2FbroastedChicken100.webp?alt=media&token=0c8b5f03-f10b-467c-a7eb-d7225aee1f88",
-    name: "broasted Chicken",
-    price: 15000,
-    id: "brodododooddodood",
-  },
-  {
-    url:
-      "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2FbroastedChicken100.webp?alt=media&token=0c8b5f03-f10b-467c-a7eb-d7225aee1f88",
-    name: "broasted Chicken",
-    price: 15000,
-    id: "brodododooddodooda",
-  },
-  {
-    url:
-      "https://firebasestorage.googleapis.com/v0/b/cloudstorage-abfc4.appspot.com/o/images%2FbroastedChicken100.webp?alt=media&token=0c8b5f03-f10b-467c-a7eb-d7225aee1f88",
-    name: "broasted Chicken",
-    price: 15000,
-    id: "brodododooddodoodaa",
-  },
-];
+import FeaturedItem from "./FeaturedItem";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
+  const fetchProducts = async () => {
+    let featuredProducts = [];
+
+    const dbRef = db.collection("products");
+    const query = dbRef.where("featured", "==", true);
+    const res = await query.get();
+
+    res.forEach((item) => {
+      featuredProducts = [...featuredProducts, { ...item.data(), id: item.id }];
+    });
     setProducts(featuredProducts);
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
@@ -39,7 +30,7 @@ const FeaturedProducts = () => {
         <h4 className="feature__container-title">Los más pedidos</h4>
         <div className="feature__items-container">
           {products.map((todo) => (
-            <FeaturedItem {...todo} />
+            <FeaturedItem key={todo.id} {...todo} />
           ))}
         </div>
         <Link to="/menu">
