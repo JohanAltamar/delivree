@@ -22,5 +22,5 @@ function* startLoaderSaga() {
 export default function* watcherUI() {
   yield takeLatest(types.USER__SET_INFO, guestInfoModalSaga);
   yield takeLatest(types.USER__START_CHECK_LOGGED_USER, startLoaderSaga);
-  yield takeLatest(types.USER__START_FETCH_LATEST_ORDERS, startLoaderSaga);
+  // yield takeLatest(types.USER__START_FETCH_LATEST_ORDERS, startLoaderSaga);
 }

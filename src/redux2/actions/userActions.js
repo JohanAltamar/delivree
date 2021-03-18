@@ -10,6 +10,10 @@ export const editUserInfoAction = (payload) => ({
   payload,
 });
 
+export const deleteUserAction = () => ({
+  type: types.USER__DELETE_USER,
+});
+
 export const resetUserInfoAction = () => ({
   type: types.USER__RESET_INFO,
 });

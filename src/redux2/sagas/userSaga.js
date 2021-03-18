@@ -14,6 +14,27 @@ const errorAlert = (error) => {
   );
 };
 
+const requestPasswordAlert = async () => {
+  const { value: password } = await Swal.fire({
+    title: "Ingrese la contraseña",
+    input: "password",
+    inputLabel: "Password",
+    inputPlaceholder: "Digite su contraseña",
+    inputAttributes: {
+      minlength: 6,
+      maxlength: 116,
+      autocapitalize: "off",
+      autocorrect: "off",
+    },
+  });
+
+  if (password) {
+    await userApis.deleteUser(password);
+    Swal.fire(`Usuario Eliminado.`);
+    window.location.assign(`${window.location.origin}/login`);
+  }
+};
+
 function* recoverPasswordSaga(action) {
   try {
     yield call(userApis.recoverPasswordApi, action.payload);
@@ -80,6 +101,7 @@ function* logoutUserSaga() {
 
 function* fetchUserLatestOrdersSaga(action) {
   try {
+    yield put(startLoaderAction())
     const orders = yield call(
       userApis.fetchUserLatestOrdersApi,
       action.payload
@@ -114,6 +136,14 @@ function* editUserInfoSaga(action) {
   }
 }
 
+function* deleteUserSaga() {
+  try {
+    yield requestPasswordAlert();
+  } catch (error) {
+    errorAlert(error);
+  }
+}
+
 export default function* watcherUser() {
   yield takeLatest(types.USER__START_PASSWORD_RECOVER, recoverPasswordSaga);
   yield takeLatest(types.USER__START_CREATE_NEW_USER, createUserSaga);
@@ -121,6 +151,7 @@ export default function* watcherUser() {
   yield takeLatest(types.USER__START_FETCH_USER_INFO, fetchUserInfoSaga);
   yield takeLatest(types.USER__LOGOUT, logoutUserSaga);
   yield takeLatest(types.USER__EDIT_INFO, editUserInfoSaga);
+  yield takeLatest(types.USER__DELETE_USER, deleteUserSaga);
   yield takeLatest(
     types.USER__START_FETCH_LATEST_ORDERS,
     fetchUserLatestOrdersSaga

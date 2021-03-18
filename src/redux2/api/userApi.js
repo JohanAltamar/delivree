@@ -98,7 +98,15 @@ export const updateInfo = async (newInfo) => {
 
 export const updatePassword = async (password, newPassword) => {
   const user = currentUser();
-  
+
   await reauthenticateUser(password);
   return await user.updatePassword(newPassword);
+};
+
+export const deleteUser = async (password) => {
+  const user = currentUser();
+  await reauthenticateUser(password);
+
+  await dbRef.doc(user.uid).update({ enabled: false });
+  return await user.delete();
 };
