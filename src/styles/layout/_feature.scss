@@ -33,6 +33,16 @@
     &-name {
       text-transform: capitalize;
     }
+    &-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      & span {
+        width: 40px;
+      }
+    }
   }
   @include respond-to("small") {
     .feature__item {

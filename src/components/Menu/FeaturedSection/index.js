@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { db } from "../../services/firebase";
+import { db } from "../../../services/firebase";
 
 import FeaturedItem from "./FeaturedItem";
 
