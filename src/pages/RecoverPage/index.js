@@ -1,13 +1,18 @@
-import React from 'react'
-import Layout from '../../components/Layout'
-import RecoverPasswordContainer from '../../components/Recover'
+import React from "react";
+import Layout from "../../components/Layout";
+import RecoverPasswordContainer from "../../components/Recover";
+import SEO from "../../components/SEO";
 
 const RecoverPage = () => {
   return (
-    <Layout>
-      <RecoverPasswordContainer />      
-    </Layout>
-  )
-}
+    <>
+      <SEO title="Recupera tu conraseña" />
 
-export default RecoverPage
+      <Layout>
+        <RecoverPasswordContainer />
+      </Layout>
+    </>
+  );
+};
+
+export default RecoverPage;

@@ -1,13 +1,18 @@
-import React from 'react'
-import Layout from '../../components/Layout'
-import RegisterContainer from '../../components/Register'
+import React from "react";
+import Layout from "../../components/Layout";
+import RegisterContainer from "../../components/Register";
+import SEO from "../../components/SEO";
 
 const RegisterPage = () => {
   return (
-    <Layout>
-      <RegisterContainer />      
-    </Layout>
-  )
-}
+    <>
+      <SEO title="Crea un usuario" />
 
-export default RegisterPage
+      <Layout>
+        <RegisterContainer />
+      </Layout>
+    </>
+  );
+};
+
+export default RegisterPage;

@@ -1,16 +1,18 @@
-import React from 'react'
+import React from "react";
 
-import Layout from '../../components/Layout'
-import ProfileContainer from '../../components/Users/ProfileContainer';
-
+import Layout from "../../components/Layout";
+import SEO from "../../components/SEO";
+import ProfileContainer from "../../components/Users/ProfileContainer";
 
 const ProfilePage = () => {
-  
   return (
-    <Layout>
-      <ProfileContainer />
-    </Layout>
-  )
-}
+    <>
+      <SEO title="Perfil" />
+      <Layout>
+        <ProfileContainer />
+      </Layout>
+    </>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

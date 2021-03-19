@@ -37,7 +37,9 @@ const Navbar = () => {
       }`}
     >
       <Link to="/">
-        <h1 className="navbar__brand-title">Delivree</h1>
+        <h1 className="navbar__brand-title">
+          {process.env.REACT_APP_Restaurant_Name || "Delivree"}
+        </h1>
       </Link>
       <nav className="navbar__sections">
         <MenuList />

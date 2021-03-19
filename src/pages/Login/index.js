@@ -1,13 +1,18 @@
-import React from 'react'
-import Layout from '../../components/Layout'
-import LoginContainer from '../../components/Login'
+import React from "react";
+import Layout from "../../components/Layout";
+import LoginContainer from "../../components/Login";
+import SEO from "../../components/SEO";
 
 const LoginPage = () => {
   return (
-    <Layout>
-      <LoginContainer />
-    </Layout>
-  )
-}
+    <>
+      <SEO title="Inicia Sesión" />
 
-export default LoginPage
+      <Layout>
+        <LoginContainer />
+      </Layout>
+    </>
+  );
+};
+
+export default LoginPage;
