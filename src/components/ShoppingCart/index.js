@@ -9,11 +9,11 @@ const ShoppingCartContainer = () => {
 
   const reducer = (accumulator, currentValue) =>
     accumulator + currentValue.qty * currentValue.price;
-  const total = products.reduce(reducer, 0);
+  const total = products ? products.reduce(reducer, 0) : 0;
 
   return (
     <section className="cart__main-container grid__padding">
-      {products.length === 0 ? (
+      {!products || products.length === 0 ? (
         <h6 className="cart__products-empty text-center mt-5">
           No hay productos en el carrito, agrégalos desde el{" "}
           <Link to="/menu">menú</Link>

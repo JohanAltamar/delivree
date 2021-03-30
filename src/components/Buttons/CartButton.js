@@ -8,7 +8,7 @@ const CartButton = () => {
   const { pathname } = useLocation();
   const { products } = useSelector((state) => state.shoppingCart);
 
-  return products.length > 0 && !pathname.includes("cart") ? (
+  return products && products.length > 0 && !pathname.includes("cart") ? (
     <Link className="btn-cart" to="/cart">
       <FontAwesomeIcon icon={faShoppingCart} />
     </Link>
