@@ -13,6 +13,7 @@ const OrderInfoContainer = () => {
   const dispatch = useDispatch();
 
   const ordersInfo = useSelector((state) => state.ordersInfo);
+  const { loading } = useSelector(state => state.ui);
 
   useEffect(() => {
     if (orderID) {
@@ -20,10 +21,10 @@ const OrderInfoContainer = () => {
     }
   }, [orderID, dispatch]);
 
-  return ordersInfo.loading ? (
+  return loading ? (
     <h3 className="text-center mt-5">Cargando...</h3>
   ) : Object.keys(ordersInfo).length > 3 ? ( //error, loading and id are fixed
-    <OrderInfo orderInfo={ordersInfo}/>
+    <OrderInfo orderInfo={ordersInfo} />
   ) : (
     <h6 className="text-center mt-5">
       No fue encontrada la orden <b>{orderID}</b>. Verifica y vuelve a
