@@ -1,71 +1,15 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  showPWAInstallBanner,
-  setPWAStatus,
-  setBeforeinstallpromptEventData,
-} from "./redux/actions";
-import "./App.css";
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
-import Header from "./components/Header";
-import Main from "./components/Main";
-import PwaModal from "./components/PwaModal";
+import AppRouter from "./routers/AppRouter";
 
 function App() {
-  // const [showPWAModal, setShowPWAModal] = useState(true);
-  const dispatch = useDispatch();
-  const showPWAModal = useSelector(
-    (state) => state.userInterface.PWAInstallBanner
-  );
-  const beforeinstallpromptEventData = useSelector(
-    (state) => state.userInterface.beforeinstallpromptEventData
-  );
-  //Add pwaStatus to redux
-  // const [PWAStatus, setPWAStatus] = useState(false);
-  var deferredPrompt;
-
-  window.addEventListener("beforeinstallprompt", function (e) {
-    e.preventDefault();
-    dispatch(setBeforeinstallpromptEventData(e));
-  });
-
-  function addToHomeScreen() {
-    dispatch(showPWAInstallBanner(false));
-    deferredPrompt = beforeinstallpromptEventData;
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(function (choiceResult) {
-        if (choiceResult.outcome === "accepted") {
-          // console.log('User accepted the A2HS prompt');
-        } else {
-          // console.log('User dismissed the A2HS prompt');
-          // setPWAStatus(choiceResult.outcome); //Could be saved to remember user choice
-        }
-        deferredPrompt = null;
-        dispatch((setBeforeinstallpromptEventData(null)))
-      });
-    }
-  }
-
   return (
-    <main>
-      <Header />
-      <Main />
-      {beforeinstallpromptEventData && (
-        <PwaModal
-          show={showPWAModal}
-          onHide={() => dispatch(showPWAInstallBanner(false))}
-          installPWA={(value) => {
-            if (value) {
-              addToHomeScreen();
-            } else {
-              dispatch(setPWAStatus("dismissed"));
-              dispatch(showPWAInstallBanner(false));
-            }
-          }}
-        />
-      )}
-    </main>
+    <>
+      <AppRouter />
+      <ToastContainer autoClose={3000} />
+    </>
   );
 }
 

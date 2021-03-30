@@ -1,0 +1,68 @@
+input,
+textarea,
+select {
+  background-color: inherit;
+  width: 100%;
+  padding: $spacing $spacing;
+  border: 1px solid lighten($color: $brand-color, $amount: 10);
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+
+  transition: $transition;
+
+  &:focus {
+    background-color: $light-grey;
+  }
+  &:invalid {
+    outline: none;
+  }
+}
+
+.input__order-tracker {
+  &-container {
+    position: relative;
+  }
+
+  &-input {
+    padding-right: $spacing * 5;
+  }
+
+  &-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-width: 42px;
+    padding: $spacing $spacing;
+    background-color: $brand-color;
+
+    & svg{
+      color: #fff;
+    }
+
+    &-content {
+      display: none;
+    }
+  }
+}
+@include respond-to("small") {
+  .input__order-tracker {
+    &-input {
+      padding-right: $spacing * 15;
+    }
+
+    &-button {
+      width: $spacing * 15;
+      &-content {
+        display: block;
+        margin-left: $spacing;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.input__error-message {
+  color: lighten($color: #f00, $amount: 15);
+  margin-top: $spacing / 2;
+}

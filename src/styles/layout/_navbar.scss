@@ -1,0 +1,187 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+.navbar__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $light-grey;
+  box-shadow: none;
+
+  transition: $transition;
+
+  .navbar__brand-title{
+    font-size: $spacing * 4;
+    transition: $transition;
+  }
+
+  .navbar__sections {
+    display: none;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+@include respond-to("small") {
+  .navbar__wrapper {
+    height: 64px;
+    
+    .navbar__sections {
+      display: block;
+      height: 56px;
+  
+      & .wide {
+        display: flex;
+        align-items: center;
+        height: 56px;
+        & > * {
+          padding: 0 $spacing * 1.25;
+        }
+      }
+    }
+  }
+}
+
+.navbar__shadow {
+  box-shadow: 0 5px 15px rgba($color: #000000, $alpha: 0.6);
+}
+
+.navbar__menu-icon {
+  width: 32px;
+  height: 24px;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+
+  & span {
+    display: block;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: $brand-color;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0px;
+    }
+    &:nth-child(2) {
+      top: 10px;
+    }
+    &:nth-child(3) {
+      top: 20px;
+    }
+  }
+
+  &.open span:nth-child(1) {
+    top: 10px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+
+  &.open span:nth-child(2) {
+    opacity: 0;
+    left: -32px;
+  }
+
+  &.open span:nth-child(3) {
+    top: 10px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+  }
+}
+@include respond-to("small") {
+  .navbar__menu-icon {
+    display: none;
+  }
+}
+
+.navbar__side-menu {
+  position: fixed;
+  top: 56px;
+  right: -100%;
+
+  transition: $transition;
+
+  &.active {
+    right: 0;
+  }
+
+  &-container {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+
+    &.active {
+      display: block;
+    }
+
+    &-closer {
+      width: calc(100vw - 230px);
+      height: 100%;
+    }
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 220px;
+    background-color: $light-grey;
+    box-shadow: -6px 8px 8px rgba($color: #000000, $alpha: 0.3);
+
+    & > * {
+      font-size: 20px;
+      width: 100%;
+      text-align: center;
+      padding: $spacing * 2;
+      border-bottom: 1px solid $mid-grey;
+
+      &:last-child{
+        border: none;
+      }
+    }
+
+    & a {
+      background-color: $light-grey;
+      transition: $transition;
+    }
+
+    & a:hover {
+      background-color: $brand-color;
+      color: #fff;
+    }
+  }
+}

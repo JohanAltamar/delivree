@@ -1,0 +1,49 @@
+.profile__info-container {
+  position: relative;
+  margin: auto;
+  max-width: 100%;
+  padding: $spacing * 4;
+  border-radius: $image-border-radius;
+  box-shadow: 0 $spacing $spacing * 2 rgba($color: $dark-grey, $alpha: 0.5);
+
+  & > * {
+    display: flex;
+    justify-content: space-between;
+
+    &:first-child {
+      justify-content: center;
+    }
+
+    & > *:first-child {
+      font-weight: bold;
+    }
+
+  }
+
+  .btn-sign-out{
+    position: absolute;
+    top: $spacing;
+    right: $spacing;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .buttons-container {
+    display: block;
+    & > * {
+      width: 100%;
+      margin-bottom: $spacing * 3;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@include respond-to("small") {
+  .profile__info-container {
+    max-width: 500px;
+  }
+}

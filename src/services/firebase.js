@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
@@ -11,13 +11,13 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_messagingSenderId,
   appId: process.env.REACT_APP_appId,
   measurementId: process.env.REACT_APP_measurementId,
-}; 
+};
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-var db = firebase.firestore();
-export const timeStamp = firebase.firestore.FieldValue.serverTimestamp();
-export const auth = firebase.auth();
-export const firestore = firebase.firestore;
-export default db;
+const db = firebase.firestore();
+// export const timeStamp = firebase.firestore.FieldValue.serverTimestamp();
+// export const auth = firebase.auth();
+// export const firestore = firebase.firestore;
+export { db, firebase };

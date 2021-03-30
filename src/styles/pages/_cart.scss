@@ -1,0 +1,131 @@
+$padding: $spacing * 1.5;
+
+.cart__products {
+  &-empty {
+    grid-column: 1 / -1;
+  }
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-item {
+    &-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+      grid-template-areas:
+        "title    title   title"
+        "price    qty     total"
+        "buttons  buttons add-notes"
+        "notes    notes   notes";
+      position: relative;
+
+      margin-bottom: $spacing * 4;
+      padding: $padding;
+      border-radius: $image-border-radius;
+
+      box-shadow: 0 $spacing $spacing rgba($color: $mid-grey, $alpha: 0.5);
+    }
+
+    &-title {
+      grid-area: title;
+      text-transform: capitalize;
+      font-weight: bold;
+      line-height: 2;
+    }
+
+    &-price {
+      grid-area: price;
+      white-space: nowrap;
+    }
+
+    &-qty {
+      grid-area: qty;
+      justify-self: right;
+    }
+
+    &-total {
+      grid-area: total;
+      justify-self: right;
+    }
+
+    &-buttons {
+      grid-area: buttons;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    &-notes {
+      grid-area: notes;
+    }
+
+    &-add-notes {
+      grid-area: add-notes;
+      justify-self: right;
+    }
+    &-remove-btn {
+      position: absolute;
+      top: $padding;
+      right: $padding;
+    }
+  }
+
+  &-spacer {
+    min-height: 0.001rem;
+  }
+}
+
+.cart__resume {
+  &-wrapper {
+    position: sticky;
+    bottom: 0;
+    background-color: rgba($color: $light-grey, $alpha: 0.75);
+    padding: $padding * 2;
+    text-align: center;
+  }
+
+  &-title {
+    display: none;
+  }
+
+  &-total {
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+}
+
+@include respond-to("small") {
+  .cart__main-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: calc(100vh - 260px);
+    overflow: auto;
+
+    .cart__products {
+      &-container {
+        grid-column: span 2;
+        padding: $spacing * 2 $spacing;
+      }
+    }
+    .cart__resume {
+      &-wrapper {
+        grid-column: span 2;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &-container {
+        position: fixed;
+      }
+
+      &-title {
+        display: block;
+      }
+      &-total {
+        white-space: nowrap;
+      }
+    }
+  }
+}

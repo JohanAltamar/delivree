@@ -1,0 +1,85 @@
+.hero__container {
+  position: relative;
+  height: 350px;
+  background-image: url("../../img/hero.png");
+  background-repeat: no-repeat;
+  background-position: 25%;
+  background-size: cover;
+
+  .hero__message {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    transform: translate(-50%, 0);
+    padding: $spacing $spacing * 2;
+    max-width: 80%;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #fff;
+    background-color: rgba($color: $brand-color, $alpha: 0.4);
+    white-space: nowrap;
+    cursor: default;
+    border-radius: $spacing / 2;
+  }
+
+  .hero__button {
+    position: absolute;
+    left: 10%;
+    bottom: 25%;
+    width: 120px;
+
+    background-color: rgba($color: $brand-color, $alpha: 0.4);
+    color: #fff;
+    font-size: 1.25rem;
+
+    transition: $transition;
+
+    &:hover {
+      background-color: rgba($color: $secondary-color, $alpha: 0.6);
+      box-shadow: 4px 4px 4px rgba($color: $secondary-color, $alpha: 0.3);
+    }
+  }
+}
+
+@include respond-to("small") {
+  .hero__container {
+    height: 400px;
+    .hero__message {
+      top: 50px;
+      font-size: 3rem;
+    }
+    .hero__button {
+      bottom: 15%;
+      font-size: 2rem;
+      width: 170px;
+    }
+  }
+}
+
+@include respond-to("medium") {
+  .hero__container {
+    height: 450px;
+    .hero__message {
+      font-size: 3.5rem;
+    }
+    .hero__button {
+      bottom: 10%;
+      font-size: 2.5rem;
+      width: 200px;
+    }
+  }
+}
+
+@include respond-to("large") {
+  .hero__container {
+    height: 550px;
+    .hero__message {
+      font-size: 4rem;
+    }
+    .hero__button {
+      bottom: 10%;
+      font-size: 3rem;
+      width: 250px;
+    }
+  }
+}

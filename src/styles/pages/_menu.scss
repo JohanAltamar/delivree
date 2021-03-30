@@ -1,0 +1,222 @@
+.menu__categories {
+  &-container {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $grid-gap-default;
+  }
+
+  &-loader {
+    grid-column: span $columns;
+  }
+
+  &-item {
+    grid-column: span $columns / $grid-cols-default;
+    position: relative;
+
+    &-image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: $image-border-radius;
+    }
+
+    &-title {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: capitalize;
+      color: $light-grey;
+      background-color: rgba($color: $dark-grey, $alpha: 0.5);
+      border-radius: $image-border-radius;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  @include respond-to("small") {
+    &-item {
+      grid-column: span $columns / $grid-cols-small;
+    }
+  }
+  @include respond-to("medium") {
+    &-item {
+      &-title {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  @include respond-to("large") {
+    &-item {
+      &-title {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.menu__category-container {
+  display: flex;
+}
+
+.menu__products {
+  &-list {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    row-gap: 2rem;
+
+    &-item {
+      grid-column: span $columns;
+      cursor: pointer;
+
+      &-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: $image-border-radius;
+      }
+      &-name {
+        display: block;
+        font-weight: bold;
+      }
+      &-price {
+        display: block;
+      }
+    }
+  }
+  @include respond-to("small") {
+    &-list {
+      column-gap: 2rem;
+
+      &-item {
+        grid-column: span $columns / 2;
+      }
+    }
+  }
+  @include respond-to("medium") {
+    &-list {
+      min-width: 100% / 3 * 2;
+      max-width: 100% / 3 * 2;
+
+      &-item {
+        grid-column: span $columns / 2;
+      }
+    }
+  }
+  @include respond-to("large") {
+    &-list {
+      min-width: 100% / 4 * 3;
+      max-width: 100% / 4 * 3;
+      &-item {
+        grid-column: span $columns / 3;
+      }
+    }
+  }
+}
+
+.menu__item-selected {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: rgba($color: $dark-grey, $alpha: 0.5);
+  width: 100%;
+  z-index: 100;
+
+  &-product {
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 320px;
+    max-width: 450px;
+    padding: $grid-gap-default * 2;
+    background-color: darken($color: $light-grey, $amount: 0);
+    border-radius: $image-border-radius;
+  }
+
+  &-close-btn {
+    position: absolute;
+    top: $grid-gap-default;
+    right: $grid-gap-default / 2;
+    width: 2rem;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+
+  &-null {
+    display: none;
+  }
+}
+@include respond-to("small") {
+  .menu__item-selected-product {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 3fr 1fr 1fr;
+    grid-template-areas:
+      "title  title       title"
+      "image  total       total"
+      "image  buttons     buttons"
+      "image  add-button  add-button"
+      "image  add-notes   add-notes";
+    min-width: 560px;
+    max-height: 100%;
+    overflow: auto;
+
+    .menu__products-list-item {
+      grid-area: image;
+    }
+    &-title {
+      grid-area: title;
+    }
+    &-total {
+      grid-area: total;
+    }
+    &-buttons {
+      grid-area: buttons;
+    }
+    &-add-button {
+      grid-area: add-button;
+    }
+    &-add-notes {
+      grid-area: add-notes;
+    }
+  }
+}
+
+@include respond-to("medium") {
+  .menu__item-selected {
+    position: relative;
+    left: unset;
+    top: unset;
+    height: unset;
+    background-color: unset;
+    width: unset;
+    z-index: 1;
+
+    &-product {
+      position: relative;
+      display: block;
+      min-width: unset;
+      left: unset;
+      top: unset;
+      transform: unset;
+      padding: 0 $grid-gap-default;
+      border-radius: unset;
+      background-color: unset;
+    }
+    &-close-btn {
+      display: none;
+    }
+
+    &-null {
+      display: block;
+    }
+  }
+}

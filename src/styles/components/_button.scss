@@ -1,0 +1,190 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02857em;
+  border: none;
+  border-radius: $spacing / 2;
+  cursor: pointer;
+  min-height: 42px;
+  min-width: 64px;
+  outline: none;
+  padding: $spacing $spacing * 2;
+
+  &:disabled {
+    cursor: default;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-primary {
+  background-color: $brand-color;
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $brand-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $brand-color, $amount: 20);
+  }
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-h-2 {
+  min-height: 2rem;
+  padding: 0;
+  min-width: 40px;
+}
+
+.btn-error {
+  background-color: $error-color;
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $error-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $error-color, $amount: 20);
+  }
+}
+
+.btn-outline-error {
+  border: 1px solid $error-color;
+  color: darken($color: $error-color, $amount: 15);
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $error-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $error-color, $amount: 20);
+  }
+}
+
+.btn-text-error {
+  border: none;
+  color: darken($color: $error-color, $amount: 0);
+
+  transition: $transition;
+
+  &:hover {
+    color: darken($color: $error-color, $amount: 20);
+  }
+  &:disabled {
+    color: $mid-grey;
+  }
+}
+
+.btn-success {
+  background-color: $success-color;
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: $success-color, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: $success-color, $amount: 20);
+  }
+}
+
+.btn-outline-success {
+  border: 1px solid $success-color;
+  color: darken($color: $success-color, $amount: 15);
+
+  transition: $transition;
+
+  &:hover,
+  &:active {
+    color: white;
+    background-color: darken($color: $success-color, $amount: 20);
+  }
+  &:disabled {
+    color: $mid-grey;
+    border-color: $mid-grey;
+  }
+}
+
+.btn-default {
+  background-color: rgb(18, 99, 250);
+  color: white;
+
+  transition: $transition;
+
+  &:hover {
+    color: white;
+    background-color: darken($color: #00f, $amount: 20);
+  }
+  &:disabled {
+    background-color: lighten($color: #00f, $amount: 20);
+  }
+}
+
+.btn-outline-default {
+  border: 1px solid rgb(18, 99, 250);
+  color: rgb(18, 99, 250);
+
+  transition: $transition;
+
+  &:hover,
+  &:active {
+    color: white;
+    background-color: darken($color: rgb(18, 99, 250), $amount: 20);
+  }
+  &:disabled {
+    color: $mid-grey;
+    border-color: $mid-grey;
+  }
+}
+
+.btn-text-default {
+  border: none;
+  color: darken($color: rgb(18, 99, 250), $amount: 0);
+
+  transition: $transition;
+
+  &:hover {
+    color: darken($color: rgb(18, 99, 250), $amount: 20);
+  }
+  &:disabled {
+    color: $mid-grey;
+  }
+}
+
+.btn-cart {
+  position: fixed;
+  right: $spacing * 2;
+  bottom: $spacing * 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+  height: 70px;
+  width: 70px;
+  font-size: 2rem;
+  background-color: rgba($color: $mid-grey, $alpha: .5);
+  border: 4px solid $brand-color;
+  border-radius: 50%;
+  opacity: .75;
+}

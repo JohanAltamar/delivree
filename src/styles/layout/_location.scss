@@ -1,0 +1,15 @@
+.location__container{
+  max-width: 100%;
+
+  .location__image{
+
+    &-caption{
+      text-align: center;
+    }
+
+    .location__map{
+      height: 300px;
+      width: 100%;
+    }
+  }
+}

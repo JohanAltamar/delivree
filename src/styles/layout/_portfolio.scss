@@ -1,0 +1,72 @@
+.portfolio__project-container-left-image,
+.portfolio__project-container-right-image {
+  display: grid;
+  column-gap: 2 * $spacing;
+}
+
+.portfolio__project-container-left-image {
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas:
+    "image  title"
+    "image  description"
+    "image  buttons";
+}
+
+.portfolio__project-container-right-image {
+  grid-template-columns: 3fr 2fr;
+  grid-template-areas:
+    "title        image"
+    "description  image"
+    "buttons      image";
+}
+
+.portfolio__project-cover-image {
+  grid-area: image;
+
+  &-container{
+    position: relative;
+    cursor: pointer;
+  }
+  
+  &-hovering{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    opacity: 0;
+    background-color: rgba($color: #000, $alpha: .3);
+    height: 95%;
+    width: 100%;
+    border-radius: $spacing;
+
+    transition: $transition;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+}
+
+.portfolio__project-title {
+  grid-area: title;
+  margin: 0;
+}
+
+.portfolio__project-description {
+  grid-area: description;
+  margin: 0;
+  margin-top: $spacing;
+}
+
+.portfolio__project-buttons {
+  grid-area: buttons;
+  display: none;
+
+  @include respond-to("small"){
+    display: block;
+  }
+}

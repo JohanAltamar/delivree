@@ -1,0 +1,52 @@
+.feature__container {
+  padding: $spacing * 4 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-title {
+    align-self: flex-start;
+  }
+}
+
+.feature__items-container {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(12, 1fr);
+  margin-top: $spacing * 2;
+  width: 100%;
+
+  .feature__item {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    &-image {
+      border-radius: $spacing;
+      margin-bottom: $spacing;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+
+    &-name {
+      text-transform: capitalize;
+    }
+    &-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      & span {
+        width: 40px;
+      }
+    }
+  }
+  @include respond-to("small") {
+    .feature__item {
+      grid-column: span 3;
+    }
+  }
+}
